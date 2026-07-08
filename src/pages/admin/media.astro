@@ -1,0 +1,125 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { readdir, stat } from "node:fs/promises";
+import { extname, resolve } from "node:path";
+
+export const prerender = false;
+
+const uploadsDir = resolve(process.cwd(), "public", "uploads");
+const imageExts = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"]);
+
+const formatBytes = (bytes: number) => {
+  if (bytes < 1024) return `${bytes} o`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} Ko`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} Mo`;
+};
+
+const files = await readdir(uploadsDir).catch(() => []);
+const media = (
+  await Promise.all(
+    files.map(async (name) => {
+      const filePath = resolve(uploadsDir, name);
+      const info = await stat(filePath).catch(() => null);
+      if (!info?.isFile()) return null;
+      const url = `/uploads/${name}`;
+      const ext = extname(name).toLowerCase();
+      return {
+        name,
+        url,
+        size: formatBytes(info.size),
+        isImage: imageExts.has(ext),
+        updated: info.mtime.toISOString().slice(0, 10)
+      };
+    })
+  )
+)
+  .filter((item): item is NonNullable<typeof item> => Boolean(item))
+  .sort((a, b) => b.updated.localeCompare(a.updated) || a.name.localeCompare(b.name));
+---
+
+<AdminLayout title="Médiathèque" active="media">
+  <div class="admin-head">
+    <div>
+      <h1>Médiathèque</h1>
+      <p>Envoie des images, PDF ou vidéos, puis réutilise leur URL dans les formulaires du site.</p>
+    </div>
+    <label class="btn btn--primary">
+      Ajouter un fichier
+      <input type="file" data-upload hidden />
+    </label>
+  </div>
+
+  <p class="form-error" data-error hidden style="margin:0 0 16px"></p>
+  <p class="save-ok" data-ok hidden>Fichier envoyé.</p>
+
+  <div class="panel media-panel">
+    {media.length === 0 ? (
+      <p class="empty">Aucun fichier envoyé pour le moment.</p>
+    ) : (
+      <div class="media-grid-admin">
+        {media.map((item) => (
+          <article class="media-item">
+            <div class="media-item__preview">
+              {item.isImage ? <img src={item.url} alt="" loading="lazy" /> : <span>{extname(item.name).replace(".", "").toUpperCase() || "Fichier"}</span>}
+            </div>
+            <div class="media-item__body">
+              <strong>{item.name}</strong>
+              <small>{item.size} · {item.updated}</small>
+              <code>{item.url}</code>
+              <button class="btn btn--ghost btn--small" type="button" data-copy={item.url}>Copier l'URL</button>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <style is:global>
+    .save-ok { margin: 0 0 16px; padding: 10px 12px; border-radius: 8px; background: #e9f6ee; color: #17784f; font-weight: 700; }
+    .media-panel { padding: 18px; }
+    .media-grid-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+    .media-item { border: 1px solid var(--a-line); border-radius: 10px; background: #fff; overflow: hidden; }
+    .media-item__preview { aspect-ratio: 4 / 3; display: grid; place-items: center; background: #f2f5f2; color: var(--a-muted); font-weight: 800; }
+    .media-item__preview img { width: 100%; height: 100%; object-fit: cover; }
+    .media-item__body { display: grid; gap: 8px; padding: 12px; }
+    .media-item__body strong { overflow-wrap: anywhere; }
+    .media-item__body small { color: var(--a-muted); }
+    .media-item__body code { padding: 6px 7px; border-radius: 6px; background: #f4f6f4; font-size: 0.78rem; overflow-wrap: anywhere; }
+  </style>
+
+  <script>
+    const uploadInput = document.querySelector("[data-upload]");
+    const errorEl = document.querySelector("[data-error]");
+    const okEl = document.querySelector("[data-ok]");
+
+    async function upload(file) {
+      errorEl.hidden = true;
+      okEl.hidden = true;
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body });
+      if (res.ok) {
+        okEl.hidden = false;
+        location.reload();
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      errorEl.textContent = data.error || "Échec de l'envoi du fichier.";
+      errorEl.hidden = false;
+    }
+
+    uploadInput?.addEventListener("change", () => {
+      const file = uploadInput.files?.[0];
+      if (file) upload(file);
+      uploadInput.value = "";
+    });
+
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const url = button.getAttribute("data-copy") || "";
+        await navigator.clipboard?.writeText(url);
+        button.textContent = "Copié";
+      });
+    });
+  </script>
+</AdminLayout>

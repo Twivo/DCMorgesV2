@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<BaseLayout title="Page introuvable">
+  <PageHero
+    eyebrow="Erreur 404"
+    title="Page introuvable"
+    description="La page demandée n'existe pas ou n'est pas encore créée."
+    actions={[{ label: "Retour à l'accueil", href: "/" }]}
+  />
+</BaseLayout>

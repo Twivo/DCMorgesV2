@@ -1,0 +1,532 @@
+[
+  {
+    "id": "championnat-du-monde",
+    "title": "Championnat du Monde",
+    "description": "Palmarès Championnat du Monde, WDF et PDC.",
+    "seasons": [
+      "Archives historiques"
+    ],
+    "documentIds": [],
+    "links": [
+      {
+        "label": "Championnat du Monde PDC",
+        "href": "/sources/archives-halloffame-wc-pdc-htm/",
+        "description": "PDC WORLD CHAMPIONSHIP HALL OF FAME - Année - Winner"
+      },
+      {
+        "label": "Championnat du Monde WDF — Hommes",
+        "href": "/sources/archives-halloffame-wc-wdf-men-htm/",
+        "description": "WDF WORLD CHAMPIONSHIP HALL OF FAME / MEN - Année - Winner"
+      },
+      {
+        "label": "Championnat du Monde WDF — Dames",
+        "href": "/sources/archives-halloffame-wc-wdf-women-htm/",
+        "description": "WDF WORLD CHAMPIONSHIP HALL OF FAME / LADIES - Année - Winner"
+      },
+      {
+        "label": "Championnat du Monde — Sommaire",
+        "href": "/sources/archives-halloffame-wc-htm/",
+        "description": "Update - 07.01.2026 - CHAMPIONNAT DU MONDE"
+      }
+    ]
+  },
+  {
+    "id": "sda",
+    "title": "SDA",
+    "description": "Championnat suisse, Swiss Cup, classements, matchs et documents SDA.",
+    "seasons": [
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2022",
+      "2023",
+      "2024-25",
+      "2024",
+      "2025-26",
+      "2025"
+    ],
+    "documentIds": [
+      "swisscup-sda-cup-2007-pdf",
+      "swisscup-sda-cup-2008-pdf",
+      "swisscup-sda-cup-2009-pdf",
+      "swisscup-sda-cup-2010-pdf",
+      "swisscup-sda-cup-2011-pdf",
+      "swisscup-sda-cup-2012-pdf",
+      "swisscup-sda-cup-2013-pdf",
+      "swisscup-sda-cup-2014-pdf",
+      "swisscup-sda-cup-2015-pdf",
+      "swisscup-sda-cup-2016-pdf",
+      "swisscup-sda-cup-2017-pdf",
+      "swisscup-sda-cup-2018-pdf",
+      "swisscup-sda-cup-2019-pdf",
+      "swisscup-sda-cup-2022-pdf",
+      "swisscup-sda-cup-2023-pdf",
+      "sda-sda-2024-25-sda-classement-pdf",
+      "sda-sda-2024-25-sda-matchs-pdf",
+      "swisscup-sda-cup-2024-pdf",
+      "sda-sda-2025-26-sda-calendrier-pdf",
+      "sda-sda-2025-26-sda-calendrier-dcm-pdf",
+      "sda-sda-2025-26-sda-classement-pdf",
+      "sda-sda-2025-26-sda-classement-average-pdf",
+      "sda-sda-2025-26-sda-classement-best-finish-pdf",
+      "sda-sda-2025-26-sda-classement-most-180-pdf",
+      "sda-sda-2025-26-sda-classement-mvp-pdf",
+      "sda-sda-2025-26-sda-classement-ratio-pdf",
+      "sda-sda-2025-26-sda-matchs-pdf",
+      "sda-sda-2025-26-sda-reglements-pdf",
+      "sda-sda-2025-26-sda-statuts-pdf",
+      "swisscup-sda-cup-2025-pdf"
+    ],
+    "links": [
+      {
+        "label": "SDA — Championnat Suisse",
+        "href": "/sources/archives-halloffame-sda-championnat-htm/",
+        "description": "CHAMPIONNAT SUISSE - Champion Suisse - promu"
+      },
+      {
+        "label": "SDA — Swiss Cup",
+        "href": "/sources/archives-halloffame-sda-swiss-cup-htm/",
+        "description": "SWISS DARTS ASSOCIATION - SWISS CUP - B-CUP"
+      },
+      {
+        "label": "Swiss Darts Association — Sommaire",
+        "href": "/sources/archives-halloffame-sda-htm/",
+        "description": "Update - 25.12.2025 - SWISS DARTS"
+      },
+      {
+        "label": "SDA 2025-26",
+        "href": "/sources/sda-htm/",
+        "description": "Update : - 13.04.2026 - SDA"
+      }
+    ]
+  },
+  {
+    "id": "ligue-morgienne",
+    "title": "Ligue Morgienne / Ligue Vaudoise",
+    "description": "Archives LMF, championnats, coupes, feuilles de match et palmarès.",
+    "seasons": [
+      "2024-25",
+      "2025-26"
+    ],
+    "documentIds": [
+      "ligue-morgienne-lmf-2024-25-lmf-classement-pdf",
+      "ligue-morgienne-lmf-2024-25-lmf-matchs-pdf",
+      "ligue-morgienne-lmf-2024-25-lmf-resultats-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-calendrier-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-classement-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-classement-best-finish-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-classement-best-player-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-classement-most-180-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-classement-mvp-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-coupe-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-coupe-matchs-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-feuille-coupe-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-feuille-match-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-matchs-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-palmares-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-rules-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-resultats-pdf",
+      "ligue-morgienne-lmf-2025-26-lmf-teams-pdf",
+      "ligue-morgienne-lmf-2025-26-tournoi-vd-coupe-2026-pdf"
+    ],
+    "links": [
+      {
+        "label": "Ligue Morgienne / Vaudoise — Championnat",
+        "href": "/sources/archives-halloffame-lmf-championnat-htm/",
+        "description": "HALL OF FAME - LIGUE MORGIENNE DE FLÉCHETTES / CHAMPIONNAT - Année"
+      },
+      {
+        "label": "Ligue Morgienne / Vaudoise — Coupe",
+        "href": "/sources/archives-halloffame-lmf-cup-htm/",
+        "description": "HALL OF FAME - LIGUE MORGIENNE DE FLÉCHETTES / COUPE - Année"
+      },
+      {
+        "label": "Ligue Morgienne / Vaudoise — Sommaire",
+        "href": "/sources/archives-halloffame-lmf-htm/",
+        "description": "Update - 26.11.2025 - LIGUE"
+      },
+      {
+        "label": "Ligue Morgienne de Fléchettes 2025-26",
+        "href": "/sources/ligue-morgienne-htm/",
+        "description": "Update : - 26.04.2026 - Ligue"
+      }
+    ]
+  },
+  {
+    "id": "geneva-darts-league",
+    "title": "Geneva Darts League",
+    "description": "Anciennes archives Geneva Darts League.",
+    "seasons": [
+      "Archives historiques"
+    ],
+    "documentIds": [],
+    "links": [
+      {
+        "label": "Geneva Darts League — Championnat",
+        "href": "/sources/archives-halloffame-gdl-championnat-htm/",
+        "description": "HALL OF FAME - GENEVA DARTS LEAGUE / CHAMPIONNAT 1ère division - DC Morges a joué de 1999-2002 et de"
+      },
+      {
+        "label": "Geneva Darts League — Coupe",
+        "href": "/sources/archives-halloffame-gdl-cup-htm/",
+        "description": "HALL OF FAME - GENEVA DARTS LEAGUE / COUPE - DC Morges a joué de 1999-2002 et de"
+      },
+      {
+        "label": "Geneva Darts League — Sommaire",
+        "href": "/sources/archives-halloffame-gdl-htm/",
+        "description": "Update - 12.09.2023 - LIGUE GENEVOISE"
+      }
+    ]
+  },
+  {
+    "id": "morges-open",
+    "title": "Morges Open / Open Vaudois",
+    "description": "Résultats, photos, hall of fame et documents des opens.",
+    "seasons": [
+      "2009",
+      "2010",
+      "2013"
+    ],
+    "documentIds": [
+      "morges-open-morges-open-resultat-2009-pdf",
+      "open-vaudois-open-vaudois-resultat-2009-pdf",
+      "morges-open-morges-open-resultat-2010-pdf",
+      "morges-open-open-vaudois-resultat-2010-pdf",
+      "open-vaudois-open-vaudois-resultat-2010-pdf",
+      "morges-open-morges-open-resultat-2013-pdf"
+    ],
+    "links": [
+      {
+        "label": "Morges Open — Doubles Dames",
+        "href": "/sources/archives-halloffame-open-morges-ladies-doubles-htm/",
+        "description": "MORGES OPEN - (DOUBLES DAMES / LADIES DOUBLES) - Année"
+      },
+      {
+        "label": "Morges Open — Lucky Looser (Tournoi C)",
+        "href": "/sources/archives-halloffame-open-morges-lucky-looser-htm/",
+        "description": "MORGES OPEN - (TOURNOI C / LUCKY LOOSER SINGLES) - Année"
+      },
+      {
+        "label": "Morges Open — Doubles Hommes",
+        "href": "/sources/archives-halloffame-open-morges-men-doubles-htm/",
+        "description": "MORGES OPEN - (DOUBLES HOMMES / MEN'S DOUBLES) - Année"
+      },
+      {
+        "label": "Morges Open — Simples Hommes",
+        "href": "/sources/archives-halloffame-open-morges-men-htm/",
+        "description": "MORGES OPEN - (SIMPLES HOMMES / MEN'S SINGLES) - Année"
+      },
+      {
+        "label": "Morges Open — Mystery Doubles",
+        "href": "/sources/archives-halloffame-open-morges-mistery-doubles-htm/",
+        "description": "MORGES OPEN - (MISTERY DOUBLES) - Année"
+      },
+      {
+        "label": "Morges Open — Simples Dames",
+        "href": "/sources/archives-halloffame-open-morges-women-htm/",
+        "description": "MORGES OPEN - (SIMPLES DAMES / LADIES SINGLES) - Année"
+      },
+      {
+        "label": "Morges Open — Sommaire",
+        "href": "/sources/archives-halloffame-open-morges-htm/",
+        "description": "Update - 12.09.2023 - MORGES"
+      },
+      {
+        "label": "Open Vaudois — Doubles Dames",
+        "href": "/sources/archives-halloffame-open-vaudois-ladies-doubles-htm/",
+        "description": "OPEN VAUDOIS - (DOUBLES DAMES / LADIES DOUBLES) - Année"
+      },
+      {
+        "label": "Open Vaudois — Lucky Looser (Tournoi C)",
+        "href": "/sources/archives-halloffame-open-vaudois-lucky-looser-htm/",
+        "description": "OPEN VAUDOIS - (TOURNOI C / LUCKY LOOSER SINGLES) - Année"
+      },
+      {
+        "label": "Open Vaudois — Doubles Hommes",
+        "href": "/sources/archives-halloffame-open-vaudois-men-doubles-htm/",
+        "description": "OPEN VAUDOIS - (DOUBLES HOMMES / MEN'S DOUBLES) - Année"
+      },
+      {
+        "label": "Open Vaudois — Simples Hommes",
+        "href": "/sources/archives-halloffame-open-vaudois-men-htm/",
+        "description": "OPEN VAUDOIS - (SIMPLES HOMMES / MEN'S SINGLES) - Année"
+      },
+      {
+        "label": "Open Vaudois — Simples Dames",
+        "href": "/sources/archives-halloffame-open-vaudois-women-htm/",
+        "description": "OPEN VAUDOIS - (SIMPLES DAMES / LADIES SINGLES) - Année"
+      },
+      {
+        "label": "Open Vaudois — Sommaire",
+        "href": "/sources/archives-halloffame-open-vaudois-htm/",
+        "description": "Update - 12.09.2023 - OPEN"
+      },
+      {
+        "label": "Opens de darts — Sommaire",
+        "href": "/sources/archives-halloffame-open-htm/",
+        "description": "Update - 12.09.2023 - DARTS"
+      },
+      {
+        "label": "Morges Open 1999 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-1999-htm/",
+        "description": "1er Open de Morges - 1999 - SIMPLE HOMME"
+      },
+      {
+        "label": "Morges Open 2000 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2000-htm/",
+        "description": "2ème Open de Morges - 2000 - SIMPLE HOMME"
+      },
+      {
+        "label": "Morges Open 2001 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2001-htm/",
+        "description": "3ème Open de Morges - 2001 - Photos"
+      },
+      {
+        "label": "Morges Open 2002 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2002-htm/",
+        "description": "4ème Open de Morges - 2002 - Photos"
+      },
+      {
+        "label": "Morges Open 2003 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2003-htm/",
+        "description": "5ème Open de Morges - 2003 - Photos"
+      },
+      {
+        "label": "Morges Open 2004 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2004-htm/",
+        "description": "6ème Open de Morges - 2004 - Photos"
+      },
+      {
+        "label": "Morges Open 2005 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2005-htm/",
+        "description": "7ème Open de Morges - 2005 - Photos"
+      },
+      {
+        "label": "Morges Open 2006 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2006-htm/",
+        "description": "8ème Open de - Morges 2006 - Photos"
+      },
+      {
+        "label": "Morges Open 2007 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2007-htm/",
+        "description": "9ème OPEN DE MORGES 2007 - Simple homme - 55 hommes"
+      },
+      {
+        "label": "Morges Open 2008 — Résultats",
+        "href": "/sources/morges-open-morges-open-resultat-2008-htm/",
+        "description": "10. Morges Open 2008 - samedi 20.09.2008 - Simple homme"
+      },
+      {
+        "label": "Open Vaudois — Menu",
+        "href": "/sources/open-vaudois-leftframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois — News",
+        "href": "/sources/open-vaudois-news-html/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois 2004 — Résultats",
+        "href": "/sources/open-vaudois-open-vaudois-resultat-2004-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois 2005 — Résultats",
+        "href": "/sources/open-vaudois-open-vaudois-resultat-2005-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois 2006 — Résultats",
+        "href": "/sources/open-vaudois-open-vaudois-resultat-2006-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois 2007 — Résultats",
+        "href": "/sources/open-vaudois-open-vaudois-resultat-2007-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois 2008 — Résultats",
+        "href": "/sources/open-vaudois-open-vaudois-resultat-2008-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois — Cadre principal",
+        "href": "/sources/open-vaudois-rightframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Open Vaudois — Bandeau",
+        "href": "/sources/open-vaudois-topframe-htm/",
+        "description": "Darts Club Morges"
+      }
+    ]
+  },
+  {
+    "id": "master-tour",
+    "title": "Master Tour",
+    "description": "Hall of fame et archives Master Tour.",
+    "seasons": [
+      "Archives historiques"
+    ],
+    "documentIds": [],
+    "links": [
+      {
+        "label": "DC Morges Master Tour",
+        "href": "/sources/archives-halloffame-master-tour-htm/",
+        "description": "HALL OF FAME / DC MORGES MASTER - TOUR - Année"
+      }
+    ]
+  },
+  {
+    "id": "autres-archives",
+    "title": "Autres archives",
+    "description": "Tournois de Pâques, Pentecôte, Open La Sportive et pages historiques.",
+    "seasons": [
+      "Archives historiques"
+    ],
+    "documentIds": [
+      "tournoi-tournoi-paques-tournoi-paques-2023-paques-2023-finales-pdf",
+      "tournoi-tournoi-paques-tournoi-paques-2023-paques-2023-round-robin-pdf",
+      "tournoi-tournoi-pentecote-tournoi-pentecote-2023-pentecote-2023-finales-pdf",
+      "tournoi-tournoi-pentecote-tournoi-pentecote-2023-pentecote-2023-round-robin-pdf",
+      "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-finales-pdf",
+      "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-matchs-pdf",
+      "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-round-robin-pdf",
+      "tournoi-open-la-sportive-2026-ols-2026-classement-pdf"
+    ],
+    "links": [
+      {
+        "label": "Accueil (ancien site)",
+        "href": "/sources/accueil-actuel/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Agenda (ancien site)",
+        "href": "/sources/agenda-htm/",
+        "description": "Tournoi de Pâques - Lundi 6 avril (11h) - ---------------------------------------------------------"
+      },
+      {
+        "label": "Archives — Sommaire",
+        "href": "/sources/archives-htm/",
+        "description": "Update - 25.12.2025 - ARCHIVES"
+      },
+      {
+        "label": "Club — Sommaire",
+        "href": "/sources/club-htm/",
+        "description": "Update - 25.12.2025 - CLUB"
+      },
+      {
+        "label": "Membres du club 2025-26",
+        "href": "/sources/club-club-2025-26-htm/",
+        "description": "Darts Club Morges - Membres actifs 2025-26 - Michel"
+      },
+      {
+        "label": "Équipe LMF 2025-26",
+        "href": "/sources/club-lmf-team-2025-26-htm/",
+        "description": "DC MORGES - LMF Team 2025-26 - Michel"
+      },
+      {
+        "label": "Palmarès du club",
+        "href": "/sources/club-palmares-html/",
+        "description": "2 - 0 - 2"
+      },
+      {
+        "label": "Équipes SDA du DC Morges 2025-26",
+        "href": "/sources/club-sda-dcm-team-2025-26-htm/",
+        "description": "DC Morges 1 - SDA Team 2025-26 - Michel"
+      },
+      {
+        "label": "Contact (ancien site)",
+        "href": "/sources/contact-html/",
+        "description": "DARTS CLUB MORGES - Adresse - Rue de la Gare 1b"
+      },
+      {
+        "label": "Photos des Opens de Morges",
+        "href": "/sources/indexomphoto-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Menu de navigation (ancien site)",
+        "href": "/sources/leftframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Section Musique (ancien site)",
+        "href": "/sources/music/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Section Musique — Menu",
+        "href": "/sources/music-leftframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Section Musique — News",
+        "href": "/sources/music-news-html/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Section Musique — Cadre principal",
+        "href": "/sources/music-rightframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Section Musique — Bandeau",
+        "href": "/sources/music-topframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "News (ancien site)",
+        "href": "/sources/news-html/",
+        "description": "Coupe Vaudoise en - Simples Open (27.04.2026) - Résultats et"
+      },
+      {
+        "label": "Photos Open de Morges 2001",
+        "href": "/sources/om2001photo-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Photos Open de Morges 2002",
+        "href": "/sources/om2002photo-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Photos Open de Morges 2003",
+        "href": "/sources/om2003photo-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Photos Open de Morges 2004",
+        "href": "/sources/om2004photo-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Cadre principal (ancien site)",
+        "href": "/sources/rightframe-htm/",
+        "description": "Darts Club Morges"
+      },
+      {
+        "label": "Bandeau d'en-tête (ancien site)",
+        "href": "/sources/topframe-htm/",
+        "description": "DARTS - CLUB MORGES Rue de la Gare 1b, 1110 Morges, - dartsclubmorges(at)gmail.com"
+      },
+      {
+        "label": "Vidéos — Sommaire",
+        "href": "/sources/videos-htm/",
+        "description": "Update - 12.09.2023 - VIDEOS"
+      }
+    ]
+  }
+]

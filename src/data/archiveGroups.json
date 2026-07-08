@@ -1,0 +1,30 @@
+[
+  {
+    "id": "competitions-suisses-locales",
+    "title": "Compétitions suisses et locales",
+    "description": "Les archives sportives principales du club et des ligues.",
+    "archiveIds": [
+      "sda",
+      "ligue-morgienne",
+      "geneva-darts-league"
+    ]
+  },
+  {
+    "id": "opens-tournois",
+    "title": "Opens et tournois",
+    "description": "Résultats, documents et palmarès des tournois historiques.",
+    "archiveIds": [
+      "morges-open",
+      "master-tour",
+      "autres-archives"
+    ]
+  },
+  {
+    "id": "palmares-internationaux",
+    "title": "Palmarès internationaux",
+    "description": "Archives et hall of fame des championnats du monde.",
+    "archiveIds": [
+      "championnat-du-monde"
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import DocumentCard from "../../components/DocumentCard.astro";
+import { newsItems } from "../../data/news";
+import { documents } from "../../data/documents";
+import { formatDate } from "../../utils/format";
+
+export function getStaticPaths() {
+  return newsItems.map((news) => ({
+    params: { slug: news.slug },
+    props: { news }
+  }));
+}
+
+const { news } = Astro.props;
+const documentById = new Map(documents.map((document) => [document.id, document]));
+const linkedDocuments = (news.documents ?? [])
+  .map((id) => documentById.get(id))
+  .filter((document) => Boolean(document));
+---
+
+<BaseLayout title={news.title} description={news.summary}>
+  <PageHero
+    eyebrow={`${news.category} - ${formatDate(news.date)}`}
+    title={news.title}
+    description={news.summary}
+  />
+
+  <section class="section">
+    <article class="container article-layout">
+      {news.image && (
+        <figure class="news-figure">
+          <img class="content-card__image" src={news.image} alt={news.caption ?? ""} loading="lazy" />
+          {news.caption && <figcaption>{news.caption}</figcaption>}
+        </figure>
+      )}
+      {(news.content ?? []).map((paragraph) => <p>{paragraph}</p>)}
+      <a class="text-link" href="/news/">Retour aux news</a>
+    </article>
+  </section>
+
+  {linkedDocuments.length > 0 && (
+    <section class="section section--muted">
+      <div class="container">
+        <SectionHeader title="Documents liés" />
+        <div class="card-grid card-grid--three">
+          {linkedDocuments.map((document) => <DocumentCard document={document} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

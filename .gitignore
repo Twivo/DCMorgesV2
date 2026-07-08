@@ -1,0 +1,11 @@
+node_modules/
+dist/
+public-site/
+public/legacy/videos/*.mp4
+.astro/
+.env
+.env.*
+!.env.example
+
+# Les fichiers ajoutes via l'admin sont du contenu public.
+# Ils doivent rester versionnes pour etre deployes avec le site.

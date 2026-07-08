@@ -1,0 +1,73 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { siteInfoFields, siteNavigationField, siteQuickLinksField } from "../../lib/collections";
+
+export const prerender = false;
+
+const site = JSON.parse(await readFile(resolve(process.cwd(), "src", "data", "site.json"), "utf8"));
+
+const fields = [...siteInfoFields, siteNavigationField, siteQuickLinksField];
+const infoKeys = siteInfoFields.map((f) => f.key);
+const values = { ...site.info, navigation: site.navigation, quickLinks: site.quickLinks };
+---
+
+<AdminLayout title="Réglages du site" active="site">
+  <div class="admin-head">
+    <div>
+      <h1>Réglages du site</h1>
+      <p>Coordonnées du club, menu de navigation et accès rapides de la page d'accueil.</p>
+    </div>
+    <button class="btn btn--primary" type="button" data-save>Enregistrer</button>
+  </div>
+
+  <p class="form-error" data-error hidden style="margin:0 0 16px"></p>
+  <p class="save-ok" data-ok hidden>✓ Réglages enregistrés.</p>
+
+  <div class="panel" style="padding:22px; max-width:860px">
+    <div data-fields style="display:grid; gap:16px"></div>
+    <div style="margin-top:20px">
+      <button class="btn btn--primary" type="button" data-save>Enregistrer les réglages</button>
+    </div>
+  </div>
+
+  <style is:global>
+    .save-ok { margin: 0 0 16px; padding: 10px 12px; border-radius: 8px; background: #e9f6ee; color: #17784f; font-weight: 700; }
+  </style>
+
+  <script is:inline src="/admin/forms.js"></script>
+  <script define:vars={{ fields, values, infoKeys }}>
+    const box = document.querySelector("[data-fields]");
+    const errorEl = document.querySelector("[data-error]");
+    const okEl = document.querySelector("[data-ok]");
+    const collect = window.AdminForms.buildInto(box, fields, values);
+
+    async function save() {
+      errorEl.hidden = true;
+      okEl.hidden = true;
+      const all = collect();
+      const info = {};
+      infoKeys.forEach((k) => {
+        const v = all[k];
+        if (v !== "" && v != null) info[k] = v;
+      });
+      const body = { info, navigation: all.navigation || [], quickLinks: all.quickLinks || [] };
+      const res = await fetch("/api/site", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        okEl.hidden = false;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errorEl.textContent = data.error || "Échec de l'enregistrement.";
+        errorEl.hidden = false;
+      }
+    }
+
+    document.querySelectorAll("[data-save]").forEach((b) => b.addEventListener("click", save));
+  </script>
+</AdminLayout>

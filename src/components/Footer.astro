@@ -1,0 +1,25 @@
+---
+import { navigation, siteInfo } from "../data/site";
+import { safeUrl } from "../utils/url";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <img class="site-footer__logo" src={siteInfo.logo} alt={`Logo ${siteInfo.name}`} width="52" height="52" />
+      <strong>{siteInfo.name}</strong>
+      <span>{siteInfo.location}</span>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Navigation secondaire">
+      {navigation.map((item) => (
+        <a href={safeUrl(item.href)}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="site-footer__meta">
+      <span>{siteInfo.email}</span>
+      <span>{siteInfo.address}</span>
+    </div>
+  </div>
+</footer>

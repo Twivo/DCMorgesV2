@@ -1,0 +1,38 @@
+---
+import type { DocumentItem } from "../data/types";
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  document: DocumentItem;
+}
+
+const { document } = Astro.props;
+const url = safeUrl(document.url);
+const hasUrl = Boolean(url);
+const actionLabel = document.actionLabel?.trim() || "Voir le document";
+---
+
+<article class="content-card document-card">
+  <div class="content-card__body">
+    <div class="meta-row">
+      <span>{document.competition}</span>
+    </div>
+    <h3>{document.title}</h3>
+    <div class="document-card__meta">
+      <span>{document.type}</span>
+      <span>{document.season}</span>
+    </div>
+    {hasUrl ? (
+      <div class="document-actions">
+        <a class="button button--small button--primary" href={url} target="_blank" rel="noreferrer">
+          {actionLabel}
+        </a>
+        <a class="button button--small button--outline" href={url} download>
+          Télécharger
+        </a>
+      </div>
+    ) : (
+      <span class="button button--small button--disabled" aria-disabled="true">Document indisponible</span>
+    )}
+  </div>
+</article>

@@ -1,0 +1,1748 @@
+[
+  {
+    "url": "https://www.dcmorges.ch/clipart/board2.jpg",
+    "status": 200,
+    "bytes": 4605,
+    "localPath": "/legacy/clipart/board2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/cameraman.gif",
+    "status": 200,
+    "bytes": 20048,
+    "localPath": "/legacy/clipart/cameraman.gif"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/coupe1.gif",
+    "status": 200,
+    "bytes": 3473,
+    "localPath": "/legacy/clipart/coupe1.gif"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/DCM-logo.jpg",
+    "status": 200,
+    "bytes": 21368,
+    "localPath": "/legacy/clipart/DCM-logo.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/gdl.jpg",
+    "status": 200,
+    "bytes": 20457,
+    "localPath": "/legacy/clipart/gdl.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/gdlblack.jpg",
+    "status": 200,
+    "bytes": 17726,
+    "localPath": "/legacy/clipart/gdlblack.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/LMF.jpg",
+    "status": 200,
+    "bytes": 20264,
+    "localPath": "/legacy/clipart/LMF.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/logo.gif",
+    "status": 200,
+    "bytes": 8925,
+    "localPath": "/legacy/clipart/logo.gif"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/merry-christmas.jpg",
+    "status": 200,
+    "bytes": 47507,
+    "localPath": "/legacy/clipart/merry-christmas.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/merry%20Xmas-3.jpg",
+    "status": 200,
+    "bytes": 282982,
+    "localPath": "/legacy/clipart/merry Xmas-3.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/morges-flag.jpg",
+    "status": 200,
+    "bytes": 13637,
+    "localPath": "/legacy/clipart/morges-flag.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/rolodex.gif",
+    "status": 200,
+    "bytes": 3573,
+    "localPath": "/legacy/clipart/rolodex.gif"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/sda.png",
+    "status": 200,
+    "bytes": 5969,
+    "localPath": "/legacy/clipart/sda.png"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/sdawhite.png",
+    "status": 200,
+    "bytes": 7699,
+    "localPath": "/legacy/clipart/sdawhite.png"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/vauddarts.gif",
+    "status": 200,
+    "bytes": 20074,
+    "localPath": "/legacy/clipart/vauddarts.gif"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/vauddarts.jpg",
+    "status": 200,
+    "bytes": 43111,
+    "localPath": "/legacy/clipart/vauddarts.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/clipart/vaudflag.png",
+    "status": 200,
+    "bytes": 12174,
+    "localPath": "/legacy/clipart/vaudflag.png"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/andermatt.armin.bmp",
+    "status": 200,
+    "bytes": 51570,
+    "localPath": "/legacy/Dartsjoueurs/andermatt.armin.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/asmussen.lars.jpg",
+    "status": 200,
+    "bytes": 8179,
+    "localPath": "/legacy/Dartsjoueurs/asmussen.lars.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/baer.herve.bmp",
+    "status": 200,
+    "bytes": 62754,
+    "localPath": "/legacy/Dartsjoueurs/baer.herve.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/bangun.makmur.bmp",
+    "status": 200,
+    "bytes": 60474,
+    "localPath": "/legacy/Dartsjoueurs/bangun.makmur.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/barret.christophe.jpg",
+    "status": 200,
+    "bytes": 5426,
+    "localPath": "/legacy/Dartsjoueurs/barret.christophe.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/beckham.warren.jpg",
+    "status": 200,
+    "bytes": 2702,
+    "localPath": "/legacy/Dartsjoueurs/beckham.warren.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/beguelin.andre.bmp",
+    "status": 200,
+    "bytes": 59862,
+    "localPath": "/legacy/Dartsjoueurs/beguelin.andre.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/bolli.christian.bmp",
+    "status": 200,
+    "bytes": 49910,
+    "localPath": "/legacy/Dartsjoueurs/bolli.christian.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/bourdenet.christian.bmp",
+    "status": 200,
+    "bytes": 59862,
+    "localPath": "/legacy/Dartsjoueurs/bourdenet.christian.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/caduff.alain.bmp",
+    "status": 200,
+    "bytes": 55830,
+    "localPath": "/legacy/Dartsjoueurs/caduff.alain.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/capraro.omar.bmp",
+    "status": 200,
+    "bytes": 58838,
+    "localPath": "/legacy/Dartsjoueurs/capraro.omar.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/carvalho.jose.jpg",
+    "status": 200,
+    "bytes": 4847,
+    "localPath": "/legacy/Dartsjoueurs/carvalho.jose.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/casas.alberto.bmp",
+    "status": 200,
+    "bytes": 54502,
+    "localPath": "/legacy/Dartsjoueurs/casas.alberto.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/da-costa.antonio.bmp",
+    "status": 200,
+    "bytes": 62178,
+    "localPath": "/legacy/Dartsjoueurs/da-costa.antonio.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/da-cruz.carlos.jpg",
+    "status": 200,
+    "bytes": 2914,
+    "localPath": "/legacy/Dartsjoueurs/da-cruz.carlos.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/da-cruz.jeanmarc.jpg",
+    "status": 200,
+    "bytes": 2722,
+    "localPath": "/legacy/Dartsjoueurs/da-cruz.jeanmarc.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/di-blasi.alexandra.bmp",
+    "status": 200,
+    "bytes": 49974,
+    "localPath": "/legacy/Dartsjoueurs/di-blasi.alexandra.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/diana.daniel.bmp",
+    "status": 200,
+    "bytes": 56726,
+    "localPath": "/legacy/Dartsjoueurs/diana.daniel.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/dosreis.paulo-2.jpg",
+    "status": 200,
+    "bytes": 3421,
+    "localPath": "/legacy/Dartsjoueurs/dosreis.paulo-2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/erlebach.melanie.jpg",
+    "status": 200,
+    "bytes": 4778,
+    "localPath": "/legacy/Dartsjoueurs/erlebach.melanie.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/feignoux.cindy.jpg",
+    "status": 200,
+    "bytes": 3749,
+    "localPath": "/legacy/Dartsjoueurs/feignoux.cindy.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/firmino.manuel.bmp",
+    "status": 200,
+    "bytes": 54162,
+    "localPath": "/legacy/Dartsjoueurs/firmino.manuel.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/franz.emmanuel.bmp",
+    "status": 200,
+    "bytes": 53814,
+    "localPath": "/legacy/Dartsjoueurs/franz.emmanuel.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/gatta.daniel.jpg",
+    "status": 200,
+    "bytes": 4351,
+    "localPath": "/legacy/Dartsjoueurs/gatta.daniel.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/gaudin.daniel.bmp",
+    "status": 200,
+    "bytes": 59506,
+    "localPath": "/legacy/Dartsjoueurs/gaudin.daniel.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/genna.christina.jpg",
+    "status": 200,
+    "bytes": 3711,
+    "localPath": "/legacy/Dartsjoueurs/genna.christina.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/gohl.vincent.bmp",
+    "status": 200,
+    "bytes": 58082,
+    "localPath": "/legacy/Dartsjoueurs/gohl.vincent.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/hassini.khalid.bmp",
+    "status": 200,
+    "bytes": 54486,
+    "localPath": "/legacy/Dartsjoueurs/hassini.khalid.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/hemmersbach.ana.bmp",
+    "status": 200,
+    "bytes": 60094,
+    "localPath": "/legacy/Dartsjoueurs/hemmersbach.ana.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/joly.jeansebastien.bmp",
+    "status": 200,
+    "bytes": 59814,
+    "localPath": "/legacy/Dartsjoueurs/joly.jeansebastien.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/kolly.willy.jpg",
+    "status": 200,
+    "bytes": 4092,
+    "localPath": "/legacy/Dartsjoueurs/kolly.willy.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/lombardo.lucas.jpg",
+    "status": 200,
+    "bytes": 4399,
+    "localPath": "/legacy/Dartsjoueurs/lombardo.lucas.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/lombardo.mario.bmp",
+    "status": 200,
+    "bytes": 49974,
+    "localPath": "/legacy/Dartsjoueurs/lombardo.mario.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/longo.rocco.bmp",
+    "status": 200,
+    "bytes": 53142,
+    "localPath": "/legacy/Dartsjoueurs/longo.rocco.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/lopez.juan.bmp",
+    "status": 200,
+    "bytes": 62374,
+    "localPath": "/legacy/Dartsjoueurs/lopez.juan.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/malushi.faik.bmp",
+    "status": 200,
+    "bytes": 55474,
+    "localPath": "/legacy/Dartsjoueurs/malushi.faik.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/manzoni.ludovic.jpg",
+    "status": 200,
+    "bytes": 3717,
+    "localPath": "/legacy/Dartsjoueurs/manzoni.ludovic.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/marchand.amandine.jpg",
+    "status": 200,
+    "bytes": 2647,
+    "localPath": "/legacy/Dartsjoueurs/marchand.amandine.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/mayland.thierry.bmp",
+    "status": 200,
+    "bytes": 57126,
+    "localPath": "/legacy/Dartsjoueurs/mayland.thierry.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/mirante.claudio.bmp",
+    "status": 200,
+    "bytes": 53518,
+    "localPath": "/legacy/Dartsjoueurs/mirante.claudio.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/monteiro.joao.bmp",
+    "status": 200,
+    "bytes": 59862,
+    "localPath": "/legacy/Dartsjoueurs/monteiro.joao.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/moser.lucien.jpg",
+    "status": 200,
+    "bytes": 3906,
+    "localPath": "/legacy/Dartsjoueurs/moser.lucien.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/muhlemann.hans.bmp",
+    "status": 200,
+    "bytes": 56778,
+    "localPath": "/legacy/Dartsjoueurs/muhlemann.hans.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/muller.andre.bmp",
+    "status": 200,
+    "bytes": 51894,
+    "localPath": "/legacy/Dartsjoueurs/muller.andre.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/mundler.robin.jpg",
+    "status": 200,
+    "bytes": 3933,
+    "localPath": "/legacy/Dartsjoueurs/mundler.robin.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/navarro.matias.jpg",
+    "status": 200,
+    "bytes": 8118,
+    "localPath": "/legacy/Dartsjoueurs/navarro.matias.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/nicaty.raphael.bmp",
+    "status": 200,
+    "bytes": 57126,
+    "localPath": "/legacy/Dartsjoueurs/nicaty.raphael.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/olaio.rogiero.jpg",
+    "status": 200,
+    "bytes": 3561,
+    "localPath": "/legacy/Dartsjoueurs/olaio.rogiero.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/oliveira.joao.jpg",
+    "status": 200,
+    "bytes": 4894,
+    "localPath": "/legacy/Dartsjoueurs/oliveira.joao.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/oliveira.manuel.jpg",
+    "status": 200,
+    "bytes": 7330,
+    "localPath": "/legacy/Dartsjoueurs/oliveira.manuel.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/olivier.severine.bmp",
+    "status": 200,
+    "bytes": 64998,
+    "localPath": "/legacy/Dartsjoueurs/olivier.severine.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/ortiz.juan.bmp",
+    "status": 200,
+    "bytes": 61806,
+    "localPath": "/legacy/Dartsjoueurs/ortiz.juan.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/pacheco.bruno.jpg",
+    "status": 200,
+    "bytes": 3365,
+    "localPath": "/legacy/Dartsjoueurs/pacheco.bruno.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/parker.paul-2.bmp",
+    "status": 200,
+    "bytes": 59094,
+    "localPath": "/legacy/Dartsjoueurs/parker.paul-2.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/pellaud.steve.jpg",
+    "status": 200,
+    "bytes": 4187,
+    "localPath": "/legacy/Dartsjoueurs/pellaud.steve.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/pennesi.carlo.bmp",
+    "status": 200,
+    "bytes": 50614,
+    "localPath": "/legacy/Dartsjoueurs/pennesi.carlo.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/perin.nicolas.bmp",
+    "status": 200,
+    "bytes": 57782,
+    "localPath": "/legacy/Dartsjoueurs/perin.nicolas.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/perriraz.patricia.bmp",
+    "status": 200,
+    "bytes": 56778,
+    "localPath": "/legacy/Dartsjoueurs/perriraz.patricia.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/perroud.olivier.jpg",
+    "status": 200,
+    "bytes": 4442,
+    "localPath": "/legacy/Dartsjoueurs/perroud.olivier.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/pesseas.alexandre.bmp",
+    "status": 200,
+    "bytes": 55438,
+    "localPath": "/legacy/Dartsjoueurs/pesseas.alexandre.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/pidoux.david.bmp",
+    "status": 200,
+    "bytes": 54150,
+    "localPath": "/legacy/Dartsjoueurs/pidoux.david.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/queloz.frederic.jpg",
+    "status": 200,
+    "bytes": 4498,
+    "localPath": "/legacy/Dartsjoueurs/queloz.frederic.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/queroub.isaac.jpg",
+    "status": 200,
+    "bytes": 2878,
+    "localPath": "/legacy/Dartsjoueurs/queroub.isaac.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/raposo.sergio.bmp",
+    "status": 200,
+    "bytes": 55814,
+    "localPath": "/legacy/Dartsjoueurs/raposo.sergio.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/rooney.lauren.jpg",
+    "status": 200,
+    "bytes": 61418,
+    "localPath": "/legacy/Dartsjoueurs/rooney.lauren.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/rosa.joana.jpg",
+    "status": 200,
+    "bytes": 4282,
+    "localPath": "/legacy/Dartsjoueurs/rosa.joana.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/ruiz.juan.jpg",
+    "status": 200,
+    "bytes": 4228,
+    "localPath": "/legacy/Dartsjoueurs/ruiz.juan.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/sage.pascale.bmp",
+    "status": 200,
+    "bytes": 54486,
+    "localPath": "/legacy/Dartsjoueurs/sage.pascale.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/saia.jeansebastien.jpg",
+    "status": 200,
+    "bytes": 3696,
+    "localPath": "/legacy/Dartsjoueurs/saia.jeansebastien.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/schertenleib.yvan.jpg",
+    "status": 200,
+    "bytes": 4878,
+    "localPath": "/legacy/Dartsjoueurs/schertenleib.yvan.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/scheuner.sophie.jpg",
+    "status": 200,
+    "bytes": 3850,
+    "localPath": "/legacy/Dartsjoueurs/scheuner.sophie.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/shepherd.tony.jpg",
+    "status": 200,
+    "bytes": 3160,
+    "localPath": "/legacy/Dartsjoueurs/shepherd.tony.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/silva.tiago.jpg",
+    "status": 200,
+    "bytes": 4159,
+    "localPath": "/legacy/Dartsjoueurs/silva.tiago.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/soares.jorge2.jpg",
+    "status": 200,
+    "bytes": 2933,
+    "localPath": "/legacy/Dartsjoueurs/soares.jorge2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/soares.pedro.bmp",
+    "status": 200,
+    "bytes": 51222,
+    "localPath": "/legacy/Dartsjoueurs/soares.pedro.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/stoller.gerald.bmp",
+    "status": 200,
+    "bytes": 53190,
+    "localPath": "/legacy/Dartsjoueurs/stoller.gerald.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/sulejmani.mexhid-2.bmp",
+    "status": 200,
+    "bytes": 53814,
+    "localPath": "/legacy/Dartsjoueurs/sulejmani.mexhid-2.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/tosi.jeanpierre.jpg",
+    "status": 200,
+    "bytes": 4763,
+    "localPath": "/legacy/Dartsjoueurs/tosi.jeanpierre.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/tuan.pham.jpg",
+    "status": 200,
+    "bytes": 3498,
+    "localPath": "/legacy/Dartsjoueurs/tuan.pham.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/uola.roope.jpg",
+    "status": 200,
+    "bytes": 3048,
+    "localPath": "/legacy/Dartsjoueurs/uola.roope.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/urech.christelle.bmp",
+    "status": 200,
+    "bytes": 61806,
+    "localPath": "/legacy/Dartsjoueurs/urech.christelle.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/vaudan.blaise.bmp",
+    "status": 200,
+    "bytes": 57726,
+    "localPath": "/legacy/Dartsjoueurs/vaudan.blaise.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/veuthey.christophe.jpg",
+    "status": 200,
+    "bytes": 3194,
+    "localPath": "/legacy/Dartsjoueurs/veuthey.christophe.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/vona.fabrizio.bmp",
+    "status": 200,
+    "bytes": 56778,
+    "localPath": "/legacy/Dartsjoueurs/vona.fabrizio.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/walther.fred.jpg",
+    "status": 200,
+    "bytes": 3379,
+    "localPath": "/legacy/Dartsjoueurs/walther.fred.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/zaugg.severine.jpg",
+    "status": 200,
+    "bytes": 2852,
+    "localPath": "/legacy/Dartsjoueurs/zaugg.severine.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/zbinden.olivier.bmp",
+    "status": 200,
+    "bytes": 61062,
+    "localPath": "/legacy/Dartsjoueurs/zbinden.olivier.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Dartsjoueurs/zeqir.hajriz.bmp",
+    "status": 200,
+    "bytes": 56430,
+    "localPath": "/legacy/Dartsjoueurs/zeqir.hajriz.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/favicon.ico",
+    "status": 200,
+    "bytes": 2238,
+    "localPath": "/legacy/favicon.ico"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/abbadi.younes.bmp",
+    "status": 200,
+    "bytes": 57014,
+    "localPath": "/legacy/Joueurs/abbadi.younes.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/alders.gordon-2023.jpg",
+    "status": 200,
+    "bytes": 79498,
+    "localPath": "/legacy/Joueurs/alders.gordon-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/andersen.palle-juul.jpg",
+    "status": 200,
+    "bytes": 3943,
+    "localPath": "/legacy/Joueurs/andersen.palle-juul.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/andre.didier.jpg",
+    "status": 200,
+    "bytes": 29042,
+    "localPath": "/legacy/Joueurs/andre.didier.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/assourian.fred.jpg",
+    "status": 200,
+    "bytes": 3060,
+    "localPath": "/legacy/Joueurs/assourian.fred.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/baechler.alain.jpg",
+    "status": 200,
+    "bytes": 8917,
+    "localPath": "/legacy/Joueurs/baechler.alain.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/beram.fouad-2023.jpg",
+    "status": 200,
+    "bytes": 59110,
+    "localPath": "/legacy/Joueurs/beram.fouad-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/bleistein.roman.jpg",
+    "status": 200,
+    "bytes": 4692,
+    "localPath": "/legacy/Joueurs/bleistein.roman.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/bremgartner.thomas.jpg",
+    "status": 200,
+    "bytes": 3909,
+    "localPath": "/legacy/Joueurs/bremgartner.thomas.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/bussard.rosemarie-2023.jpg",
+    "status": 200,
+    "bytes": 12441,
+    "localPath": "/legacy/Joueurs/bussard.rosemarie-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/cainzos.yannick-2023.jpg",
+    "status": 200,
+    "bytes": 119936,
+    "localPath": "/legacy/Joueurs/cainzos.yannick-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/chamard.christophe.bmp",
+    "status": 200,
+    "bytes": 55158,
+    "localPath": "/legacy/Joueurs/chamard.christophe.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/donkin.thomas.jpg",
+    "status": 200,
+    "bytes": 67542,
+    "localPath": "/legacy/Joueurs/donkin.thomas.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/dudolenski.stefan-2.jpg",
+    "status": 200,
+    "bytes": 4089,
+    "localPath": "/legacy/Joueurs/dudolenski.stefan-2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/dudolenski.Stefan-2023.jpg",
+    "status": 200,
+    "bytes": 5401,
+    "localPath": "/legacy/Joueurs/dudolenski.Stefan-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/ferreira.joao.jpg",
+    "status": 200,
+    "bytes": 2609,
+    "localPath": "/legacy/Joueurs/ferreira.joao.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/flaction.laurent-2023.jpg",
+    "status": 200,
+    "bytes": 8554,
+    "localPath": "/legacy/Joueurs/flaction.laurent-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/francfort.julien.jpg",
+    "status": 200,
+    "bytes": 43801,
+    "localPath": "/legacy/Joueurs/francfort.julien.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/french.bobby.jpg",
+    "status": 200,
+    "bytes": 3269,
+    "localPath": "/legacy/Joueurs/french.bobby.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/ganesalingam.elan.jpg",
+    "status": 200,
+    "bytes": 4046,
+    "localPath": "/legacy/Joueurs/ganesalingam.elan.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/jacot.dominique.bmp",
+    "status": 200,
+    "bytes": 57822,
+    "localPath": "/legacy/Joueurs/jacot.dominique.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/joly.fabienne.bmp",
+    "status": 200,
+    "bytes": 60094,
+    "localPath": "/legacy/Joueurs/joly.fabienne.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/marguet.ludovic.jpg",
+    "status": 200,
+    "bytes": 30982,
+    "localPath": "/legacy/Joueurs/marguet.ludovic.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/miranda.agostinho.jpg",
+    "status": 200,
+    "bytes": 10231,
+    "localPath": "/legacy/Joueurs/miranda.agostinho.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/montant.lucas.jpg",
+    "status": 200,
+    "bytes": 27948,
+    "localPath": "/legacy/Joueurs/montant.lucas.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/mottaz.thierry.bmp",
+    "status": 200,
+    "bytes": 55494,
+    "localPath": "/legacy/Joueurs/mottaz.thierry.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/oliver.james-2023.jpg",
+    "status": 200,
+    "bytes": 5955,
+    "localPath": "/legacy/Joueurs/oliver.james-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/padliya.robin.jpg",
+    "status": 200,
+    "bytes": 3386,
+    "localPath": "/legacy/Joueurs/padliya.robin.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/palissier.mickael-2023.jpg",
+    "status": 200,
+    "bytes": 63236,
+    "localPath": "/legacy/Joueurs/palissier.mickael-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/pijl.wouter.jpg",
+    "status": 200,
+    "bytes": 5867,
+    "localPath": "/legacy/Joueurs/pijl.wouter.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/pisula.jerzy.bmp",
+    "status": 200,
+    "bytes": 57126,
+    "localPath": "/legacy/Joueurs/pisula.jerzy.bmp"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/poulton.neil.jpg",
+    "status": 200,
+    "bytes": 9627,
+    "localPath": "/legacy/Joueurs/poulton.neil.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/roberts.chris-2023.jpg",
+    "status": 200,
+    "bytes": 12864,
+    "localPath": "/legacy/Joueurs/roberts.chris-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/rooney.george-2023.jpg",
+    "status": 200,
+    "bytes": 10800,
+    "localPath": "/legacy/Joueurs/rooney.george-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/roy.arno-2.jpg",
+    "status": 200,
+    "bytes": 55870,
+    "localPath": "/legacy/Joueurs/roy.arno-2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/roy.michel-2023.jpg",
+    "status": 200,
+    "bytes": 11008,
+    "localPath": "/legacy/Joueurs/roy.michel-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/roy.patrick.jpg",
+    "status": 200,
+    "bytes": 4042,
+    "localPath": "/legacy/Joueurs/roy.patrick.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/schaub.benjamin.jpg",
+    "status": 200,
+    "bytes": 62271,
+    "localPath": "/legacy/Joueurs/schaub.benjamin.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/simpson.dermot.jpg",
+    "status": 200,
+    "bytes": 3452,
+    "localPath": "/legacy/Joueurs/simpson.dermot.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/verdebout.jeanmarc.jpg",
+    "status": 200,
+    "bytes": 3635,
+    "localPath": "/legacy/Joueurs/verdebout.jeanmarc.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/walter.frederic.jpg",
+    "status": 200,
+    "bytes": 3543,
+    "localPath": "/legacy/Joueurs/walter.frederic.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Joueurs/zendrini.marc-2.jpg",
+    "status": 200,
+    "bytes": 2809,
+    "localPath": "/legacy/Joueurs/zendrini.marc-2.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/joueursphoto/ferreira.joao.jpg",
+    "status": 200,
+    "bytes": 2609,
+    "localPath": "/legacy/joueursphoto/ferreira.joao.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/joueursphoto/julientanguy.jpg",
+    "status": 200,
+    "bytes": 8049,
+    "localPath": "/legacy/joueursphoto/julientanguy.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-2024-25-soiree-cloture.jpg",
+    "status": 200,
+    "bytes": 141220,
+    "localPath": "/legacy/ligue-morgienne/LMF-2024-25/LMF-2024-25-soiree-cloture.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-classement.pdf",
+    "status": 200,
+    "bytes": 21594,
+    "localPath": "/legacy/ligue-morgienne/LMF-2024-25/LMF-classement.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-matchs.pdf",
+    "status": 200,
+    "bytes": 228180,
+    "localPath": "/legacy/ligue-morgienne/LMF-2024-25/LMF-matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-resultats.pdf",
+    "status": 200,
+    "bytes": 25050,
+    "localPath": "/legacy/ligue-morgienne/LMF-2024-25/LMF-resultats.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/Finales-Coupe%20Vaudoise-2026.jpeg",
+    "status": 200,
+    "bytes": 273600,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/Finales-Coupe Vaudoise-2026.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
+    "status": 200,
+    "bytes": 28351,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
+    "status": 200,
+    "bytes": 30658,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
+    "status": 200,
+    "bytes": 38384,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
+    "status": 200,
+    "bytes": 29266,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
+    "status": 200,
+    "bytes": 40528,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
+    "status": 200,
+    "bytes": 21638,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf",
+    "status": 200,
+    "bytes": 42695,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf",
+    "status": 200,
+    "bytes": 26300,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf",
+    "status": 200,
+    "bytes": 22307,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf",
+    "status": 200,
+    "bytes": 25543,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf",
+    "status": 200,
+    "bytes": 177939,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf",
+    "status": 200,
+    "bytes": 28389,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf",
+    "status": 200,
+    "bytes": 23000,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-rules.pdf",
+    "status": 200,
+    "bytes": 61731,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-rules.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-teams.pdf",
+    "status": 200,
+    "bytes": 35361,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/LMF-teams.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf",
+    "status": 200,
+    "bytes": 61612,
+    "localPath": "/legacy/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2009.pdf",
+    "status": 200,
+    "bytes": 37735,
+    "localPath": "/legacy/Morges-Open/Morges-Open-Resultat-2009.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2010.pdf",
+    "status": 200,
+    "bytes": 34247,
+    "localPath": "/legacy/Morges-Open/Morges-Open-Resultat-2010.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2013.pdf",
+    "status": 200,
+    "bytes": 27555,
+    "localPath": "/legacy/Morges-Open/Morges-Open-Resultat-2013.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Morges-Open/Open-Vaudois-Resultat-2010.pdf",
+    "status": 200,
+    "bytes": 39720,
+    "localPath": "/legacy/Morges-Open/Open-Vaudois-Resultat-2010.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Open-Vaudois/Open-Vaudois-Resultat-2009.pdf",
+    "status": 200,
+    "bytes": 39720,
+    "localPath": "/legacy/Open-Vaudois/Open-Vaudois-Resultat-2009.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Open-Vaudois/Open-Vaudois-Resultat-2010.pdf",
+    "status": 200,
+    "bytes": 39720,
+    "localPath": "/legacy/Open-Vaudois/Open-Vaudois-Resultat-2010.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/PDC/PDC-WC-2025-01.jpg",
+    "status": 200,
+    "bytes": 32961,
+    "localPath": "/legacy/PDC/PDC-WC-2025-01.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/PDC/stefan.bellmont.jpg",
+    "status": 200,
+    "bytes": 915210,
+    "localPath": "/legacy/PDC/stefan.bellmont.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DC%20Morges-B-Cup-Winner-2023-small.jpg",
+    "status": 200,
+    "bytes": 15202,
+    "localPath": "/legacy/photodivers/DC Morges-B-Cup-Winner-2023-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DC%20Morges-B-Cup-Winner-2023.jpg",
+    "status": 200,
+    "bytes": 179513,
+    "localPath": "/legacy/photodivers/DC Morges-B-Cup-Winner-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM1-Team-SDA-2020-small.jpg",
+    "status": 200,
+    "bytes": 24320,
+    "localPath": "/legacy/photodivers/DCM1-Team-SDA-2020-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM1-Team-SDA-2020.jpg",
+    "status": 200,
+    "bytes": 258973,
+    "localPath": "/legacy/photodivers/DCM1-Team-SDA-2020.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM2-Team-SDA-2023-small.jpg",
+    "status": 200,
+    "bytes": 20683,
+    "localPath": "/legacy/photodivers/DCM2-Team-SDA-2023-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM2-Team-SDA-2023.jpg",
+    "status": 200,
+    "bytes": 234056,
+    "localPath": "/legacy/photodivers/DCM2-Team-SDA-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM2-Team-SDA-2024-25-small.jpg",
+    "status": 200,
+    "bytes": 27230,
+    "localPath": "/legacy/photodivers/DCM2-Team-SDA-2024-25-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/DCM2-Team-SDA-2024-25.jpg",
+    "status": 200,
+    "bytes": 282698,
+    "localPath": "/legacy/photodivers/DCM2-Team-SDA-2024-25.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam0910-small.jpg",
+    "status": 200,
+    "bytes": 6351,
+    "localPath": "/legacy/photodivers/dcmgdlteam0910-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam0910.jpg",
+    "status": 200,
+    "bytes": 74924,
+    "localPath": "/legacy/photodivers/dcmgdlteam0910.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1011-small.jpg",
+    "status": 200,
+    "bytes": 4156,
+    "localPath": "/legacy/photodivers/dcmgdlteam1011-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1011.jpg",
+    "status": 200,
+    "bytes": 55266,
+    "localPath": "/legacy/photodivers/dcmgdlteam1011.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1213-small.jpg",
+    "status": 200,
+    "bytes": 5309,
+    "localPath": "/legacy/photodivers/dcmgdlteam1213-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1213.jpg",
+    "status": 200,
+    "bytes": 156952,
+    "localPath": "/legacy/photodivers/dcmgdlteam1213.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1314-small.jpg",
+    "status": 200,
+    "bytes": 3457,
+    "localPath": "/legacy/photodivers/dcmgdlteam1314-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmgdlteam1314.jpg",
+    "status": 200,
+    "bytes": 23617,
+    "localPath": "/legacy/photodivers/dcmgdlteam1314.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmlvsd0304.jpg",
+    "status": 200,
+    "bytes": 74980,
+    "localPath": "/legacy/photodivers/dcmlvsd0304.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmsda0203.jpg",
+    "status": 200,
+    "bytes": 75491,
+    "localPath": "/legacy/photodivers/dcmsda0203.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmsdateam0809-small.jpg",
+    "status": 200,
+    "bytes": 6553,
+    "localPath": "/legacy/photodivers/dcmsdateam0809-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmsdateam0809.jpg",
+    "status": 200,
+    "bytes": 71366,
+    "localPath": "/legacy/photodivers/dcmsdateam0809.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmsdateam1617-165.jpg",
+    "status": 200,
+    "bytes": 4627,
+    "localPath": "/legacy/photodivers/dcmsdateam1617-165.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmsdateam1617.jpg",
+    "status": 200,
+    "bytes": 272943,
+    "localPath": "/legacy/photodivers/dcmsdateam1617.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0203.jpg",
+    "status": 200,
+    "bytes": 59375,
+    "localPath": "/legacy/photodivers/dcmteam0203.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0304.jpg",
+    "status": 200,
+    "bytes": 43932,
+    "localPath": "/legacy/photodivers/dcmteam0304.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0405.jpg",
+    "status": 200,
+    "bytes": 58571,
+    "localPath": "/legacy/photodivers/dcmteam0405.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0506.jpg",
+    "status": 200,
+    "bytes": 41784,
+    "localPath": "/legacy/photodivers/dcmteam0506.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0607.jpg",
+    "status": 200,
+    "bytes": 43893,
+    "localPath": "/legacy/photodivers/dcmteam0607.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0708.jpg",
+    "status": 200,
+    "bytes": 55645,
+    "localPath": "/legacy/photodivers/dcmteam0708.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam0708small.jpg",
+    "status": 200,
+    "bytes": 6098,
+    "localPath": "/legacy/photodivers/dcmteam0708small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam1112-small.jpg",
+    "status": 200,
+    "bytes": 5493,
+    "localPath": "/legacy/photodivers/dcmteam1112-small.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/dcmteam1112.jpg",
+    "status": 200,
+    "bytes": 53818,
+    "localPath": "/legacy/photodivers/dcmteam1112.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/gdl0405equipe.jpg",
+    "status": 200,
+    "bytes": 18456,
+    "localPath": "/legacy/photodivers/gdl0405equipe.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/gdl0506equipe.jpg",
+    "status": 200,
+    "bytes": 21735,
+    "localPath": "/legacy/photodivers/gdl0506equipe.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/gdl0607prix01.jpg",
+    "status": 200,
+    "bytes": 16602,
+    "localPath": "/legacy/photodivers/gdl0607prix01.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/Jameson-dartroom-165.jpg",
+    "status": 200,
+    "bytes": 2760,
+    "localPath": "/legacy/photodivers/Jameson-dartroom-165.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/leman-open-2025-MS.jpg",
+    "status": 200,
+    "bytes": 331798,
+    "localPath": "/legacy/photodivers/leman-open-2025-MS.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/Morges-SDA-Cup-2015-160.jpg",
+    "status": 200,
+    "bytes": 3636,
+    "localPath": "/legacy/photodivers/Morges-SDA-Cup-2015-160.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/Morges-SDA-Cup-2015-800.jpg",
+    "status": 200,
+    "bytes": 121181,
+    "localPath": "/legacy/photodivers/Morges-SDA-Cup-2015-800.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/paques-finales-2023.jpg",
+    "status": 200,
+    "bytes": 132708,
+    "localPath": "/legacy/photodivers/paques-finales-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/paques-finales-2024.jpg",
+    "status": 200,
+    "bytes": 189640,
+    "localPath": "/legacy/photodivers/paques-finales-2024.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/pentecote-finales-2023.jpg",
+    "status": 200,
+    "bytes": 545850,
+    "localPath": "/legacy/photodivers/pentecote-finales-2023.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/Sportive-dartsboard-165.jpg",
+    "status": 200,
+    "bytes": 4143,
+    "localPath": "/legacy/photodivers/Sportive-dartsboard-165.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/photodivers/ursvonrufs.jpg",
+    "status": 200,
+    "bytes": 52241,
+    "localPath": "/legacy/photodivers/ursvonrufs.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Photos-2018/dcmorges-sda-2018-19-thumb.jpg",
+    "status": 200,
+    "bytes": 10464,
+    "localPath": "/legacy/Photos-2018/dcmorges-sda-2018-19-thumb.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/Photos-2018/dcmorges-sda-2018-19-web.jpg",
+    "status": 200,
+    "bytes": 131270,
+    "localPath": "/legacy/Photos-2018/dcmorges-sda-2018-19-web.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2024-25/SDA-classement.pdf",
+    "status": 200,
+    "bytes": 83412,
+    "localPath": "/legacy/sda/sda-2024-25/SDA-classement.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2024-25/SDA-matchs.pdf",
+    "status": 200,
+    "bytes": 58855,
+    "localPath": "/legacy/sda/sda-2024-25/SDA-matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-calendrier-DCM.pdf",
+    "status": 200,
+    "bytes": 38587,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-calendrier-DCM.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-calendrier.pdf",
+    "status": 200,
+    "bytes": 172884,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-calendrier.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-average.pdf",
+    "status": 200,
+    "bytes": 35443,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement-average.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-best-finish.pdf",
+    "status": 200,
+    "bytes": 27389,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement-best-finish.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-most-180.pdf",
+    "status": 200,
+    "bytes": 27948,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement-most-180.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-MVP.pdf",
+    "status": 200,
+    "bytes": 33788,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement-MVP.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-ratio.pdf",
+    "status": 200,
+    "bytes": 31916,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement-ratio.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement.pdf",
+    "status": 200,
+    "bytes": 95248,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-classement.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-matchs.pdf",
+    "status": 200,
+    "bytes": 66874,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-Morges1-Casa%20Benfica.jpg",
+    "status": 200,
+    "bytes": 387286,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-Morges1-Casa Benfica.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-reglements.pdf",
+    "status": 200,
+    "bytes": 578261,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-reglements.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-statuts.pdf",
+    "status": 200,
+    "bytes": 695425,
+    "localPath": "/legacy/sda/sda-2025-26/SDA-statuts.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2007.pdf",
+    "status": 200,
+    "bytes": 26362,
+    "localPath": "/legacy/swisscup/SDA-Cup-2007.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2008.pdf",
+    "status": 200,
+    "bytes": 25684,
+    "localPath": "/legacy/swisscup/SDA-Cup-2008.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2009.pdf",
+    "status": 200,
+    "bytes": 36342,
+    "localPath": "/legacy/swisscup/SDA-Cup-2009.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2010.pdf",
+    "status": 200,
+    "bytes": 37974,
+    "localPath": "/legacy/swisscup/SDA-Cup-2010.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2011.pdf",
+    "status": 200,
+    "bytes": 32060,
+    "localPath": "/legacy/swisscup/SDA-Cup-2011.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2012.pdf",
+    "status": 200,
+    "bytes": 31666,
+    "localPath": "/legacy/swisscup/SDA-Cup-2012.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2013.pdf",
+    "status": 200,
+    "bytes": 30691,
+    "localPath": "/legacy/swisscup/SDA-Cup-2013.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2014.pdf",
+    "status": 200,
+    "bytes": 33061,
+    "localPath": "/legacy/swisscup/SDA-Cup-2014.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2015.pdf",
+    "status": 200,
+    "bytes": 30585,
+    "localPath": "/legacy/swisscup/SDA-Cup-2015.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2016.pdf",
+    "status": 200,
+    "bytes": 30066,
+    "localPath": "/legacy/swisscup/SDA-Cup-2016.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2017.pdf",
+    "status": 200,
+    "bytes": 29088,
+    "localPath": "/legacy/swisscup/SDA-Cup-2017.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2018.pdf",
+    "status": 200,
+    "bytes": 27691,
+    "localPath": "/legacy/swisscup/SDA-Cup-2018.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2019.pdf",
+    "status": 200,
+    "bytes": 30260,
+    "localPath": "/legacy/swisscup/SDA-Cup-2019.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2022.pdf",
+    "status": 200,
+    "bytes": 30910,
+    "localPath": "/legacy/swisscup/SDA-Cup-2022.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2023.pdf",
+    "status": 200,
+    "bytes": 30115,
+    "localPath": "/legacy/swisscup/SDA-Cup-2023.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2024.pdf",
+    "status": 200,
+    "bytes": 47725,
+    "localPath": "/legacy/swisscup/SDA-Cup-2024.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/swisscup/SDA-Cup-2025.pdf",
+    "status": 200,
+    "bytes": 79460,
+    "localPath": "/legacy/swisscup/SDA-Cup-2025.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/CasaBenfica-DCM2-2025.02.08.jpg",
+    "status": 200,
+    "bytes": 267361,
+    "localPath": "/legacy/teams/Team photos/CasaBenfica-DCM2-2025.02.08.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM-1-SDA-2025-26.jpeg",
+    "status": 200,
+    "bytes": 302418,
+    "localPath": "/legacy/teams/Team photos/DCM-1-SDA-2025-26.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM-1-SDA-2025.02.23.jpg",
+    "status": 200,
+    "bytes": 223579,
+    "localPath": "/legacy/teams/Team photos/DCM-1-SDA-2025.02.23.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM1-Emmental2-2025.12.07.jpg",
+    "status": 200,
+    "bytes": 192222,
+    "localPath": "/legacy/teams/Team photos/DCM1-Emmental2-2025.12.07.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-champion-2024-25.jpg",
+    "status": 200,
+    "bytes": 153955,
+    "localPath": "/legacy/teams/Team photos/DCM2-champion-2024-25.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-Chaux-de-Fonds-2024.10.26.jpg",
+    "status": 200,
+    "bytes": 108063,
+    "localPath": "/legacy/teams/Team photos/DCM2-Chaux-de-Fonds-2024.10.26.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-Chaux-de-Fonds-2025.12.06.jpg",
+    "status": 200,
+    "bytes": 243803,
+    "localPath": "/legacy/teams/Team photos/DCM2-Chaux-de-Fonds-2025.12.06.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-Cup-SemiFinal-2025.jpg",
+    "status": 200,
+    "bytes": 327395,
+    "localPath": "/legacy/teams/Team photos/DCM2-Cup-SemiFinal-2025.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-Emmental3-2024.11.17.jpg",
+    "status": 200,
+    "bytes": 317677,
+    "localPath": "/legacy/teams/Team photos/DCM2-Emmental3-2024.11.17.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/DCM2-Emmental3-2025.03.09.jpg",
+    "status": 200,
+    "bytes": 167492,
+    "localPath": "/legacy/teams/Team photos/DCM2-Emmental3-2025.03.09.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/Emmental3-Morges2.jpeg",
+    "status": 200,
+    "bytes": 310416,
+    "localPath": "/legacy/teams/Team photos/Emmental3-Morges2.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/Family-Roy-Friends.jpg",
+    "status": 200,
+    "bytes": 216974,
+    "localPath": "/legacy/teams/Team photos/Family-Roy-Friends.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/Geneva-DCM2-2024.12.07.jpg",
+    "status": 200,
+    "bytes": 296571,
+    "localPath": "/legacy/teams/Team photos/Geneva-DCM2-2024.12.07.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/LMF-DCM-2025.01.27.jpg",
+    "status": 200,
+    "bytes": 323667,
+    "localPath": "/legacy/teams/Team photos/LMF-DCM-2025.01.27.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/tournoi-Jedi-2025.jpg",
+    "status": 200,
+    "bytes": 315050,
+    "localPath": "/legacy/teams/Team photos/tournoi-Jedi-2025.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/teams/Team%20photos/Vaud-Cup-DCM-team-finale-2026.jpg",
+    "status": 200,
+    "bytes": 80768,
+    "localPath": "/legacy/teams/Team photos/Vaud-Cup-DCM-team-finale-2026.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Open-La-Sportive-2026/OLS-2026-classement.pdf",
+    "status": 200,
+    "bytes": 12443,
+    "localPath": "/legacy/tournoi/Open-La-Sportive-2026/OLS-2026-classement.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Open-La-Sportive-2026/OLS-2026-Winner.jpeg",
+    "status": 200,
+    "bytes": 218913,
+    "localPath": "/legacy/tournoi/Open-La-Sportive-2026/OLS-2026-Winner.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Jedi-2025-classement.png",
+    "status": 200,
+    "bytes": 25267,
+    "localPath": "/legacy/tournoi/Tournoi-Jedi-2025-classement.png"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Finales.pdf",
+    "status": 200,
+    "bytes": 35350,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Finales.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Round-Robin.pdf",
+    "status": 200,
+    "bytes": 57891,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Round-Robin.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Finales.pdf",
+    "status": 200,
+    "bytes": 101299,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Finales.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Matchs.pdf",
+    "status": 200,
+    "bytes": 217610,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Matchs.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Round-Robin.pdf",
+    "status": 200,
+    "bytes": 147164,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Round-Robin.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-final.jpeg",
+    "status": 200,
+    "bytes": 427525,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-final.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-prize.jpeg",
+    "status": 200,
+    "bytes": 368266,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-prize.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-results.jpg",
+    "status": 200,
+    "bytes": 347320,
+    "localPath": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2026/Tournoi-Paques-2026-results.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Finales.pdf",
+    "status": 200,
+    "bytes": 38909,
+    "localPath": "/legacy/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Finales.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Round-Robin.pdf",
+    "status": 200,
+    "bytes": 66060,
+    "localPath": "/legacy/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Round-Robin.pdf"
+  },
+  {
+    "url": "https://www.dcmorges.ch/videos/EuropeCup-2022-Spain.mp4",
+    "status": 200,
+    "bytes": 17183844,
+    "localPath": "/legacy/videos/EuropeCup-2022-Spain.mp4"
+  },
+  {
+    "url": "https://www.dcmorges.ch/videos/Les-Sports-La-tele.mp4",
+    "status": 200,
+    "bytes": 44497659,
+    "localPath": "/legacy/videos/Les-Sports-La-tele.mp4"
+  },
+  {
+    "url": "https://www.dcmorges.ch/videos/WorldCup-2017-Switzerland-Brazil.mp4",
+    "status": 200,
+    "bytes": 348455989,
+    "localPath": "/legacy/videos/WorldCup-2017-Switzerland-Brazil.mp4"
+  },
+  {
+    "url": "https://www.dcmorges.ch/videos/WorldCup-2019-Romania.mp4",
+    "status": 200,
+    "bytes": 18307778,
+    "localPath": "/legacy/videos/WorldCup-2019-Romania.mp4"
+  },
+  {
+    "url": "https://www.dcmorges.ch/wdf/Thomas_Junghans_Riga_Open_2023.jpeg",
+    "status": 200,
+    "bytes": 162584,
+    "localPath": "/legacy/wdf/Thomas_Junghans_Riga_Open_2023.jpeg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/wdf/Thomas_Junghans.jpg",
+    "status": 200,
+    "bytes": 166972,
+    "localPath": "/legacy/wdf/Thomas_Junghans.jpg"
+  },
+  {
+    "url": "https://www.dcmorges.ch/wdf/WDF%20Lakeside%20World%20Championship%202023-players.jpg",
+    "status": 200,
+    "bytes": 150059,
+    "localPath": "/legacy/wdf/WDF Lakeside World Championship 2023-players.jpg"
+  }
+]

@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import EventCard from "../components/EventCard.astro";
+import { upcomingEvents, pastEvents } from "../data/events";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+
+const page = getSitePage("agenda");
+const listSection = formatPageSection(getPageSection(page, "list"));
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow)}
+    title={formatPageText(page.heroTitle)}
+    description={formatPageText(page.heroDescription)}
+    actions={formatPageActions(page.actions)}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader eyebrow={listSection.eyebrow} title={listSection.title} description={listSection.description} />
+      {upcomingEvents.length > 0 ? (
+        <div class="card-grid card-grid--two">
+          {upcomingEvents.map((event) => <EventCard event={event} />)}
+        </div>
+      ) : (
+        <p class="muted">Aucun événement à venir pour le moment. Reviens bientôt !</p>
+      )}
+    </div>
+  </section>
+
+  {pastEvents.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <SectionHeader title="Événements passés" description="Les dernières rencontres et tournois déjà joués." />
+        <div class="card-grid card-grid--two">
+          {pastEvents.map((event) => <EventCard event={event} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

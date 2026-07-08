@@ -1,0 +1,37 @@
+[
+  {
+    "id": "sda",
+    "title": "Swiss Darts Association (SDA)",
+    "items": [
+      {
+        "label": "Local de jeu",
+        "value": "Rest. La Sportive, Rue de Carouge 45, 1205 Genève"
+      },
+      {
+        "label": "DC Morges 1",
+        "value": "Michel Roy, roymichel61@gmail.com, +41 78 667 25 99",
+        "href": "mailto:roymichel61@gmail.com"
+      },
+      {
+        "label": "DC Morges 2",
+        "value": "Laurent Flaction, dartsclubmorges@gmail.com, +41 76 201 75 80",
+        "href": "mailto:dartsclubmorges@gmail.com"
+      }
+    ]
+  },
+  {
+    "id": "lmf",
+    "title": "Ligue Morgienne (LMF)",
+    "items": [
+      {
+        "label": "Local de jeu",
+        "value": "Jameson's Pub, Rue de la Gare 1, 1110 Morges (VD), +41 21 801 20 16"
+      },
+      {
+        "label": "DC Morges",
+        "value": "Michel Roy, roymichel61@gmail.com, +41 78 667 25 99",
+        "href": "mailto:roymichel61@gmail.com"
+      }
+    ]
+  }
+]

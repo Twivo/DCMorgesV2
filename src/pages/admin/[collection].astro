@@ -1,0 +1,214 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { getCollection } from "../../lib/collections";
+import { readAll } from "../../lib/store";
+
+export const prerender = false;
+
+const name = Astro.params.collection ?? "";
+const def = getCollection(name);
+if (!def) {
+  return Astro.redirect("/admin");
+}
+
+const items = await readAll(def).catch(() => []);
+const canCreate = def.allowCreate !== false;
+const canDelete = def.allowDelete !== false;
+
+// In the admin list, always show the most recent first when the collection has
+// a date so freshly added items appear at the top.
+const dateField = def.fields.find((f) => f.type === "date") ?? def.fields.find((f) => f.key === "date");
+if (dateField) {
+  items.sort((a, b) => String(b[dateField.key] ?? "").localeCompare(String(a[dateField.key] ?? "")));
+}
+
+// Resolve option lists for "reference" fields (pick from another collection).
+const fields = await Promise.all(
+  def.fields.map(async (field) => {
+    if (field.type !== "reference" || !field.refCollection) return field;
+    const refDef = getCollection(field.refCollection);
+    if (!refDef) return { ...field, refOptions: [] };
+    const refItems = await readAll(refDef).catch(() => []);
+    const refOptions = refItems.map((item) => ({
+      id: String(item[refDef.idKey]),
+      label: String(item[refDef.titleKey] ?? item[refDef.idKey])
+    }));
+    return { ...field, refOptions };
+  })
+);
+
+// Optional deep-link: /admin/<collection>?edit=<id> opens that item's editor.
+const openId = Astro.url.searchParams.get("edit") ?? "";
+
+const cell = (value: unknown): string => {
+  if (value === undefined || value === null || value === "") return "—";
+  if (typeof value === "boolean") return value ? "Oui" : "—";
+  if (Array.isArray(value)) return value.length ? `${value.length} élément(s)` : "—";
+  const text = String(value);
+  return text.length > 90 ? text.slice(0, 90) + "…" : text;
+};
+---
+
+<AdminLayout title={def.label} active={def.name}>
+  <div class="admin-head">
+    <div>
+      <h1>{def.label}</h1>
+      <p>
+        {items.length} élément(s).
+        {canCreate || canDelete
+          ? "Ajoute, modifie ou supprime — tout est enregistré automatiquement."
+          : "Modifie les contenus visibles — tout est enregistré automatiquement."}
+      </p>
+    </div>
+    {canCreate && <button class="btn btn--primary" type="button" data-new>+ Ajouter</button>}
+  </div>
+
+  {items.length > 8 && (
+    <div class="list-search">
+      <input type="search" data-search placeholder={`Rechercher parmi ${items.length} éléments…`} aria-label="Rechercher" />
+      <span class="list-search__count" data-search-count></span>
+    </div>
+  )}
+
+  <div class="panel">
+    <div class="table-scroll">
+      {items.length === 0 ? (
+        <p class="empty">Aucun élément pour le moment. Clique sur « Ajouter » pour créer le premier.</p>
+      ) : (
+        <table class="data">
+          <thead>
+            <tr>
+              {def.listColumns.map((col) => {
+                const field = def.fields.find((f) => f.key === col);
+                return <th>{field ? field.label : col}</th>;
+              })}
+              <th style="width:1%">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr data-id={String(item[def.idKey])}>
+                {def.listColumns.map((col) => <td>{cell(item[col])}</td>)}
+                <td>
+                  <div class="row-actions">
+                    <button class="btn btn--ghost btn--small" type="button" data-edit={String(item[def.idKey])}>Modifier</button>
+                    {canDelete && <button class="btn btn--danger btn--small" type="button" data-delete={String(item[def.idKey])}>Suppr.</button>}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </div>
+
+  <dialog class="editor" data-dialog>
+    <form method="dialog" data-form>
+      <div class="editor__head">
+        <h2 data-title>Nouvel élément</h2>
+        <button class="btn btn--ghost btn--small" type="button" data-close>✕</button>
+      </div>
+      <p class="form-error" data-error hidden></p>
+      <div class="editor__body" data-fields></div>
+      <div class="editor__foot">
+        <button class="btn btn--ghost" type="button" data-close>Annuler</button>
+        <button class="btn btn--primary" type="submit" data-save>Enregistrer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <style is:global>
+    .list-search { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .list-search input { flex: 1; max-width: 420px; padding: 9px 12px; border: 1px solid var(--a-line); border-radius: 9px; font: inherit; background: #fff; }
+    .list-search input:focus { outline: 2px solid var(--a-green); outline-offset: 1px; }
+    .list-search__count { color: var(--a-muted); font-size: 0.85rem; }
+  </style>
+
+  <script is:inline src="/admin/forms.js"></script>
+  <script
+    define:vars={{
+      collectionName: def.name,
+      idKey: def.idKey,
+      label: def.label,
+      fields,
+      items,
+      openId
+    }}
+  >
+    const byId = new Map(items.map((i) => [String(i[idKey]), i]));
+    const dialog = document.querySelector("[data-dialog]");
+    const form = document.querySelector("[data-form]");
+    const fieldsBox = form.querySelector("[data-fields]");
+    const titleEl = form.querySelector("[data-title]");
+    const errorEl = form.querySelector("[data-error]");
+    let editingId = null;
+    let collect = () => ({});
+
+    function openEditor(item) {
+      editingId = item ? String(item[idKey]) : null;
+      titleEl.textContent = item ? `Modifier · ${label}` : `Nouveau · ${label}`;
+      errorEl.hidden = true;
+      errorEl.textContent = "";
+      collect = window.AdminForms.buildInto(fieldsBox, fields, item || {});
+      dialog.showModal();
+    }
+
+    async function save() {
+      const payload = collect();
+      const url = editingId ? `/api/${collectionName}/${encodeURIComponent(editingId)}` : `/api/${collectionName}`;
+      const method = editingId ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        location.reload();
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      errorEl.textContent = data.error || "Échec de l'enregistrement.";
+      errorEl.hidden = false;
+    }
+
+    async function remove(id) {
+      if (!confirm("Supprimer définitivement cet élément ?")) return;
+      const res = await fetch(`/api/${collectionName}/${encodeURIComponent(id)}`, { method: "DELETE" });
+      if (res.ok) location.reload();
+      else alert("Échec de la suppression.");
+    }
+
+    document.querySelector("[data-new]")?.addEventListener("click", () => openEditor(null));
+    document.querySelectorAll("[data-edit]").forEach((btn) =>
+      btn.addEventListener("click", () => openEditor(byId.get(btn.getAttribute("data-edit"))))
+    );
+    document.querySelectorAll("[data-delete]").forEach((btn) =>
+      btn.addEventListener("click", () => remove(btn.getAttribute("data-delete")))
+    );
+    form.querySelectorAll("[data-close]").forEach((btn) => btn.addEventListener("click", () => dialog.close()));
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      save();
+    });
+
+    if (openId && byId.has(openId)) openEditor(byId.get(openId));
+
+    // Client-side search: filter the visible rows by text content.
+    const searchInput = document.querySelector("[data-search]");
+    const searchCount = document.querySelector("[data-search-count]");
+    if (searchInput) {
+      const rows = Array.from(document.querySelectorAll("table.data tbody tr"));
+      searchInput.addEventListener("input", () => {
+        const q = searchInput.value.toLowerCase().trim();
+        let shown = 0;
+        rows.forEach((tr) => {
+          const match = !q || tr.textContent.toLowerCase().includes(q);
+          tr.style.display = match ? "" : "none";
+          if (match) shown += 1;
+        });
+        if (searchCount) searchCount.textContent = q ? `${shown} résultat(s)` : "";
+      });
+    }
+  </script>
+</AdminLayout>

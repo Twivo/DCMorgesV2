@@ -1,0 +1,48 @@
+---
+import { safeUrl } from "../utils/url";
+
+interface Action {
+  label: string;
+  href: string;
+  variant?: "primary" | "secondary";
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  actions?: Action[];
+  variant?: "home" | "page";
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image,
+  actions = [],
+  variant = "page"
+} = Astro.props;
+
+const style = image ? `--hero-image: url("${image}")` : undefined;
+---
+
+<section class:list={["page-hero", `page-hero--${variant}`]} style={style}>
+  <div class="container page-hero__inner">
+    <div class="page-hero__content">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {description && <p class="page-hero__description">{description}</p>}
+      {actions.length > 0 && (
+        <div class="button-row">
+          {actions.map((action) => (
+            <a class:list={["button", action.variant === "secondary" ? "button--secondary" : "button--primary"]} href={safeUrl(action.href)}>
+              {action.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

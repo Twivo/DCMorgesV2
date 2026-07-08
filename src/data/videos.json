@@ -1,0 +1,34 @@
+[
+  {
+    "id": "emission-sportive-la-tele-2012",
+    "title": "Emission sportive La Télé 2012",
+    "year": "2012",
+    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "url": "/legacy/videos/Les-Sports-La-tele.mp4",
+    "thumbnail": "/legacy/clipart/cameraman.gif"
+  },
+  {
+    "id": "pdc-worldcup-2017-switzerland-brazil",
+    "title": "PDC Worldcup 2017 Switzerland-Brazil",
+    "year": "2017",
+    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "url": "/legacy/videos/WorldCup-2017-Switzerland-Brazil.mp4",
+    "thumbnail": "/legacy/clipart/cameraman.gif"
+  },
+  {
+    "id": "wdf-world-cup-2019-romania",
+    "title": "WDF World Cup 2019 Cluj-Napoca / Romania",
+    "year": "2019",
+    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "url": "/legacy/videos/WorldCup-2019-Romania.mp4",
+    "thumbnail": "/legacy/clipart/cameraman.gif"
+  },
+  {
+    "id": "wdf-europe-cup-2022-spain",
+    "title": "WDF Europe Cup 2022 Gandia / Spain",
+    "year": "2022",
+    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "url": "/legacy/videos/EuropeCup-2022-Spain.mp4",
+    "thumbnail": "/legacy/clipart/cameraman.gif"
+  }
+]

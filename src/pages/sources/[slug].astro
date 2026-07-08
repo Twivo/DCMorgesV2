@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import DocumentCard from "../../components/DocumentCard.astro";
+import LegacyTable from "../../components/LegacyTable.astro";
+import { legacyPages } from "../../data/legacyPages";
+
+export function getStaticPaths() {
+  return legacyPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={page.title} description={page.summary}>
+  <PageHero
+    eyebrow={page.destination}
+    title={page.title}
+    description={page.summary}
+    actions={[{ label: "Source originale", href: page.sourceUrl }]}
+  />
+
+  <section class="section">
+    <div class="container source-content">
+      {page.content.length > 0 && (
+        <div class="source-content__text">
+          {page.content.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      )}
+
+      {page.tables && page.tables.length > 0 && (
+        <div class="source-tables">
+          {page.tables.map((table) => <LegacyTable table={table} />)}
+        </div>
+      )}
+
+      {page.documents.length > 0 && (
+        <div>
+          <SectionHeader title="Documents liés" />
+          <div class="card-grid card-grid--three">
+            {page.documents.map((document) => <DocumentCard document={document} />)}
+          </div>
+        </div>
+      )}
+
+      {page.images.length > 0 && (
+        <div>
+          <SectionHeader title="Images liées" />
+          <div class="media-grid">
+            {page.images.map((image) => <img src={image} alt="" loading="lazy" />)}
+          </div>
+        </div>
+      )}
+
+      {page.externalLinks.length > 0 && (
+        <div>
+          <SectionHeader title="Liens externes" />
+          <ul class="linked-list">
+            {page.externalLinks.map((link) => <li><a href={link.href} target="_blank" rel="noreferrer">{link.label}</a></li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

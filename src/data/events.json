@@ -1,0 +1,52 @@
+[
+  {
+    "id": "tournoi-paques-2026",
+    "title": "Tournoi de Pâques",
+    "date": "2026-04-06",
+    "location": "Jameson's Pub, Morges",
+    "type": "Tournoi",
+    "description": "Tournoi de Steel Darts.",
+    "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
+    "time": "11h"
+  },
+  {
+    "id": "lmf-2026-lausanne-social-darts-dc-morges",
+    "title": "Lausanne Social Darts - DC Morges",
+    "date": "2026-04-08",
+    "location": "McCarthy's Pub, Lausanne",
+    "type": "Ligue Morgienne de Fléchettes",
+    "description": "Rencontre LMF.",
+    "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
+    "time": "20h"
+  },
+  {
+    "id": "sda-14eme-journee-martigny-dc-morges-1",
+    "title": "Martigny Sport - DC Morges 1",
+    "date": "2026-04-11",
+    "location": "MSDARTS, Rue du Châble-Bèt 41, Martigny (VS)",
+    "type": "Swiss Darts Association",
+    "description": "14ème journée.",
+    "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
+    "time": "13h"
+  },
+  {
+    "id": "sda-14eme-journee-dc-morges-1-casa-benfica",
+    "title": "DC Morges 1 - Casa Benfica Genève",
+    "date": "2026-04-12",
+    "location": "Rest. La Sportive, Rue de Carouge 45, Genève",
+    "type": "Swiss Darts Association",
+    "description": "14ème journée.",
+    "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
+    "time": "13h"
+  },
+  {
+    "id": "coupe-vaudoise-demi-finale",
+    "title": "Lausanne Social Darts - DC Morges",
+    "date": "2026-03-15",
+    "location": "McCarthy's Pub, Lausanne",
+    "type": "Coupe Vaudoise",
+    "description": "1/2 Finale.",
+    "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
+    "time": "20h"
+  }
+]

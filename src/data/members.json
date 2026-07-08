@@ -1,0 +1,898 @@
+[
+  {
+    "id": "michel-roy",
+    "firstName": "Michel",
+    "lastName": "Roy",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/roy.michel-2023.jpg"
+  },
+  {
+    "id": "george-rooney",
+    "firstName": "George",
+    "lastName": "Rooney",
+    "role": "Membre actif - Irlande",
+    "photo": "/legacy/Joueurs/rooney.george-2023.jpg"
+  },
+  {
+    "id": "julien-tanguy",
+    "firstName": "Julien",
+    "lastName": "Tanguy",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/joueursphoto/julientanguy.jpg"
+  },
+  {
+    "id": "rose-marie-bussard",
+    "firstName": "Rose Marie",
+    "lastName": "Bussard",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/bussard.rosemarie-2023.jpg"
+  },
+  {
+    "id": "fouad-beram",
+    "firstName": "Fouad",
+    "lastName": "Beram",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/beram.fouad-2023.jpg"
+  },
+  {
+    "id": "chris-roberts",
+    "firstName": "Chris",
+    "lastName": "Roberts",
+    "role": "Membre actif - Angleterre",
+    "photo": "/legacy/Joueurs/roberts.chris-2023.jpg"
+  },
+  {
+    "id": "joao-ferreira",
+    "firstName": "Joao",
+    "lastName": "Ferreira",
+    "role": "Membre actif - Portugal",
+    "photo": "/legacy/Joueurs/ferreira.joao.jpg"
+  },
+  {
+    "id": "dermot-simpson",
+    "firstName": "Dermot",
+    "lastName": "Simpson",
+    "role": "Membre actif - Irlande",
+    "photo": "/legacy/Joueurs/simpson.dermot.jpg"
+  },
+  {
+    "id": "stefan-dudolenski",
+    "firstName": "Stefan",
+    "lastName": "Dudolenski",
+    "role": "Membre actif - Bulgarie",
+    "photo": "/legacy/Joueurs/dudolenski.Stefan-2023.jpg"
+  },
+  {
+    "id": "laurent-flaction",
+    "firstName": "Laurent",
+    "lastName": "Flaction",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/flaction.laurent-2023.jpg"
+  },
+  {
+    "id": "christophe-chamard",
+    "firstName": "Christophe",
+    "lastName": "Chamard",
+    "role": "Membre actif - France",
+    "photo": "/legacy/Joueurs/chamard.christophe.jpg"
+  },
+  {
+    "id": "james-oliver",
+    "firstName": "James",
+    "lastName": "Oliver",
+    "role": "Membre actif - Angleterre",
+    "photo": "/legacy/Joueurs/oliver.james-2023.jpg"
+  },
+  {
+    "id": "yannick-cainzos",
+    "firstName": "Yannick",
+    "lastName": "Cainzos",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/cainzos.yannick-2023.jpg"
+  },
+  {
+    "id": "neil-poulton",
+    "firstName": "Neil",
+    "lastName": "Poulton",
+    "role": "Membre actif - Pays de Galles",
+    "photo": "/legacy/Joueurs/poulton.neil.jpg"
+  },
+  {
+    "id": "alain-baechler",
+    "firstName": "Alain",
+    "lastName": "Baechler",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/baechler.alain.jpg"
+  },
+  {
+    "id": "gordon-alders",
+    "firstName": "Gordon",
+    "lastName": "Alders",
+    "role": "Membre actif - Irlande",
+    "photo": "/legacy/Joueurs/alders.gordon-2023.jpg"
+  },
+  {
+    "id": "ludovic-marguet",
+    "firstName": "Ludovic",
+    "lastName": "Marguet",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/marguet.ludovic.jpg"
+  },
+  {
+    "id": "didier-andre",
+    "firstName": "Didier",
+    "lastName": "André",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/andre.didier.jpg"
+  },
+  {
+    "id": "benjamin-schaub",
+    "firstName": "Benjamin",
+    "lastName": "Schaub",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/schaub.benjamin.jpg"
+  },
+  {
+    "id": "thomas-donkin",
+    "firstName": "Thomas",
+    "lastName": "Donkin",
+    "role": "Membre actif - France",
+    "photo": "/legacy/Joueurs/donkin.thomas.jpg"
+  },
+  {
+    "id": "arno-roy",
+    "firstName": "Arno",
+    "lastName": "Roy",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/roy.arno-2.jpg"
+  },
+  {
+    "id": "patrick-roy",
+    "firstName": "Patrick",
+    "lastName": "Roy",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Joueurs/roy.patrick.jpg"
+  },
+  {
+    "id": "amandine-marchand",
+    "firstName": "Amandine",
+    "lastName": "Marchand",
+    "role": "Membre actif - Suisse",
+    "photo": "/legacy/Dartsjoueurs/marchand.amandine.jpg"
+  },
+  {
+    "id": "roman-bleistein",
+    "firstName": "Roman",
+    "lastName": "Bleistein",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/bleistein.roman.jpg"
+  },
+  {
+    "id": "j-erzy-pisula",
+    "firstName": "J erzy",
+    "lastName": "Pisula",
+    "role": "Ancien membre - Pologne",
+    "photo": "/legacy/Joueurs/pisula.jerzy.jpg"
+  },
+  {
+    "id": "palle-juul-andersen",
+    "firstName": "Palle Juul",
+    "lastName": "Andersen",
+    "role": "Ancien membre - Danemark",
+    "photo": "/legacy/Joueurs/andersen.palle-juul.jpg"
+  },
+  {
+    "id": "robin-padliya",
+    "firstName": "Robin",
+    "lastName": "Padliya",
+    "role": "Ancien membre - Canada",
+    "photo": "/legacy/Joueurs/padliya.robin.jpg"
+  },
+  {
+    "id": "jean-marc-verdebout",
+    "firstName": "Jean-Marc",
+    "lastName": "Verdebout",
+    "role": "Ancien membre - Belgique",
+    "photo": "/legacy/Joueurs/verdebout.jeanmarc.jpg"
+  },
+  {
+    "id": "agosthino-miranda",
+    "firstName": "Agosthino",
+    "lastName": "Miranda",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Joueurs/miranda.agostinho.jpg"
+  },
+  {
+    "id": "lars-asmussen",
+    "firstName": "Lars",
+    "lastName": "Asmussen",
+    "role": "Ancien membre - Danemark",
+    "photo": "/legacy/Dartsjoueurs/asmussen.lars.jpg"
+  },
+  {
+    "id": "fabienne-joly",
+    "firstName": "Fabienne",
+    "lastName": "Joly",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/joly.fabienne.jpg"
+  },
+  {
+    "id": "fred-assourian",
+    "firstName": "Fred",
+    "lastName": "Assourian",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/assourian.fred.jpg"
+  },
+  {
+    "id": "thomas-bremgartner",
+    "firstName": "Thomas",
+    "lastName": "Bremgartner",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/bremgartner.thomas.jpg"
+  },
+  {
+    "id": "wouter-pijl",
+    "firstName": "Wouter",
+    "lastName": "Pijl",
+    "role": "Ancien membre - Pays-Bas",
+    "photo": "/legacy/Joueurs/pijl.wouter.jpg"
+  },
+  {
+    "id": "bobby-french",
+    "firstName": "Bobby",
+    "lastName": "French",
+    "role": "Ancien membre - Angleterre",
+    "photo": "/legacy/Joueurs/french.bobby.jpg"
+  },
+  {
+    "id": "cindy-feignoux",
+    "firstName": "Cindy",
+    "lastName": "Feignoux",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/feignoux.cindy.jpg"
+  },
+  {
+    "id": "younes-abbadi",
+    "firstName": "Younes",
+    "lastName": "Abbadi",
+    "role": "Ancien membre - Maroc",
+    "photo": "/legacy/Joueurs/abbadi.younes.jpg"
+  },
+  {
+    "id": "elan-ganesalingam",
+    "firstName": "Elan",
+    "lastName": "Ganesalingam",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/ganesalingam.elan.jpg"
+  },
+  {
+    "id": "mickael-palissier",
+    "firstName": "Mickael",
+    "lastName": "Palissier",
+    "role": "Ancien membre - France",
+    "photo": "/legacy/Joueurs/palissier.mickael-2023.jpg"
+  },
+  {
+    "id": "lauren-rooney",
+    "firstName": "Lauren",
+    "lastName": "Rooney",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/rooney.lauren.jpg"
+  },
+  {
+    "id": "lucien-moser",
+    "firstName": "Lucien",
+    "lastName": "Moser",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/moser.lucien.jpg"
+  },
+  {
+    "id": "sophie-scheuner",
+    "firstName": "Sophie",
+    "lastName": "Scheuner",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/scheuner.sophie.jpg"
+  },
+  {
+    "id": "marc-zendrini",
+    "firstName": "Marc",
+    "lastName": "Zendrini",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/zendrini.marc-2.jpg"
+  },
+  {
+    "id": "severine-zaugg",
+    "firstName": "Séverine",
+    "lastName": "Zaugg",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/zaugg.severine.jpg"
+  },
+  {
+    "id": "rogerio-olaio",
+    "firstName": "Rogerio",
+    "lastName": "Olaio",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/olaio.rogiero.jpg"
+  },
+  {
+    "id": "roope-uola",
+    "firstName": "Roope",
+    "lastName": "Uola",
+    "role": "Ancien membre - Finlande",
+    "photo": "/legacy/Dartsjoueurs/uola.roope.jpg"
+  },
+  {
+    "id": "robin-mundler",
+    "firstName": "Robin",
+    "lastName": "Mundler",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/mundler.robin.jpg"
+  },
+  {
+    "id": "joao-oliveira",
+    "firstName": "Joao",
+    "lastName": "Oliveira",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/oliveira.joao.jpg"
+  },
+  {
+    "id": "rocco-longo",
+    "firstName": "Rocco",
+    "lastName": "Longo",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/longo.rocco.jpg"
+  },
+  {
+    "id": "tiago-silva",
+    "firstName": "Tiago",
+    "lastName": "Silva",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/silva.tiago.jpg"
+  },
+  {
+    "id": "daniel-gatta",
+    "firstName": "Daniel",
+    "lastName": "Gatta",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/gatta.daniel.jpg"
+  },
+  {
+    "id": "antonio-da-costa",
+    "firstName": "Antonio Da",
+    "lastName": "Costa",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/da-costa.antonio.jpg"
+  },
+  {
+    "id": "juan-lopez",
+    "firstName": "Juan",
+    "lastName": "Lopez",
+    "role": "Ancien membre - Espagne",
+    "photo": "/legacy/Dartsjoueurs/lopez.juan.jpg"
+  },
+  {
+    "id": "jorge-soares",
+    "firstName": "Jorge",
+    "lastName": "Soares",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/soares.jorge2.jpg"
+  },
+  {
+    "id": "paulo-dos-reis",
+    "firstName": "Paulo Dos",
+    "lastName": "Reis",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/dosreis.paulo-2.jpg"
+  },
+  {
+    "id": "bruno-pacheco",
+    "firstName": "Bruno",
+    "lastName": "Pacheco",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/pacheco.bruno.jpg"
+  },
+  {
+    "id": "jose-carvalho",
+    "firstName": "Jose",
+    "lastName": "Carvalho",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/carvalho.jose.jpg"
+  },
+  {
+    "id": "joao-monteiro",
+    "firstName": "Joao",
+    "lastName": "Monteiro",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/monteiro.joao.jpg"
+  },
+  {
+    "id": "sergio-raposo",
+    "firstName": "Sergio",
+    "lastName": "Raposo",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/raposo.sergio.jpg"
+  },
+  {
+    "id": "blaise-vaudan",
+    "firstName": "Blaise",
+    "lastName": "Vaudan",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/vaudan.blaise.jpg"
+  },
+  {
+    "id": "willy-kolly",
+    "firstName": "Willy",
+    "lastName": "Kolly",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/kolly.willy.jpg"
+  },
+  {
+    "id": "mario-lombardo",
+    "firstName": "Mario",
+    "lastName": "Lombardo",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/lombardo.mario.jpg"
+  },
+  {
+    "id": "manuel-pereira-oliveira",
+    "firstName": "Manuel Pereira",
+    "lastName": "Oliveira",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/oliveira.manuel.jpg"
+  },
+  {
+    "id": "lucas-lombardo",
+    "firstName": "Lucas",
+    "lastName": "Lombardo",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/lombardo.lucas.jpg"
+  },
+  {
+    "id": "carlos-da-cruz",
+    "firstName": "Carlos Da",
+    "lastName": "Cruz",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/da-cruz.carlos.jpg"
+  },
+  {
+    "id": "jean-marc-da-cruz",
+    "firstName": "Jean-Marc Da",
+    "lastName": "Cruz",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/da-cruz.jeanmarc.jpg"
+  },
+  {
+    "id": "nicolas-perin",
+    "firstName": "Nicolas",
+    "lastName": "Perin",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/perin.nicolas.jpg"
+  },
+  {
+    "id": "martin-andermatt",
+    "firstName": "Martin",
+    "lastName": "Andermatt",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/andermatt.armin.jpg"
+  },
+  {
+    "id": "warren-beckham",
+    "firstName": "Warren",
+    "lastName": "Beckham",
+    "role": "Ancien membre - Angleterre",
+    "photo": "/legacy/Dartsjoueurs/beckham.warren.jpg"
+  },
+  {
+    "id": "paul-parker",
+    "firstName": "Paul",
+    "lastName": "Parker",
+    "role": "Ancien membre - Irlande",
+    "photo": "/legacy/Dartsjoueurs/parker.paul-2.jpg"
+  },
+  {
+    "id": "faik-malushi",
+    "firstName": "Faik",
+    "lastName": "Malushi",
+    "role": "Ancien membre - Kosovo",
+    "photo": "/legacy/Dartsjoueurs/malushi.faik.jpg"
+  },
+  {
+    "id": "dominique-jacot",
+    "firstName": "Dominique",
+    "lastName": "Jacot",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/jacot.dominique.jpg"
+  },
+  {
+    "id": "fred-walter",
+    "firstName": "Fred",
+    "lastName": "Walter",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/walter.frederic.jpg"
+  },
+  {
+    "id": "christelle-urech",
+    "firstName": "Christelle",
+    "lastName": "Urech",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/urech.christelle.jpg"
+  },
+  {
+    "id": "ludovic-manzoni",
+    "firstName": "Ludovic",
+    "lastName": "Manzoni",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/manzoni.ludovic.jpg"
+  },
+  {
+    "id": "alexandre-pesseas",
+    "firstName": "Alexandre",
+    "lastName": "Pesseas",
+    "role": "Ancien membre - France",
+    "photo": "/legacy/Dartsjoueurs/pesseas.alexandre.jpg"
+  },
+  {
+    "id": "christophe-barret",
+    "firstName": "Christophe",
+    "lastName": "Barret",
+    "role": "Ancien membre - France",
+    "photo": "/legacy/Dartsjoueurs/barret.christophe.jpg"
+  },
+  {
+    "id": "ana-hemmersbach",
+    "firstName": "Ana",
+    "lastName": "Hemmersbach",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/hemmersbach.ana.jpg"
+  },
+  {
+    "id": "khalid-hassini",
+    "firstName": "Khalid",
+    "lastName": "Hassini",
+    "role": "Ancien membre - Maroc",
+    "photo": "/legacy/Dartsjoueurs/hassini.khalid.jpg"
+  },
+  {
+    "id": "juan-carlos-ortiz",
+    "firstName": "Juan Carlos",
+    "lastName": "Ortiz",
+    "role": "Ancien membre - Espagne",
+    "photo": "/legacy/Dartsjoueurs/ortiz.juan.jpg"
+  },
+  {
+    "id": "alberto-casas",
+    "firstName": "Alberto",
+    "lastName": "Casas",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/casas.alberto.jpg"
+  },
+  {
+    "id": "jean-sebastien-joly",
+    "firstName": "Jean-Sébastien",
+    "lastName": "Joly",
+    "role": "Ancien membre - Canada",
+    "photo": "/legacy/Dartsjoueurs/joly.jeansebastien.jpg"
+  },
+  {
+    "id": "herve-baer",
+    "firstName": "Hervé",
+    "lastName": "Baer",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/baer.herve.jpg"
+  },
+  {
+    "id": "olivier-zbinden",
+    "firstName": "Olivier",
+    "lastName": "Zbinden",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/zbinden.olivier.jpg"
+  },
+  {
+    "id": "andre-muller",
+    "firstName": "André",
+    "lastName": "Muller",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/muller.andre.jpg"
+  },
+  {
+    "id": "yvan-schertenleib",
+    "firstName": "Yvan",
+    "lastName": "Schertenleib",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/schertenleib.yvan.jpg"
+  },
+  {
+    "id": "david-pidoux",
+    "firstName": "David",
+    "lastName": "Pidoux",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/pidoux.david.jpg"
+  },
+  {
+    "id": "thierry-mottaz",
+    "firstName": "Thierry",
+    "lastName": "Mottaz",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Joueurs/mottaz.thierry.jpg"
+  },
+  {
+    "id": "mexhid-sulejmahi",
+    "firstName": "Mexhid",
+    "lastName": "Sulejmahi",
+    "role": "Ancien membre - Macédoine",
+    "photo": "/legacy/Dartsjoueurs/sulejmani.mexhid-2.jpg"
+  },
+  {
+    "id": "carlo-pennesi",
+    "firstName": "Carlo",
+    "lastName": "Pennesi",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/pennesi.carlo.jpg"
+  },
+  {
+    "id": "juan-ruiz",
+    "firstName": "Juan",
+    "lastName": "Ruiz",
+    "role": "Ancien membre - Espagne",
+    "photo": "/legacy/Dartsjoueurs/ruiz.juan.jpg"
+  },
+  {
+    "id": "steve-pellaud",
+    "firstName": "Steve",
+    "lastName": "Pellaud",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/pellaud.steve.jpg"
+  },
+  {
+    "id": "christian-bolli",
+    "firstName": "Christian",
+    "lastName": "Bolli",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/bolli.christian.jpg"
+  },
+  {
+    "id": "melanie-erlebach",
+    "firstName": "Mélanie",
+    "lastName": "Erlebach",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/erlebach.melanie.jpg"
+  },
+  {
+    "id": "joana-rosa",
+    "firstName": "Joana",
+    "lastName": "Rosa",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/rosa.joana.jpg"
+  },
+  {
+    "id": "jean-sebastien-saia",
+    "firstName": "Jean-Sébastien",
+    "lastName": "Saia",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/saia.jeansebastien.jpg"
+  },
+  {
+    "id": "pascale-sage",
+    "firstName": "Pascale",
+    "lastName": "Sage",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/sage.pascale.jpg"
+  },
+  {
+    "id": "christian-bourdenet",
+    "firstName": "Christian",
+    "lastName": "Bourdenet",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/bourdenet.christian.jpg"
+  },
+  {
+    "id": "daniel-gaudin",
+    "firstName": "Daniel",
+    "lastName": "Gaudin",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/gaudin.daniel.jpg"
+  },
+  {
+    "id": "frederic-queloz",
+    "firstName": "Frédéric",
+    "lastName": "Quéloz",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/queloz.frederic.jpg"
+  },
+  {
+    "id": "manuel-firmino",
+    "firstName": "Manuel",
+    "lastName": "Firmino",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/firmino.manuel.jpg"
+  },
+  {
+    "id": "alexandra-di-blasi",
+    "firstName": "Alexandra Di",
+    "lastName": "Blasi",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/di-blasi.alexandra.jpg"
+  },
+  {
+    "id": "patricia-perriraz",
+    "firstName": "Patricia",
+    "lastName": "Perriraz",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/perriraz.patricia.jpg"
+  },
+  {
+    "id": "fabrizio-vona",
+    "firstName": "Fabrizio",
+    "lastName": "Vona",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/vona.fabrizio.jpg"
+  },
+  {
+    "id": "omar-capraro",
+    "firstName": "Omar",
+    "lastName": "Capraro",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/capraro.omar.jpg"
+  },
+  {
+    "id": "daniel-diana",
+    "firstName": "Daniel",
+    "lastName": "Diana",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/diana.daniel.jpg"
+  },
+  {
+    "id": "claudio-mirante",
+    "firstName": "Claudio",
+    "lastName": "Mirante",
+    "role": "Ancien membre - Italie",
+    "photo": "/legacy/Dartsjoueurs/mirante.claudio.jpg"
+  },
+  {
+    "id": "makmur-bangun",
+    "firstName": "Makmur",
+    "lastName": "Bangun",
+    "role": "Ancien membre - Indonésie",
+    "photo": "/legacy/Dartsjoueurs/bangun.makmur.jpg"
+  },
+  {
+    "id": "gerald-stoller",
+    "firstName": "Gérald",
+    "lastName": "Stoller",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/stoller.gerald.jpg"
+  },
+  {
+    "id": "emmanuel-franz",
+    "firstName": "Emmanuel",
+    "lastName": "Franz",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/franz.emmanuel.jpg"
+  },
+  {
+    "id": "raphael-nicaty",
+    "firstName": "Raphaël",
+    "lastName": "Nicaty",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/nicaty.raphael.jpg"
+  },
+  {
+    "id": "andre-beguelin",
+    "firstName": "André",
+    "lastName": "Béguelin",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/beguelin.andre.jpg"
+  },
+  {
+    "id": "alain-caduff",
+    "firstName": "Alain",
+    "lastName": "Caduff",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/caduff.alain.jpg"
+  },
+  {
+    "id": "frederic-walther",
+    "firstName": "Frédéric",
+    "lastName": "Walther",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/walther.fred.jpg"
+  },
+  {
+    "id": "hans-muhlemann",
+    "firstName": "Hans",
+    "lastName": "Mühlemann",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/muhlemann.hans.jpg"
+  },
+  {
+    "id": "thierry-mayland",
+    "firstName": "Thierry",
+    "lastName": "Mayland",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/mayland.thierry.jpg"
+  },
+  {
+    "id": "hajriz-zeqir",
+    "firstName": "Hajriz",
+    "lastName": "Zeqir",
+    "role": "Ancien membre - Kosovo",
+    "photo": "/legacy/Dartsjoueurs/zeqir.hajriz.jpg"
+  },
+  {
+    "id": "christophe-veuthey",
+    "firstName": "Christophe",
+    "lastName": "Veuthey",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/veuthey.christophe.jpg"
+  },
+  {
+    "id": "pedro-soares",
+    "firstName": "Pedro",
+    "lastName": "Soares",
+    "role": "Ancien membre - Portugal",
+    "photo": "/legacy/Dartsjoueurs/soares.pedro.jpg"
+  },
+  {
+    "id": "severine-olivier",
+    "firstName": "Séverine",
+    "lastName": "Olivier",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/olivier.severine.jpg"
+  },
+  {
+    "id": "matias-navarro",
+    "firstName": "Matias",
+    "lastName": "Navarro",
+    "role": "Ancien membre - Espagne",
+    "photo": "/legacy/Dartsjoueurs/navarro.matias.jpg"
+  },
+  {
+    "id": "christina-genna",
+    "firstName": "Christina",
+    "lastName": "Genna",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/genna.christina.jpg"
+  },
+  {
+    "id": "vincent-gohl",
+    "firstName": "Vincent",
+    "lastName": "Gohl",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/gohl.vincent.jpg"
+  },
+  {
+    "id": "isaac-queroub",
+    "firstName": "Isaac",
+    "lastName": "Queroub",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/queroub.isaac.jpg"
+  },
+  {
+    "id": "tony-shepherd",
+    "firstName": "Tony",
+    "lastName": "Shepherd",
+    "role": "Ancien membre - Angleterre",
+    "photo": "/legacy/Dartsjoueurs/shepherd.tony.jpg"
+  },
+  {
+    "id": "tuan-pham",
+    "firstName": "Tuan",
+    "lastName": "Pham",
+    "role": "Ancien membre - Viet-Nam",
+    "photo": "/legacy/Dartsjoueurs/tuan.pham.jpg"
+  },
+  {
+    "id": "jean-pierre-tosi",
+    "firstName": "Jean-Pierre",
+    "lastName": "Tosi",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/tosi.jeanpierre.jpg"
+  },
+  {
+    "id": "olivier-perroud",
+    "firstName": "Olivier",
+    "lastName": "Perroud",
+    "role": "Ancien membre - Suisse",
+    "photo": "/legacy/Dartsjoueurs/perroud.olivier.jpg"
+  }
+]

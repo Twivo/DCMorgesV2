@@ -1,0 +1,23 @@
+---
+import type { TeamItem } from "../data/types";
+
+interface Props {
+  team: TeamItem;
+}
+
+const { team } = Astro.props;
+---
+
+<article class="content-card team-card">
+  <div class="content-card__body">
+    <div class="meta-row">
+      <span>{team.competition}</span>
+      <span>{team.season}</span>
+    </div>
+    <h3>{team.name}</h3>
+    <p>{team.description}</p>
+    <ul class="compact-list">
+      {team.members.map((member) => <li>{member}</li>)}
+    </ul>
+  </div>
+</article>

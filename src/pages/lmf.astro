@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import DocumentCard from "../components/DocumentCard.astro";
+import TeamCard from "../components/TeamCard.astro";
+import { getDocumentsByCompetition } from "../data/documents";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import { seasons } from "../data/seasons";
+import { teams } from "../data/teams";
+
+const page = getSitePage("lmf");
+const currentSeason = seasons.find((season) => season.isCurrent);
+const currentSeasonLabel = currentSeason?.label ?? "2025-26";
+const pageVars = { currentSeason: currentSeasonLabel };
+const presentationSection = formatPageSection(getPageSection(page, "presentation"), pageVars);
+const teamSection = formatPageSection(getPageSection(page, "team"), pageVars);
+const documentsSection = formatPageSection(getPageSection(page, "documents"), pageVars);
+const previousDocumentsSection = formatPageSection(getPageSection(page, "previous-documents"), pageVars);
+const lmfDocuments = getDocumentsByCompetition("LMF");
+const currentLmfDocuments = lmfDocuments.filter((document) => document.season === currentSeasonLabel);
+const previousLmfDocuments = lmfDocuments.filter((document) => document.season !== currentSeasonLabel);
+const lmfTeams = teams.filter((team) => team.competition === "LMF");
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow, pageVars)}
+    title={formatPageText(page.heroTitle, pageVars)}
+    description={formatPageText(page.heroDescription, pageVars)}
+    actions={formatPageActions(page.actions, pageVars)}
+  />
+
+  <section class="section">
+    <div class="container split-layout">
+      <div>
+        <SectionHeader
+          eyebrow={presentationSection.eyebrow}
+          title={presentationSection.title}
+          description={presentationSection.description}
+        />
+      </div>
+      <div class="info-strip">
+        <div>
+          <span class="label">Saison</span>
+          <strong>{currentSeasonLabel}</strong>
+        </div>
+        <div>
+          <span class="label">Documents LMF</span>
+          <strong>{currentLmfDocuments.length} fichiers</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHeader eyebrow={teamSection.eyebrow} title={teamSection.title} description={teamSection.description} />
+      <div class="card-grid card-grid--two">
+        {lmfTeams.map((team) => <TeamCard team={team} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        eyebrow={documentsSection.eyebrow}
+        title={documentsSection.title}
+        description={documentsSection.description}
+      />
+      <div class="card-grid card-grid--three">
+        {currentLmfDocuments.map((document) => <DocumentCard document={document} />)}
+      </div>
+    </div>
+  </section>
+
+  {previousLmfDocuments.length > 0 && (
+    <section class="section section--muted">
+      <div class="container">
+        <SectionHeader
+          eyebrow={previousDocumentsSection.eyebrow}
+          title={previousDocumentsSection.title}
+          description={previousDocumentsSection.description}
+        />
+        <div class="card-grid card-grid--three">
+          {previousLmfDocuments.map((document) => <DocumentCard document={document} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

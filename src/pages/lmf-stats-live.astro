@@ -1,0 +1,1228 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+interface Column {
+  label: string;
+  keys: string[];
+  format?: "integer" | "number" | "percent" | "date";
+  strong?: boolean;
+}
+
+interface RankingSection {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  emptyText: string;
+  columns: Column[];
+}
+
+const env = import.meta.env as Record<string, string | undefined>;
+const clean = (value: string | undefined) => value?.trim() || "";
+
+const supabaseConfig = {
+  url: clean(env.PUBLIC_SUPABASE_URL),
+  key: clean(env.PUBLIC_SUPABASE_ANON_KEY),
+  schema: clean(env.PUBLIC_SUPABASE_SCHEMA) || "public",
+  bestPlayerOfficialMinimum: 20
+};
+
+const supabaseTables = ["seasons", "teams", "players", "team_players", "encounters", "matches", "match_players"];
+
+const rankingSections: RankingSection[] = [
+  {
+    id: "league",
+    eyebrow: "Championnat",
+    title: "Classement de la ligue",
+    description: "Vue d'ensemble par équipe : résultats, parties et legs.",
+    emptyText: "Aucune rencontre terminée n'est disponible pour la saison.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Équipe", keys: ["team"], strong: true },
+      { label: "MJ", keys: ["played"], format: "integer" },
+      { label: "V", keys: ["wins"], format: "integer" },
+      { label: "N", keys: ["draws"], format: "integer" },
+      { label: "D", keys: ["losses"], format: "integer" },
+      { label: "Parties G", keys: ["games_won"], format: "integer" },
+      { label: "Parties P", keys: ["games_lost"], format: "integer" },
+      { label: "Legs joués", keys: ["legs_played"], format: "integer" },
+      { label: "Legs G", keys: ["legs_won"], format: "integer" },
+      { label: "Legs P", keys: ["legs_lost"], format: "integer" },
+      { label: "+/-", keys: ["game_diff"], format: "integer" },
+      { label: "Pts", keys: ["points"], format: "number", strong: true }
+    ]
+  },
+  {
+    id: "best-player",
+    eyebrow: "Joueurs",
+    title: "Best Player",
+    description: "Tri par ratio de legs gagnés en simples, puis ratio de matchs gagnés.",
+    emptyText: "Aucun match simple terminé n'est disponible.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Joueur", keys: ["player"], strong: true },
+      { label: "Équipe", keys: ["team"] },
+      { label: "Matchs", keys: ["matches"], format: "integer" },
+      { label: "V", keys: ["match_wins"], format: "integer" },
+      { label: "Legs G", keys: ["legs_won"], format: "integer" },
+      { label: "Legs P", keys: ["legs_lost"], format: "integer" },
+      { label: "Ratio legs", keys: ["leg_ratio"], format: "percent", strong: true },
+      { label: "Ratio matchs", keys: ["match_ratio"], format: "percent" }
+    ]
+  },
+  {
+    id: "mvp",
+    eyebrow: "Joueurs",
+    title: "Classement MVP",
+    description: "1 point par simple gagné, 0,5 point par joueur pour un double gagné.",
+    emptyText: "Aucun point MVP n'est encore disponible.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Joueur", keys: ["player"], strong: true },
+      { label: "Équipe", keys: ["team"] },
+      { label: "Total", keys: ["total_points"], format: "number", strong: true },
+      { label: "Simples", keys: ["singles_points"], format: "number" },
+      { label: "Doubles", keys: ["doubles_points"], format: "number" },
+      { label: "Maximum possible", keys: ["maximum_possible"], format: "number" },
+      { label: "% réussite", keys: ["success_rate"], format: "percent", strong: true }
+    ]
+  },
+  {
+    id: "high-finish",
+    eyebrow: "Scores",
+    title: "High finish",
+    description: "Un joueur apparaît une seule fois, avec son meilleur finish et ses deux suivants.",
+    emptyText: "Aucun finish de 100 ou plus n'a encore été réalisé.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Joueur", keys: ["player"], strong: true },
+      { label: "Équipe", keys: ["team"] },
+      { label: "Meilleur", keys: ["finish"], format: "integer", strong: true },
+      { label: "Autres bons finishes", keys: ["other_finishes"] },
+      { label: "Dernière date", keys: ["date"], format: "date" }
+    ]
+  },
+  {
+    id: "most-mvp",
+    eyebrow: "Joueurs",
+    title: "Most MVP",
+    description: "Nombre de rencontres où le joueur termine meilleur contributeur.",
+    emptyText: "Aucune rencontre ne permet encore de désigner un MVP.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Joueur", keys: ["player"], strong: true },
+      { label: "Équipe", keys: ["team"] },
+      { label: "MVP", keys: ["mvp_count"], format: "integer", strong: true },
+      { label: "Matchs", keys: ["matches"], format: "integer" },
+      { label: "Dernier MVP", keys: ["last_mvp"], format: "date" }
+    ]
+  },
+  {
+    id: "one-eighties",
+    eyebrow: "Scores",
+    title: "Classement des 180s",
+    description: "Nombre de 180 réalisés pendant les matchs de championnat.",
+    emptyText: "Aucun 180 n'a encore été enregistré.",
+    columns: [
+      { label: "#", keys: ["rank"], format: "integer" },
+      { label: "Joueur", keys: ["player"], strong: true },
+      { label: "Équipe", keys: ["team"] },
+      { label: "180s", keys: ["count"], format: "integer", strong: true },
+      { label: "Matchs avec 180", keys: ["matches"], format: "integer" },
+      { label: "Dernier 180", keys: ["last_180"], format: "date" }
+    ]
+  }
+];
+---
+
+<BaseLayout title="Statistiques LMF" description="Classements et historique live de la Ligue Morgienne de Fléchettes.">
+  <PageHero
+    title="Statistiques LMF"
+    description="Classements, performances joueurs et historique des matchs de championnat."
+  />
+
+  <section class="section live-overview-section">
+    <div class="container live-stats">
+      <div class="live-stats__status">
+        <div>
+          <span class="label">Saison</span>
+          <strong data-live-season>Chargement</strong>
+        </div>
+        <div>
+          <span class="label">Rencontres</span>
+          <strong data-live-encounters>0</strong>
+        </div>
+        <div>
+          <span class="label">Parties</span>
+          <strong data-live-matches>0</strong>
+        </div>
+        <div>
+          <span class="label">Mise à jour</span>
+          <strong data-live-updated>En attente</strong>
+        </div>
+      </div>
+
+      <div class="live-stats__notice" data-live-notice hidden></div>
+
+      <nav class="live-stats__tabs" aria-label="Navigation statistiques LMF">
+        {rankingSections.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+        <a href="#match-history">Historique</a>
+      </nav>
+    </div>
+  </section>
+
+  {rankingSections.filter((section) => section.id !== "one-eighties").map((section, sectionIndex) => (
+    <section class:list={["section", sectionIndex % 2 === 0 ? "section--muted" : ""]} id={section.id}>
+      <div class="container">
+        <SectionHeader eyebrow={section.eyebrow} title={section.title} description={section.description} />
+        <div class="live-table-wrap">
+          <p class="live-table-empty" data-empty={section.id}>Chargement du classement...</p>
+          <table class="live-table" data-table={section.id} hidden>
+            <thead>
+              <tr>
+                {section.columns.map((column) => <th>{column.label}</th>)}
+              </tr>
+            </thead>
+            <tbody data-body={section.id}></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section" id="match-history">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Historique"
+        title="Historique des matchs"
+        description="Recherche par équipe, joueur, type de partie ou score."
+      />
+
+      <div class="history-filters" data-history-filters hidden>
+        <label>
+          <span>Recherche</span>
+          <input type="search" data-history-search placeholder="Joueur, équipe, score..." />
+        </label>
+        <label>
+          <span>Équipe</span>
+          <select data-history-team>
+            <option value="">Toutes</option>
+          </select>
+        </label>
+        <label>
+          <span>Joueur</span>
+          <select data-history-player>
+            <option value="">Tous</option>
+          </select>
+        </label>
+        <label>
+          <span>Type</span>
+          <select data-history-mode>
+            <option value="">Tous</option>
+            <option value="SINGLE">Simple</option>
+            <option value="DOUBLE">Double</option>
+          </select>
+        </label>
+        <label>
+          <span>Résultat</span>
+          <select data-history-outcome>
+            <option value="">Tous</option>
+            <option value="win">Victoire de l'équipe choisie</option>
+            <option value="loss">Défaite de l'équipe choisie</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="history-count" data-history-count hidden></p>
+
+      <div class="live-table-wrap">
+        <p class="live-table-empty" data-history-empty>Chargement de l'historique...</p>
+        <table class="live-table live-table--history" data-history-table hidden>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Rencontre</th>
+              <th>Type</th>
+              <th>Joueurs</th>
+              <th>Score</th>
+              <th>Vainqueur</th>
+              <th>Stats</th>
+            </tr>
+          </thead>
+          <tbody data-history-body></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {rankingSections.filter((section) => section.id === "one-eighties").map((section) => (
+    <section class="section section--muted" id={section.id}>
+      <div class="container">
+        <SectionHeader eyebrow={section.eyebrow} title={section.title} description={section.description} />
+        <div class="live-table-wrap">
+          <p class="live-table-empty" data-empty={section.id}>Chargement du classement...</p>
+          <table class="live-table" data-table={section.id} hidden>
+            <thead>
+              <tr>
+                {section.columns.map((column) => <th>{column.label}</th>)}
+              </tr>
+            </thead>
+            <tbody data-body={section.id}></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <script define:vars={{ supabaseConfig, rankingSections, supabaseTables }}>
+    const hasValue = (value) => value !== undefined && value !== null && value !== "";
+    const asArray = (value) => (Array.isArray(value) ? value : []);
+    const normalizeNumber = (value, fallback = 0) => {
+      const parsed = typeof value === "number" ? value : Number(String(value ?? "").replace(",", "."));
+      return Number.isFinite(parsed) ? parsed : fallback;
+    };
+
+    const parseJsonField = (value, fallback) => {
+      if (value && typeof value === "object") return value;
+      if (typeof value !== "string" || value.trim() === "") return fallback;
+      try {
+        return JSON.parse(value);
+      } catch {
+        return fallback;
+      }
+    };
+
+    const valueFor = (row, keys) => keys.map((key) => row[key]).find(hasValue);
+
+    const formatNumber = (value, maximumFractionDigits = 1) => {
+      if (typeof value === "number") {
+        return value.toLocaleString("fr-CH", { maximumFractionDigits });
+      }
+      const parsed = Number(String(value).replace(",", "."));
+      if (!Number.isNaN(parsed) && String(value).trim() !== "") {
+        return parsed.toLocaleString("fr-CH", { maximumFractionDigits });
+      }
+      return String(value);
+    };
+
+    const formatDate = (value) => {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleDateString("fr-CH");
+    };
+
+    const formatCell = (row, column) => {
+      const value = valueFor(row, column.keys);
+      if (!hasValue(value)) return "-";
+
+      if (column.format === "percent") {
+        const raw = typeof value === "number" ? value : Number(String(value).replace("%", "").replace(",", "."));
+        if (!Number.isNaN(raw)) {
+          const percent = raw <= 1 ? raw * 100 : raw;
+          return `${percent.toLocaleString("fr-CH", { minimumFractionDigits: 0, maximumFractionDigits: 2 })} %`;
+        }
+      }
+
+      if (column.format === "date") return formatDate(value);
+      if (column.format === "integer") return formatNumber(value, 0);
+      if (column.format === "number") return formatNumber(value, 2);
+      return String(value);
+    };
+
+    const setNotice = (title, detail, isError = false) => {
+      const notice = document.querySelector("[data-live-notice]");
+      if (!notice) return;
+      notice.hidden = false;
+      notice.classList.toggle("live-stats__notice--error", isError);
+      notice.replaceChildren();
+      const heading = document.createElement("h2");
+      const paragraph = document.createElement("p");
+      heading.textContent = title;
+      paragraph.textContent = detail;
+      notice.append(heading, paragraph);
+    };
+
+    const setStatus = ({ season = "Chargement", encounters = 0, matches = 0, updated = "En attente" }) => {
+      const seasonEl = document.querySelector("[data-live-season]");
+      const encountersEl = document.querySelector("[data-live-encounters]");
+      const matchesEl = document.querySelector("[data-live-matches]");
+      const updatedEl = document.querySelector("[data-live-updated]");
+      if (seasonEl) seasonEl.textContent = season;
+      if (encountersEl) encountersEl.textContent = formatNumber(encounters, 0);
+      if (matchesEl) matchesEl.textContent = formatNumber(matches, 0);
+      if (updatedEl) updatedEl.textContent = updated;
+    };
+
+    const endpointFor = (table) => {
+      const baseUrl = supabaseConfig.url.replace(/\/$/, "");
+      return `${baseUrl}/rest/v1/${encodeURIComponent(table)}?select=*&limit=10000`;
+    };
+
+    const fetchTable = async (table) => {
+      const response = await fetch(endpointFor(table), {
+        headers: {
+          apikey: supabaseConfig.key,
+          authorization: `Bearer ${supabaseConfig.key}`,
+          "accept-profile": supabaseConfig.schema,
+          accept: "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        const body = await response.text().catch(() => "");
+        throw new Error(`Impossible de lire les données (${response.status})${body ? ` : ${body.slice(0, 120)}` : ""}`);
+      }
+
+      const rows = await response.json();
+      return Array.isArray(rows) ? rows : [];
+    };
+
+    const byId = (rows) => new Map(rows.filter((row) => row?.id).map((row) => [row.id, row]));
+    const addRank = (rows) => rows.map((row, index) => ({ rank: index + 1, ...row }));
+    const getConfig = (match) => parseJsonField(match.config, {});
+    const getEvents = (match) => asArray(parseJsonField(match.events, []));
+
+    const buildParticipantHelpers = (match, matchPlayersByMatch) => {
+      const config = getConfig(match);
+      const participants = asArray(config.participants);
+      const joinedPlayers = asArray(matchPlayersByMatch.get(match.id));
+      const participantIds = new Set(participants.map((participant) => participant?.id).filter(Boolean));
+
+      for (const player of joinedPlayers) {
+        if (player?.participant_id) participantIds.add(player.participant_id);
+      }
+      for (const event of getEvents(match)) {
+        if (event?.participantId) participantIds.add(event.participantId);
+      }
+      if (match.winner_participant) participantIds.add(match.winner_participant);
+
+      const playerIdsForParticipant = (participantId) => {
+        const participant = participants.find((item) => item?.id === participantId);
+        const fromConfig = asArray(participant?.playerIds).filter(Boolean);
+        if (fromConfig.length > 0) return fromConfig;
+        return joinedPlayers
+          .filter((player) => player?.participant_id === participantId)
+          .map((player) => player.player_id)
+          .filter(Boolean);
+      };
+
+      const labelForParticipant = (participantId, playerName) => {
+        const participant = participants.find((item) => item?.id === participantId);
+        if (participant?.label) return participant.label;
+        return playerIdsForParticipant(participantId).map(playerName).join(" / ");
+      };
+
+      return {
+        config,
+        participantIds: [...participantIds],
+        playerIdsForParticipant,
+        labelForParticipant
+      };
+    };
+
+    const inferLegsAndFinishes = (match, matchPlayersByMatch) => {
+      const { config, participantIds } = buildParticipantHelpers(match, matchPlayersByMatch);
+      const variant = normalizeNumber(config.variant || match.variant, 501);
+      const remaining = new Map(participantIds.map((participantId) => [participantId, variant]));
+      const legsByParticipant = new Map(participantIds.map((participantId) => [participantId, 0]));
+      const finishes = [];
+      const oneEighties = [];
+      const events = getEvents(match)
+        .filter((event) => !event?.type || event.type === "VISIT")
+        .sort((a, b) => normalizeNumber(a.ts, 0) - normalizeNumber(b.ts, 0));
+
+      for (const event of events) {
+        const participantId = event?.participantId;
+        const scored = normalizeNumber(event?.scored, NaN);
+        if (!participantId || !Number.isFinite(scored)) continue;
+        if (!remaining.has(participantId)) {
+          remaining.set(participantId, variant);
+          legsByParticipant.set(participantId, 0);
+        }
+
+        if (scored === 180) {
+          oneEighties.push({
+            participantId,
+            playerId: event.playerId,
+            date: match.finished_at || match.updated_at || match.created_at
+          });
+        }
+
+        const before = remaining.get(participantId) ?? variant;
+        const after = before - scored;
+        if (after === 0) {
+          legsByParticipant.set(participantId, (legsByParticipant.get(participantId) ?? 0) + 1);
+          finishes.push({
+            participantId,
+            playerId: event.playerId,
+            finish: scored,
+            date: match.finished_at || match.updated_at || match.created_at
+          });
+          for (const id of remaining.keys()) remaining.set(id, variant);
+        } else if (after > 0) {
+          remaining.set(participantId, after);
+        }
+      }
+
+      const legsTotal = [...legsByParticipant.values()].reduce((sum, value) => sum + value, 0);
+      const legsToWin = normalizeNumber(config.legsToWin, 0);
+      if (legsTotal === 0 && match.winner_participant && legsToWin > 0) {
+        legsByParticipant.set(match.winner_participant, legsToWin);
+      }
+
+      return { legsByParticipant, finishes, oneEighties };
+    };
+
+    const sideTeamId = (encounter, participantId) => {
+      const plan = parseJsonField(encounter?.plan, {});
+      if (participantId === "A") return encounter?.team_a_id || plan?.teams?.A?.id;
+      if (participantId === "B") return encounter?.team_b_id || plan?.teams?.B?.id;
+      return undefined;
+    };
+
+    const sideTeamName = (encounter, participantId, teamsById) => {
+      const plan = parseJsonField(encounter?.plan, {});
+      const teamId = sideTeamId(encounter, participantId);
+      if (teamId && teamsById.has(teamId)) return teamsById.get(teamId).name;
+      if (participantId === "A") return plan?.teams?.A?.name;
+      if (participantId === "B") return plan?.teams?.B?.name;
+      return undefined;
+    };
+
+    const matchLabel = (match, encounter, teamsById) => {
+      const teamA = sideTeamName(encounter, "A", teamsById);
+      const teamB = sideTeamName(encounter, "B", teamsById);
+      if (teamA && teamB) return `${teamA} - ${teamB}`;
+      const participants = asArray(getConfig(match).participants);
+      const labelA = participants.find((participant) => participant?.id === "A")?.label;
+      const labelB = participants.find((participant) => participant?.id === "B")?.label;
+      if (labelA && labelB) return `${labelA} - ${labelB}`;
+      return "Match LMF";
+    };
+
+    const scoreText = (legsByParticipant) => {
+      const a = normalizeNumber(legsByParticipant.get("A"), 0);
+      const b = normalizeNumber(legsByParticipant.get("B"), 0);
+      return `${a}-${b}`;
+    };
+
+    const buildRankings = (data) => {
+      const seasons = data.seasons;
+      const teams = data.teams;
+      const players = data.players;
+      const teamPlayers = data.team_players;
+      const encounters = data.encounters;
+      const matches = data.matches;
+      const matchPlayers = data.match_players;
+
+      const teamsById = byId(teams);
+      const playersById = byId(players);
+      const encountersById = byId(encounters);
+      const teamIdByPlayerId = new Map(teamPlayers.map((row) => [row.player_id, row.team_id]));
+      const matchPlayersByMatch = new Map();
+      for (const row of matchPlayers) {
+        if (!row.match_id) continue;
+        if (!matchPlayersByMatch.has(row.match_id)) matchPlayersByMatch.set(row.match_id, []);
+        matchPlayersByMatch.get(row.match_id).push(row);
+      }
+
+      for (const match of matches) {
+        for (const player of asArray(getConfig(match).players)) {
+          if (player?.id && !playersById.has(player.id)) playersById.set(player.id, player);
+        }
+      }
+
+      const currentSeason = seasons.find((season) => season.is_current) || seasons[0];
+      const seasonName = currentSeason?.name || "Toutes saisons";
+      const inCurrentSeason = (row) => !currentSeason?.id || row.season_id === currentSeason.id;
+      const officialMatches = matches.filter(
+        (match) => inCurrentSeason(match) && match.status === "GAME_OVER" && match.is_training === false && match.encounter_id
+      );
+      const officialEncounters = encounters.filter(
+        (encounter) =>
+          inCurrentSeason(encounter) &&
+          (encounter.status === "FINISHED" || encounter.finished_at || encounter.winner || encounter.score_a !== null)
+      );
+
+      const teamName = (teamId) => teamsById.get(teamId)?.name || teamId || "-";
+      const playerName = (playerId) => playersById.get(playerId)?.name || playerId || "-";
+      const playerTeam = (playerId, teamId) => teamName(teamId || teamIdByPlayerId.get(playerId));
+
+      const ensureTeam = (records, teamId) => {
+        if (!teamId) return undefined;
+        if (!records.has(teamId)) {
+          records.set(teamId, {
+            team: teamName(teamId),
+            played: 0,
+            wins: 0,
+            draws: 0,
+            losses: 0,
+            games_won: 0,
+            games_lost: 0,
+            game_diff: 0,
+            legs_played: 0,
+            legs_won: 0,
+            legs_lost: 0,
+            points: 0
+          });
+        }
+        return records.get(teamId);
+      };
+
+      const teamRecords = new Map();
+      for (const team of teams) ensureTeam(teamRecords, team.id);
+      for (const encounter of officialEncounters) {
+        const teamAId = encounter.team_a_id || sideTeamId(encounter, "A");
+        const teamBId = encounter.team_b_id || sideTeamId(encounter, "B");
+        const a = ensureTeam(teamRecords, teamAId);
+        const b = ensureTeam(teamRecords, teamBId);
+        if (!a || !b) continue;
+
+        const scoreA = normalizeNumber(encounter.score_a, 0);
+        const scoreB = normalizeNumber(encounter.score_b, 0);
+        a.played += 1;
+        b.played += 1;
+
+        if (scoreA > scoreB || encounter.winner === "A") {
+          a.wins += 1;
+          b.losses += 1;
+          a.points += 3;
+        } else if (scoreB > scoreA || encounter.winner === "B") {
+          b.wins += 1;
+          a.losses += 1;
+          b.points += 3;
+        } else {
+          a.draws += 1;
+          b.draws += 1;
+          a.points += 1;
+          b.points += 1;
+        }
+      }
+
+      const bestPlayers = new Map();
+      const mvpPlayers = new Map();
+      const mostMvpPlayers = new Map();
+      const oneEightyPlayers = new Map();
+      const encounterMvpPoints = new Map();
+      const highFinishes = [];
+      const historyRows = [];
+
+      const ensurePlayer = (records, playerId, teamId) => {
+        if (!playerId) return undefined;
+        if (!records.has(playerId)) {
+          records.set(playerId, {
+            id: playerId,
+            player: playerName(playerId),
+            team: playerTeam(playerId, teamId),
+            teamId,
+            matches: 0,
+            match_wins: 0,
+            legs_won: 0,
+            legs_lost: 0,
+            singles_points: 0,
+            doubles_points: 0,
+            maximum_possible: 0,
+            mvp_count: 0,
+            last_mvp: "",
+            count: 0,
+            last_180: ""
+          });
+        }
+        const player = records.get(playerId);
+        if (teamId && !player.teamId) {
+          player.teamId = teamId;
+          player.team = playerTeam(playerId, teamId);
+        }
+        return player;
+      };
+
+      const addEncounterMvpPoint = (match, playerId, teamId, points) => {
+        if (!match.encounter_id || points <= 0) return;
+        if (!encounterMvpPoints.has(match.encounter_id)) encounterMvpPoints.set(match.encounter_id, new Map());
+        const encounterMap = encounterMvpPoints.get(match.encounter_id);
+        if (!encounterMap.has(playerId)) {
+          encounterMap.set(playerId, {
+            playerId,
+            teamId,
+            points: 0,
+            date: match.finished_at || match.updated_at || match.created_at
+          });
+        }
+        const row = encounterMap.get(playerId);
+        row.points += points;
+        row.date = match.finished_at || row.date;
+      };
+
+      for (const match of officialMatches) {
+        const encounter = encountersById.get(match.encounter_id);
+        const helpers = buildParticipantHelpers(match, matchPlayersByMatch);
+        const { legsByParticipant, finishes, oneEighties } = inferLegsAndFinishes(match, matchPlayersByMatch);
+        const mode = String(match.mode || helpers.config.mode || "").toUpperCase();
+        const isDouble = mode === "DOUBLE";
+        const participantIds = helpers.participantIds;
+        const matchDate = match.finished_at || match.updated_at || match.created_at;
+        const teamAId = sideTeamId(encounter, "A");
+        const teamBId = sideTeamId(encounter, "B");
+        const teamA = ensureTeam(teamRecords, teamAId);
+        const teamB = ensureTeam(teamRecords, teamBId);
+        const legsA = normalizeNumber(legsByParticipant.get("A"), 0);
+        const legsB = normalizeNumber(legsByParticipant.get("B"), 0);
+
+        if (teamA && teamB) {
+          teamA.legs_won += legsA;
+          teamA.legs_lost += legsB;
+          teamA.legs_played += legsA + legsB;
+          teamB.legs_won += legsB;
+          teamB.legs_lost += legsA;
+          teamB.legs_played += legsA + legsB;
+          if (match.winner_participant === "A") {
+            teamA.games_won += 1;
+            teamB.games_lost += 1;
+          } else if (match.winner_participant === "B") {
+            teamB.games_won += 1;
+            teamA.games_lost += 1;
+          }
+        }
+
+        for (const participantId of participantIds) {
+          const teamId = sideTeamId(encounter, participantId);
+          const playerIds = helpers.playerIdsForParticipant(participantId);
+          const hasWon = participantId === match.winner_participant;
+          const playerPointValue = isDouble ? 0.5 : 1;
+          const wonPoints = hasWon ? playerPointValue : 0;
+
+          for (const playerId of playerIds) {
+            const mvp = ensurePlayer(mvpPlayers, playerId, teamId);
+            if (!mvp) continue;
+            mvp.matches += 1;
+            if (isDouble) mvp.doubles_points += wonPoints;
+            else mvp.singles_points += wonPoints;
+            mvp.maximum_possible += playerPointValue;
+            addEncounterMvpPoint(match, playerId, teamId, wonPoints);
+
+            if (!isDouble) {
+              const best = ensurePlayer(bestPlayers, playerId, teamId);
+              const legsWon = normalizeNumber(legsByParticipant.get(participantId), 0);
+              const legsLost = participantIds
+                .filter((id) => id !== participantId)
+                .reduce((total, id) => total + normalizeNumber(legsByParticipant.get(id), 0), 0);
+              best.matches += 1;
+              best.match_wins += hasWon ? 1 : 0;
+              best.legs_won += legsWon;
+              best.legs_lost += legsLost;
+            }
+          }
+        }
+
+        for (const finish of finishes) {
+          if (finish.finish < 100) continue;
+          const participantId = finish.participantId;
+          const teamId = sideTeamId(encounter, participantId);
+          const playerId = finish.playerId || helpers.playerIdsForParticipant(participantId)[0];
+          highFinishes.push({
+            playerId,
+            player: playerName(playerId),
+            team: playerTeam(playerId, teamId),
+            finish: finish.finish,
+            match: matchLabel(match, encounter, teamsById),
+            date: finish.date
+          });
+        }
+
+        for (const oneEighty of oneEighties) {
+          const participantId = oneEighty.participantId;
+          const teamId = sideTeamId(encounter, participantId);
+          const playerId = oneEighty.playerId || helpers.playerIdsForParticipant(participantId)[0];
+          const row = ensurePlayer(oneEightyPlayers, playerId, teamId);
+          if (!row) continue;
+          row.count += 1;
+          row.last_180 = !row.last_180 || new Date(oneEighty.date) > new Date(row.last_180) ? oneEighty.date : row.last_180;
+          row.matchIds ??= new Set();
+          row.matchIds.add(match.id);
+        }
+
+        const winnerLabel = helpers.labelForParticipant(match.winner_participant, playerName);
+        const playerLabels = participantIds
+          .map((participantId) => helpers.labelForParticipant(participantId, playerName))
+          .filter(Boolean);
+        const teamsInMatch = [
+          sideTeamName(encounter, "A", teamsById),
+          sideTeamName(encounter, "B", teamsById)
+        ].filter(Boolean);
+        const playersInMatch = participantIds.flatMap((participantId) =>
+          helpers.playerIdsForParticipant(participantId).map((playerId) => playerName(playerId))
+        );
+        const maxFinish = finishes.reduce((best, finish) => Math.max(best, finish.finish), 0);
+
+        historyRows.push({
+          id: match.id,
+          date: matchDate,
+          match: matchLabel(match, encounter, teamsById),
+          mode,
+          modeLabel: isDouble ? "Double" : "Simple",
+          players: playerLabels.join(" / "),
+          score: scoreText(legsByParticipant),
+          winner: winnerLabel,
+          stats: [
+            oneEighties.length > 0 ? `${oneEighties.length} x 180` : "",
+            maxFinish >= 100 ? `HF ${maxFinish}` : ""
+          ].filter(Boolean).join(" · ") || "-",
+          teamA: sideTeamName(encounter, "A", teamsById),
+          teamB: sideTeamName(encounter, "B", teamsById),
+          winnerTeam: sideTeamName(encounter, match.winner_participant, teamsById),
+          teams: teamsInMatch,
+          playerNames: playersInMatch,
+          searchText: [
+            matchLabel(match, encounter, teamsById),
+            mode,
+            isDouble ? "Double" : "Simple",
+            playerLabels.join(" "),
+            winnerLabel,
+            scoreText(legsByParticipant),
+            teamsInMatch.join(" ")
+          ].join(" ").toLowerCase()
+        });
+      }
+
+      for (const encounterMap of encounterMvpPoints.values()) {
+        const rows = [...encounterMap.values()];
+        const bestScore = Math.max(0, ...rows.map((row) => row.points));
+        if (bestScore <= 0) continue;
+        for (const row of rows.filter((item) => item.points === bestScore)) {
+          const player = ensurePlayer(mostMvpPlayers, row.playerId, row.teamId);
+          if (!player) continue;
+          player.mvp_count += 1;
+          player.last_mvp = !player.last_mvp || new Date(row.date) > new Date(player.last_mvp) ? row.date : player.last_mvp;
+          player.matches = mvpPlayers.get(row.playerId)?.matches || player.matches;
+        }
+      }
+
+      const bestPlayerCandidates = [...bestPlayers.values()].map((player) => {
+        const totalLegs = player.legs_won + player.legs_lost;
+        return {
+          ...player,
+          leg_ratio: totalLegs > 0 ? player.legs_won / totalLegs : 0,
+          match_ratio: player.matches > 0 ? player.match_wins / player.matches : 0
+        };
+      });
+      const officialBestPlayers = bestPlayerCandidates.filter(
+        (player) => player.matches >= supabaseConfig.bestPlayerOfficialMinimum
+      );
+      const bestPlayerRows = addRank(
+        (officialBestPlayers.length > 0 ? officialBestPlayers : bestPlayerCandidates)
+          .sort(
+            (a, b) =>
+              b.leg_ratio - a.leg_ratio ||
+              b.match_ratio - a.match_ratio ||
+              b.matches - a.matches ||
+              a.player.localeCompare(b.player, "fr")
+          )
+      );
+
+      const mvpRows = addRank(
+        [...mvpPlayers.values()]
+          .map((player) => {
+            const totalPoints = player.singles_points + player.doubles_points;
+            return {
+              ...player,
+              total_points: totalPoints,
+              success_rate: player.maximum_possible > 0 ? totalPoints / player.maximum_possible : 0
+            };
+          })
+          .filter((player) => player.maximum_possible > 0)
+          .sort(
+            (a, b) =>
+              b.total_points - a.total_points ||
+              b.success_rate - a.success_rate ||
+              b.matches - a.matches ||
+              a.player.localeCompare(b.player, "fr")
+          )
+      );
+
+      const highFinishesByPlayer = new Map();
+      for (const finish of highFinishes) {
+        if (!highFinishesByPlayer.has(finish.playerId)) highFinishesByPlayer.set(finish.playerId, []);
+        highFinishesByPlayer.get(finish.playerId).push(finish);
+      }
+
+      const highFinishRows = addRank(
+        [...highFinishesByPlayer.values()]
+          .map((finishes) => {
+            const sorted = finishes.sort(
+              (a, b) =>
+                b.finish - a.finish ||
+                new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
+            const best = sorted[0];
+            const others = sorted.slice(1, 3).map((finish) => finish.finish);
+            return {
+              ...best,
+              other_finishes: others.length > 0 ? others.join(", ") : "-"
+            };
+          })
+          .sort(
+            (a, b) =>
+              b.finish - a.finish ||
+              new Date(b.date).getTime() - new Date(a.date).getTime() ||
+              a.player.localeCompare(b.player, "fr")
+          )
+      );
+
+      const mostMvpRows = addRank(
+        [...mostMvpPlayers.values()]
+          .filter((player) => player.mvp_count > 0)
+          .sort(
+            (a, b) =>
+              b.mvp_count - a.mvp_count ||
+              new Date(b.last_mvp).getTime() - new Date(a.last_mvp).getTime() ||
+              a.player.localeCompare(b.player, "fr")
+          )
+      );
+
+      const oneEightyRows = addRank(
+        [...oneEightyPlayers.values()]
+          .filter((player) => player.count > 0)
+          .map((player) => ({ ...player, matches: player.matchIds?.size || 0 }))
+          .sort(
+            (a, b) =>
+              b.count - a.count ||
+              b.matches - a.matches ||
+              new Date(b.last_180).getTime() - new Date(a.last_180).getTime() ||
+              a.player.localeCompare(b.player, "fr")
+          )
+      );
+
+      const league = addRank(
+        [...teamRecords.values()]
+          .map((team) => ({ ...team, game_diff: team.games_won - team.games_lost }))
+          .sort(
+            (a, b) =>
+              b.points - a.points ||
+              b.wins - a.wins ||
+              b.game_diff - a.game_diff ||
+              b.games_won - a.games_won ||
+              a.team.localeCompare(b.team, "fr")
+          )
+      );
+
+      return {
+        seasonName,
+        officialMatchCount: officialMatches.length,
+        officialEncounterCount: officialEncounters.length,
+        rows: {
+          league,
+          "best-player": bestPlayerRows,
+          mvp: mvpRows,
+          "high-finish": highFinishRows,
+          "most-mvp": mostMvpRows,
+          "one-eighties": oneEightyRows
+        },
+        historyRows: historyRows.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      };
+    };
+
+    const renderSection = (section, rows) => {
+      const empty = document.querySelector(`[data-empty="${section.id}"]`);
+      const table = document.querySelector(`[data-table="${section.id}"]`);
+      const body = document.querySelector(`[data-body="${section.id}"]`);
+      if (!empty || !table || !body) return;
+
+      body.innerHTML = "";
+      if (rows.length === 0) {
+        empty.textContent = section.emptyText;
+        empty.hidden = false;
+        table.hidden = true;
+        return;
+      }
+
+      for (const row of rows) {
+        const tr = document.createElement("tr");
+        for (const column of section.columns) {
+          const td = document.createElement("td");
+          if (column.strong) td.className = "live-table__strong";
+          td.textContent = formatCell(row, column);
+          tr.appendChild(td);
+        }
+        body.appendChild(tr);
+      }
+
+      empty.hidden = true;
+      table.hidden = false;
+    };
+
+    const populateSelect = (selector, values) => {
+      const select = document.querySelector(selector);
+      if (!select) return;
+      for (const value of [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, "fr"))) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      }
+    };
+
+    const renderHistory = (rows) => {
+      const table = document.querySelector("[data-history-table]");
+      const body = document.querySelector("[data-history-body]");
+      const empty = document.querySelector("[data-history-empty]");
+      const count = document.querySelector("[data-history-count]");
+      if (!table || !body || !empty || !count) return;
+
+      body.innerHTML = "";
+      if (rows.length === 0) {
+        empty.textContent = "Aucun match ne correspond aux filtres.";
+        empty.hidden = false;
+        table.hidden = true;
+        count.hidden = true;
+        return;
+      }
+
+      for (const row of rows) {
+        const tr = document.createElement("tr");
+        for (const value of [formatDate(row.date), row.match, row.modeLabel, row.players, row.score, row.winner, row.stats]) {
+          const td = document.createElement("td");
+          td.textContent = value;
+          tr.appendChild(td);
+        }
+        body.appendChild(tr);
+      }
+
+      count.textContent = `${rows.length.toLocaleString("fr-CH")} match${rows.length > 1 ? "s" : ""} affiché${rows.length > 1 ? "s" : ""}`;
+      count.hidden = false;
+      empty.hidden = true;
+      table.hidden = false;
+    };
+
+    const setupHistory = (rows) => {
+      const filters = document.querySelector("[data-history-filters]");
+      const search = document.querySelector("[data-history-search]");
+      const team = document.querySelector("[data-history-team]");
+      const player = document.querySelector("[data-history-player]");
+      const mode = document.querySelector("[data-history-mode]");
+      const outcome = document.querySelector("[data-history-outcome]");
+      if (!filters || !search || !team || !player || !mode || !outcome) return;
+
+      populateSelect("[data-history-team]", rows.flatMap((row) => row.teams));
+      populateSelect("[data-history-player]", rows.flatMap((row) => row.playerNames));
+      filters.hidden = false;
+
+      const applyFilters = () => {
+        const text = search.value.trim().toLowerCase();
+        const teamValue = team.value;
+        const playerValue = player.value;
+        const modeValue = mode.value;
+        const outcomeValue = outcome.value;
+        const filtered = rows.filter((row) => {
+          if (text && !row.searchText.includes(text)) return false;
+          if (teamValue && !row.teams.includes(teamValue)) return false;
+          if (playerValue && !row.playerNames.includes(playerValue)) return false;
+          if (modeValue && row.mode !== modeValue) return false;
+          if (outcomeValue === "win" && teamValue && row.winnerTeam !== teamValue) return false;
+          if (outcomeValue === "loss" && teamValue && row.winnerTeam === teamValue) return false;
+          return true;
+        });
+        renderHistory(filtered);
+      };
+
+      for (const input of [search, team, player, mode, outcome]) {
+        input.addEventListener("input", applyFilters);
+        input.addEventListener("change", applyFilters);
+      }
+      renderHistory(rows);
+    };
+
+    const loadStats = async () => {
+      if (!supabaseConfig.url || !supabaseConfig.key) {
+        setStatus({ season: "Configuration requise" });
+        setNotice("Données indisponibles", "La connexion aux statistiques n'est pas encore configurée.", true);
+        return;
+      }
+
+      try {
+        const entries = await Promise.all(supabaseTables.map(async (table) => [table, await fetchTable(table)]));
+        const data = Object.fromEntries(entries);
+        const rankings = buildRankings(data);
+
+        for (const section of rankingSections) renderSection(section, rankings.rows[section.id] || []);
+        setupHistory(rankings.historyRows);
+        setStatus({
+          season: rankings.seasonName,
+          encounters: rankings.officialEncounterCount,
+          matches: rankings.officialMatchCount,
+          updated: new Date().toLocaleString("fr-CH")
+        });
+      } catch (error) {
+        setStatus({ season: "Erreur", updated: "Echec" });
+        setNotice("Impossible de charger les statistiques", error.message, true);
+        for (const section of rankingSections) {
+          const empty = document.querySelector(`[data-empty="${section.id}"]`);
+          if (empty) empty.textContent = "Impossible de charger ce classement.";
+        }
+        const historyEmpty = document.querySelector("[data-history-empty]");
+        if (historyEmpty) historyEmpty.textContent = "Impossible de charger l'historique.";
+      }
+    };
+
+    loadStats();
+  </script>
+
+  <style>
+    .live-overview-section {
+      padding-top: 44px;
+    }
+
+    .live-stats {
+      display: grid;
+      gap: 24px;
+    }
+
+    .live-stats__status {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .live-stats__status > div,
+    .live-stats__notice {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .live-stats__status strong {
+      color: var(--color-red-dark);
+      font-size: 1.4rem;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .live-stats__notice {
+      border-color: rgba(201, 51, 47, 0.45);
+      background: #fff3f2;
+    }
+
+    .live-stats__notice h2 {
+      font-size: 1.2rem;
+    }
+
+    .live-stats__tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .live-stats__tabs a {
+      padding: 9px 12px;
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      background: var(--color-surface);
+      color: var(--color-red-dark);
+      font-weight: 800;
+    }
+
+    .live-stats__tabs a:hover {
+      border-color: rgba(201, 51, 47, 0.45);
+      background: #fff8f6;
+    }
+
+    .live-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .live-table {
+      min-width: 860px;
+    }
+
+    .live-table--history {
+      min-width: 980px;
+    }
+
+    .live-table th {
+      white-space: nowrap;
+    }
+
+    .live-table td {
+      color: var(--color-ink);
+    }
+
+    .live-table__strong {
+      color: var(--color-red-dark);
+      font-weight: 850;
+    }
+
+    .live-table-empty {
+      margin: 0;
+      padding: 24px;
+    }
+
+    .history-filters {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 16px;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .history-filters label {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .history-filters span {
+      color: var(--color-muted);
+      font-size: 0.76rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .history-filters input,
+    .history-filters select {
+      width: 100%;
+      min-height: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      background: #fbfcfa;
+      color: var(--color-ink);
+    }
+
+    .history-count {
+      margin-bottom: 12px;
+      color: var(--color-muted);
+      font-weight: 750;
+    }
+
+    @media (max-width: 1020px) {
+      .live-stats__status,
+      .history-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .live-stats__status,
+      .history-filters {
+        grid-template-columns: 1fr;
+      }
+
+      .live-stats__status strong {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</BaseLayout>

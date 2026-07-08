@@ -1,0 +1,27 @@
+{
+  "name": "dc-morges-v2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "build:public": "astro build && node scripts/export-public.mjs",
+    "preview:public": "node scripts/serve-public.mjs",
+    "check:content": "node scripts/check-content.mjs",
+    "qa": "node scripts/qa.mjs",
+    "seed:lmf-live": "node scripts/seed-lmf-live-data.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "preview": "astro preview --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "astro": "^7.0.6",
+    "jimp": "^1.6.1",
+    "sharp": "^0.35.3"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.0.2",
+    "@astrojs/sitemap": "^3.7.3"
+  }
+}

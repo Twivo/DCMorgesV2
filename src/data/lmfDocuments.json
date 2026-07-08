@@ -1,0 +1,146 @@
+[
+  {
+    "id": "lmf-1",
+    "title": "LMF Calendrier",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Calendrier",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-2",
+    "title": "LMF Classement",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-3",
+    "title": "LMF Classement best finish",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-4",
+    "title": "LMF Classement best player",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-5",
+    "title": "LMF Classement most 180",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-6",
+    "title": "LMF Classement MVP",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-7",
+    "title": "LMF coupe",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Coupe",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-8",
+    "title": "LMF coupe matchs",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Matchs",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-9",
+    "title": "LMF feuille coupe",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Feuille de match",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-10",
+    "title": "LMF feuille match",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Matchs",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-11",
+    "title": "LMF matchs",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Matchs",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-12",
+    "title": "LMF Palmarès",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Palmarès",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-13",
+    "title": "LMF Règlement",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-rules.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Règlement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-14",
+    "title": "LMF Résultats",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Résultats",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-15",
+    "title": "LMF teams",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-teams.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Document",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "lmf-16",
+    "title": "Tournoi VD Coupe 2026",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Coupe",
+    "actionLabel": "Voir le document"
+  }
+]

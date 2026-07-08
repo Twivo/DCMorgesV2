@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { contactBlocks } from "../data/contactBlocks";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import { siteInfo } from "../data/site";
+
+const page = getSitePage("contact");
+const contactInfoSection = formatPageSection(getPageSection(page, "contact-info"));
+const locationsSection = formatPageSection(getPageSection(page, "locations"));
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow)}
+    title={formatPageText(page.heroTitle)}
+    description={formatPageText(page.heroDescription)}
+    actions={formatPageActions(page.actions)}
+  />
+
+  <section class="section">
+    <div class="container split-layout">
+      <div>
+        <SectionHeader
+          eyebrow={contactInfoSection.eyebrow}
+          title={contactInfoSection.title}
+          description={contactInfoSection.description}
+        />
+      </div>
+
+      <div class="contact-list">
+        <div>
+          <span class="label">Adresse</span>
+          <strong>{siteInfo.address}</strong>
+        </div>
+        <div>
+          <span class="label">E-mail</span>
+          <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
+        </div>
+        <div>
+          <span class="label">Site web</span>
+          <a href={siteInfo.website} target="_blank" rel="noreferrer">{siteInfo.website}</a>
+        </div>
+        <div>
+          <span class="label">IBAN</span>
+          <strong>{siteInfo.iban}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHeader eyebrow={locationsSection.eyebrow} title={locationsSection.title} description={locationsSection.description} />
+      <div class="feature-grid">
+        {contactBlocks.map((block) => (
+          <section class="feature-block">
+            <h3>{block.title}</h3>
+            {block.items.map((item) => (
+              <p>
+                <strong>{item.label} :</strong>{" "}
+                {item.href ? <a href={item.href}>{item.value}</a> : item.value}
+              </p>
+            ))}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

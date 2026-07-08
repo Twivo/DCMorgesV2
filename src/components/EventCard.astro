@@ -1,0 +1,25 @@
+---
+import type { EventItem } from "../data/types";
+import { formatEventDate } from "../utils/format";
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  event: EventItem;
+}
+
+const { event } = Astro.props;
+---
+
+<article class="content-card event-card">
+  <div class="event-card__date">
+    <span>{formatEventDate(event.date)}</span>
+    {event.time && <small class="event-card__time">{event.time}</small>}
+  </div>
+  <div class="content-card__body">
+    <span class="pill">{event.type}</span>
+    <h3>{event.title}</h3>
+    <p>{event.description}</p>
+    <p class="muted">{event.location}</p>
+    {event.url && <a class="text-link" href={safeUrl(event.url)}>Voir le lien</a>}
+  </div>
+</article>

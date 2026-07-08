@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { legacyPages } from "../data/legacyPages";
+
+const palmaresPage = legacyPages.find((page) => page.slug === "club-palmares-html");
+const rawRows = palmaresPage?.tables?.flatMap((table) => table.rows) ?? [];
+
+const normalizeSeason = (value: string) => value.replace(/\s+/g, "").replace("/", " / ");
+const palmaresRows = rawRows
+  .map((row) => {
+    const [season = "", competitions = "", results = ""] = row.c;
+    return {
+      season: normalizeSeason(season),
+      competitions: competitions.trim(),
+      results: results.trim()
+    };
+  })
+  .filter((row) => row.season && row.competitions && row.results);
+---
+
+<BaseLayout title="Palmarès du club" description="Palmarès historique du Darts Club Morges.">
+  <PageHero
+    eyebrow="Club"
+    title="Palmarès du club"
+    description="Les principaux résultats du Darts Club Morges, saison par saison."
+  />
+
+  <section class="section">
+    <div class="container palmares-page">
+      <SectionHeader
+        eyebrow="Historique"
+        title="Résultats par saison"
+        description="Championnat, coupes et résultats marquants du club."
+      />
+
+      <div class="palmares-table-wrap">
+        <table class="palmares-table">
+          <thead>
+            <tr>
+              <th>Saison</th>
+              <th>Compétitions</th>
+              <th>Résultats</th>
+            </tr>
+          </thead>
+          <tbody>
+            {palmaresRows.map((row) => (
+              <tr>
+                <td class="palmares-table__season">{row.season}</td>
+                <td>{row.competitions}</td>
+                <td>{row.results}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .palmares-page {
+      display: grid;
+      gap: 20px;
+    }
+
+    .palmares-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .palmares-table {
+      min-width: 820px;
+    }
+
+    .palmares-table th:first-child,
+    .palmares-table td:first-child {
+      width: 145px;
+    }
+
+    .palmares-table__season {
+      color: var(--color-red-dark);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .palmares-table td {
+      color: var(--color-ink);
+    }
+  </style>
+</BaseLayout>

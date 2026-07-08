@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import VideoCard from "../components/VideoCard.astro";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import { videos } from "../data/videos";
+
+const page = getSitePage("videos");
+const listSection = formatPageSection(getPageSection(page, "list"));
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow)}
+    title={formatPageText(page.heroTitle)}
+    description={formatPageText(page.heroDescription)}
+    actions={formatPageActions(page.actions)}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader eyebrow={listSection.eyebrow} title={listSection.title} description={listSection.description} />
+      <div class="card-grid card-grid--three">
+        {videos.map((video) => <VideoCard video={video} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dc-morges-1-sda-2025-26",
+    "name": "DC Morges 1",
+    "competition": "SDA",
+    "season": "2025-26",
+    "description": "SDA Team 2025-26",
+    "members": [
+      "Michel Roy (Capt. 1) 4807",
+      "Dermot Simpson 4803",
+      "George Rooney 4810",
+      "James Oliver 4812",
+      "Chris Roberts 4822",
+      "Julien Tanguy 4825",
+      "Stefan Dudolenski 4838",
+      "Yannick Cainzos 4842",
+      "Neil Poulton 4845",
+      "Alain Baechler 4846",
+      "Arno Roy 4852"
+    ]
+  },
+  {
+    "id": "dc-morges-2-sda-2025-26",
+    "name": "DC Morges 2",
+    "competition": "SDA",
+    "season": "2025-26",
+    "description": "SDA Team 2025-26",
+    "members": [
+      "Laurent Flaction (Capt. 2) 4835",
+      "Fouad Beram 4818",
+      "Christophe Chamard 4819",
+      "Joao Ferreira 4833",
+      "Rose Marie Bussard 4834",
+      "Gordon Alders 4843",
+      "Ludovic Marguet 4847",
+      "Didier André 4848",
+      "Benjamin Schaub 4849",
+      "Thomas Donkin 4850",
+      "Lucas Montant 4851"
+    ]
+  },
+  {
+    "id": "dc-morges-lmf-2025-26",
+    "name": "DC Morges",
+    "competition": "LMF",
+    "season": "2025-26",
+    "description": "LMF Team 2025-26",
+    "members": [
+      "Michel Roy (Capt.) 5101",
+      "Laurent Flaction 5102",
+      "Ludovic Marguet 5103",
+      "Yannick Cainzos 5105",
+      "Neil Poulton 5107",
+      "Arno Roy 5109",
+      "Patrick Roy 5110",
+      "Amandine Marchand 5111"
+    ]
+  }
+]

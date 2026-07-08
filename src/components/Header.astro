@@ -1,0 +1,59 @@
+---
+import { navigation, siteInfo } from "../data/site";
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+
+const normalizePath = (path: string) =>
+  path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
+
+const isActive = (href: string) => {
+  const normalizedCurrent = normalizePath(currentPath);
+  const normalizedHref = normalizePath(href);
+
+  return normalizedHref === "/"
+    ? normalizedCurrent === "/"
+    : normalizedCurrent.startsWith(normalizedHref);
+};
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label={`${siteInfo.name} - accueil`}>
+    <img class="brand__logo" src={siteInfo.logo} alt={`Logo ${siteInfo.name}`} width="44" height="44" />
+    <span class="brand__text">
+      <strong>{siteInfo.shortName}</strong>
+      <span>{siteInfo.tagline}</span>
+    </span>
+  </a>
+
+  <button class="nav-toggle" type="button" aria-label="Ouvrir la navigation" aria-expanded="false" data-nav-toggle>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-nav" id="site-navigation" aria-label="Navigation principale" data-site-nav>
+    {navigation.map((item) => (
+      <a class:list={["site-nav__link", { "is-active": isActive(item.href) }]} href={safeUrl(item.href)}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script is:inline>
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const siteNav = document.querySelector("[data-site-nav]");
+
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", String(!isOpen));
+      siteNav.classList.toggle("is-open", !isOpen);
+    });
+  }
+</script>

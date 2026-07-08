@@ -1,0 +1,55 @@
+[
+  {
+    "id": "carte-1",
+    "title": "LMF Calendrier",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Calendrier",
+    "actionLabel": ""
+  },
+  {
+    "title": "LMF Classement",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "id": "carte-2"
+  },
+  {
+    "id": "carte-3",
+    "title": "LMF Classement best finish",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "carte-4",
+    "title": "LMF Classement best player",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "carte-5",
+    "title": "LMF Classement most 180",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "carte-6",
+    "title": "LMF Classement MVP",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
+    "season": "2025-26",
+    "competition": "LMF",
+    "type": "Classement",
+    "actionLabel": "Voir le document"
+  }
+]

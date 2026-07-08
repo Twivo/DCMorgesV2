@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { newsItems } from "../../data/news";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../../data/pages";
+
+const page = getSitePage("news");
+const pageVars = { newsCount: newsItems.length };
+const listSection = formatPageSection(getPageSection(page, "list"), pageVars);
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow, pageVars)}
+    title={formatPageText(page.heroTitle, pageVars)}
+    description={formatPageText(page.heroDescription, pageVars)}
+    actions={formatPageActions(page.actions, pageVars)}
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        eyebrow={listSection.eyebrow}
+        title={listSection.title}
+        description={listSection.description}
+      />
+      <div class="card-grid card-grid--three">
+        {newsItems.map((news) => <NewsCard news={news} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

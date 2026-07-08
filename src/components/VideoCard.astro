@@ -1,0 +1,33 @@
+---
+import type { VideoItem } from "../data/types";
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  video: VideoItem;
+}
+
+const { video } = Astro.props;
+const url = safeUrl(video.url);
+const hasUrl = Boolean(url);
+---
+
+<article class="content-card video-card">
+  {video.thumbnail ? (
+    <img class="content-card__image" src={video.thumbnail} alt="" loading="lazy" />
+  ) : (
+    <div class="video-card__thumbnail" aria-hidden="true">Vidéo</div>
+  )}
+  <div class="content-card__body">
+    <div class="meta-row">
+      <span>{video.year}</span>
+      <span>Lien externe</span>
+    </div>
+    <h3>{video.title}</h3>
+    <p>{video.description}</p>
+    {hasUrl ? (
+      <a class="text-link" href={url} target="_blank" rel="noreferrer">Voir la vidéo</a>
+    ) : (
+      <span class="muted">Lien à ajouter</span>
+    )}
+  </div>
+</article>

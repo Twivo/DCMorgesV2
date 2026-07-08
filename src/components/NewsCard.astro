@@ -1,0 +1,23 @@
+---
+import type { NewsItem } from "../data/types";
+import { formatDate } from "../utils/format";
+
+interface Props {
+  news: NewsItem;
+}
+
+const { news } = Astro.props;
+---
+
+<article class="content-card news-card">
+  {news.image && <img class="content-card__image" src={news.image} alt="" loading="lazy" />}
+  <div class="content-card__body">
+    <div class="meta-row">
+      <span>{formatDate(news.date)}</span>
+      <span>{news.category}</span>
+    </div>
+    <h3>{news.title}</h3>
+    <p>{news.summary}</p>
+    <a class="text-link" href={`/news/${news.slug}/`}>Lire la suite</a>
+  </div>
+</article>

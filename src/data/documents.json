@@ -1,0 +1,632 @@
+[
+  {
+    "id": "morges-open-morges-open-resultat-2009-pdf",
+    "title": "Morges Open Resultat 2009",
+    "type": "Résultats",
+    "season": "2009",
+    "competition": "Archives",
+    "url": "/legacy/Morges-Open/Morges-Open-Resultat-2009.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2009.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "open-vaudois-open-vaudois-resultat-2009-pdf",
+    "title": "Open Vaudois Resultat 2009",
+    "type": "Résultats",
+    "season": "2009",
+    "competition": "Archives",
+    "url": "/legacy/Open-Vaudois/Open-Vaudois-Resultat-2009.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Open-Vaudois/Open-Vaudois-Resultat-2009.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "morges-open-morges-open-resultat-2010-pdf",
+    "title": "Morges Open Resultat 2010",
+    "type": "Résultats",
+    "season": "2010",
+    "competition": "Archives",
+    "url": "/legacy/Morges-Open/Morges-Open-Resultat-2010.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2010.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "morges-open-open-vaudois-resultat-2010-pdf",
+    "title": "Open Vaudois Resultat 2010",
+    "type": "Résultats",
+    "season": "2010",
+    "competition": "Archives",
+    "url": "/legacy/Morges-Open/Open-Vaudois-Resultat-2010.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Morges-Open/Open-Vaudois-Resultat-2010.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "open-vaudois-open-vaudois-resultat-2010-pdf",
+    "title": "Open Vaudois Resultat 2010",
+    "type": "Résultats",
+    "season": "2010",
+    "competition": "Archives",
+    "url": "/legacy/Open-Vaudois/Open-Vaudois-Resultat-2010.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Open-Vaudois/Open-Vaudois-Resultat-2010.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "morges-open-morges-open-resultat-2013-pdf",
+    "title": "Morges Open Resultat 2013",
+    "type": "Résultats",
+    "season": "2013",
+    "competition": "Archives",
+    "url": "/legacy/Morges-Open/Morges-Open-Resultat-2013.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/Morges-Open/Morges-Open-Resultat-2013.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2024-25-lmf-classement-pdf",
+    "title": "LMF Classement",
+    "type": "Classement",
+    "season": "2024-25",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2024-25/LMF-classement.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-classement.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2024-25-lmf-matchs-pdf",
+    "title": "LMF matchs",
+    "type": "Matchs",
+    "season": "2024-25",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2024-25/LMF-matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2024-25-lmf-resultats-pdf",
+    "title": "LMF Résultats",
+    "type": "Résultats",
+    "season": "2024-25",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2024-25/LMF-resultats.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2024-25/LMF-resultats.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-calendrier-pdf",
+    "title": "LMF Calendrier",
+    "type": "Calendrier",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-classement-pdf",
+    "title": "LMF Classement",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-classement-best-finish-pdf",
+    "title": "LMF Classement best finish",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-classement-best-player-pdf",
+    "title": "LMF Classement best player",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-classement-most-180-pdf",
+    "title": "LMF Classement most 180",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-classement-mvp-pdf",
+    "title": "LMF Classement MVP",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-coupe-pdf",
+    "title": "LMF coupe",
+    "type": "Coupe",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-coupe-matchs-pdf",
+    "title": "LMF coupe matchs",
+    "type": "Matchs",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-feuille-coupe-pdf",
+    "title": "LMF feuille coupe",
+    "type": "Feuille de match",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-feuille-match-pdf",
+    "title": "LMF feuille match",
+    "type": "Matchs",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-matchs-pdf",
+    "title": "LMF matchs",
+    "type": "Matchs",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-palmares-pdf",
+    "title": "LMF Palmarès",
+    "type": "Palmarès",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-rules-pdf",
+    "title": "LMF Règlement",
+    "type": "Règlement",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-rules.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-rules.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-resultats-pdf",
+    "title": "LMF Résultats",
+    "type": "Résultats",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-lmf-teams-pdf",
+    "title": "LMF teams",
+    "type": "Document",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-teams.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/LMF-teams.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "ligue-morgienne-lmf-2025-26-tournoi-vd-coupe-2026-pdf",
+    "title": "Tournoi VD Coupe 2026",
+    "type": "Coupe",
+    "season": "2025-26",
+    "competition": "LMF",
+    "url": "/legacy/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2007-pdf",
+    "title": "SDA Cup 2007",
+    "type": "Coupe",
+    "season": "2007",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2007.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2007.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2008-pdf",
+    "title": "SDA Cup 2008",
+    "type": "Coupe",
+    "season": "2008",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2008.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2008.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2009-pdf",
+    "title": "SDA Cup 2009",
+    "type": "Coupe",
+    "season": "2009",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2009.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2009.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2010-pdf",
+    "title": "SDA Cup 2010",
+    "type": "Coupe",
+    "season": "2010",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2010.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2010.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2011-pdf",
+    "title": "SDA Cup 2011",
+    "type": "Coupe",
+    "season": "2011",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2011.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2011.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2012-pdf",
+    "title": "SDA Cup 2012",
+    "type": "Coupe",
+    "season": "2012",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2012.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2012.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2013-pdf",
+    "title": "SDA Cup 2013",
+    "type": "Coupe",
+    "season": "2013",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2013.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2013.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2014-pdf",
+    "title": "SDA Cup 2014",
+    "type": "Coupe",
+    "season": "2014",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2014.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2014.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2015-pdf",
+    "title": "SDA Cup 2015",
+    "type": "Coupe",
+    "season": "2015",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2015.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2015.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2016-pdf",
+    "title": "SDA Cup 2016",
+    "type": "Coupe",
+    "season": "2016",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2016.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2016.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2017-pdf",
+    "title": "SDA Cup 2017",
+    "type": "Coupe",
+    "season": "2017",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2017.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2017.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2018-pdf",
+    "title": "SDA Cup 2018",
+    "type": "Coupe",
+    "season": "2018",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2018.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2018.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2019-pdf",
+    "title": "SDA Cup 2019",
+    "type": "Coupe",
+    "season": "2019",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2019.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2019.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2022-pdf",
+    "title": "SDA Cup 2022",
+    "type": "Coupe",
+    "season": "2022",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2022.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2022.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2023-pdf",
+    "title": "SDA Cup 2023",
+    "type": "Coupe",
+    "season": "2023",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2023.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2023.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2024-25-sda-classement-pdf",
+    "title": "SDA Classement",
+    "type": "Classement",
+    "season": "2024-25",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2024-25/SDA-classement.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2024-25/SDA-classement.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2024-25-sda-matchs-pdf",
+    "title": "SDA matchs",
+    "type": "Matchs",
+    "season": "2024-25",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2024-25/SDA-matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2024-25/SDA-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2024-pdf",
+    "title": "SDA Cup 2024",
+    "type": "Coupe",
+    "season": "2024",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2024.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2024.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-calendrier-pdf",
+    "title": "SDA Calendrier",
+    "type": "Calendrier",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-calendrier.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-calendrier.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-calendrier-dcm-pdf",
+    "title": "SDA Calendrier DCM",
+    "type": "Calendrier",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-calendrier-DCM.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-calendrier-DCM.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-pdf",
+    "title": "SDA Classement",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-average-pdf",
+    "title": "SDA Classement average",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-average.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-average.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-best-finish-pdf",
+    "title": "SDA Classement best finish",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-best-finish.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-best-finish.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-most-180-pdf",
+    "title": "SDA Classement most 180",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-most-180.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-most-180.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-mvp-pdf",
+    "title": "SDA Classement MVP",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-MVP.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-MVP.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-classement-ratio-pdf",
+    "title": "SDA Classement ratio",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-ratio.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-classement-ratio.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-matchs-pdf",
+    "title": "SDA matchs",
+    "type": "Matchs",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-reglements-pdf",
+    "title": "SDA Règlements",
+    "type": "Règlement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-reglements.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-reglements.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-sda-2025-26-sda-statuts-pdf",
+    "title": "SDA statuts",
+    "type": "Statuts",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-statuts.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/sda/sda-2025-26/SDA-statuts.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "swisscup-sda-cup-2025-pdf",
+    "title": "SDA Cup 2025",
+    "type": "Coupe",
+    "season": "2025",
+    "competition": "SDA",
+    "url": "/legacy/swisscup/SDA-Cup-2025.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/swisscup/SDA-Cup-2025.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-paques-tournoi-paques-2023-paques-2023-finales-pdf",
+    "title": "Paques 2023 Finales",
+    "type": "Document",
+    "season": "2023",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Finales.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Finales.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-paques-tournoi-paques-2023-paques-2023-round-robin-pdf",
+    "title": "Paques 2023 Round Robin",
+    "type": "Document",
+    "season": "2023",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Round-Robin.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2023/Paques-2023-Round-Robin.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-pentecote-tournoi-pentecote-2023-pentecote-2023-finales-pdf",
+    "title": "Pentecote 2023 Finales",
+    "type": "Document",
+    "season": "2023",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Finales.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Finales.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-pentecote-tournoi-pentecote-2023-pentecote-2023-round-robin-pdf",
+    "title": "Pentecote 2023 Round Robin",
+    "type": "Document",
+    "season": "2023",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Round-Robin.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Pentecote/Tournoi-Pentecote-2023/Pentecote-2023-Round-Robin.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-finales-pdf",
+    "title": "Paques 2024 Finales",
+    "type": "Document",
+    "season": "2024",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Finales.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Finales.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-matchs-pdf",
+    "title": "Paques 2024 Matchs",
+    "type": "Matchs",
+    "season": "2024",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Matchs.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-tournoi-paques-tournoi-paques-2024-paques-2024-round-robin-pdf",
+    "title": "Paques 2024 Round Robin",
+    "type": "Document",
+    "season": "2024",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Round-Robin.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Tournoi-Paques/Tournoi-Paques-2024/Paques-2024-Round-Robin.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "tournoi-open-la-sportive-2026-ols-2026-classement-pdf",
+    "title": "OLS 2026 Classement",
+    "type": "Classement",
+    "season": "2026",
+    "competition": "Tournois",
+    "url": "/legacy/tournoi/Open-La-Sportive-2026/OLS-2026-classement.pdf",
+    "sourceUrl": "https://www.dcmorges.ch/tournoi/Open-La-Sportive-2026/OLS-2026-classement.pdf",
+    "actionLabel": "Voir le document"
+  }
+]

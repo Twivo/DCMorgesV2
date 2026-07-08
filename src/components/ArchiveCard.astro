@@ -1,0 +1,47 @@
+---
+import type { ArchiveCategory, DocumentItem } from "../data/types";
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  archive: ArchiveCategory;
+  documents: DocumentItem[];
+}
+
+const { archive, documents } = Astro.props;
+const archiveDocuments = archive.documentIds
+  .map((id) => documents.find((document) => document.id === id))
+  .filter(Boolean) as DocumentItem[];
+---
+
+<article class="content-card archive-card">
+  <div class="content-card__body">
+    <h3>{archive.title}</h3>
+    <p>{archive.description}</p>
+
+    <div class="tag-list" aria-label="Saisons">
+      {archive.seasons.map((season) => <span>{season}</span>)}
+    </div>
+
+    {archiveDocuments.length > 0 && (
+      <ul class="linked-list">
+        {archiveDocuments.map((document) => (
+          <li>
+            {document.url ? (
+              <a href={safeUrl(document.url)} target="_blank" rel="noreferrer">{document.title}</a>
+            ) : (
+              document.title
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {archive.links.length > 0 && (
+      <ul class="linked-list">
+        {archive.links.map((link) => (
+          <li><a href={safeUrl(link.href)}>{link.label}</a></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</article>

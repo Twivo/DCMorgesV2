@@ -1,0 +1,133 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+
+export const prerender = false;
+
+interface Link {
+  label: string;
+  href: string;
+  hint?: string;
+}
+interface Section {
+  title: string;
+  description: string;
+  links: Link[];
+}
+
+// Each public section maps to the admin editors that drive its visible content.
+const sections: Section[] = [
+  {
+    title: "Documents",
+    description: "Les 6 cartes mises en avant sur l'accueil et la bibliothèque complète.",
+    links: [
+      { label: "Les 6 cartes de l'accueil", href: "/admin/home-documents", hint: "Texte, fichier, saison, catégorie" },
+      { label: "Tous les documents", href: "/admin/documents" }
+    ]
+  },
+  {
+    title: "News",
+    description: "Articles, résumés, photos et documents liés.",
+    links: [
+      { label: "Articles", href: "/admin/news" },
+      { label: "Textes de la page News", href: "/admin/pages?edit=news" }
+    ]
+  },
+  {
+    title: "Agenda",
+    description: "Événements à venir et pages sources.",
+    links: [
+      { label: "Événements", href: "/admin/events" },
+      { label: "Textes de la page Agenda", href: "/admin/pages?edit=agenda" }
+    ]
+  },
+  {
+    title: "Vidéo",
+    description: "Liste des vidéos et vignettes.",
+    links: [
+      { label: "Vidéos", href: "/admin/videos" },
+      { label: "Textes de la page Vidéos", href: "/admin/pages?edit=videos" }
+    ]
+  },
+  {
+    title: "Club",
+    description: "Membres, équipes et textes de présentation.",
+    links: [
+      { label: "Membres", href: "/admin/members" },
+      { label: "Équipes", href: "/admin/teams" },
+      { label: "Textes de la page Club", href: "/admin/pages?edit=club" }
+    ]
+  },
+  {
+    title: "SDA",
+    description: "Équipes SDA, documents et textes de la page.",
+    links: [
+      { label: "Équipes", href: "/admin/teams" },
+      { label: "Documents", href: "/admin/documents" },
+      { label: "Textes de la page SDA", href: "/admin/pages?edit=sda" }
+    ]
+  },
+  {
+    title: "LMF",
+    description: "Équipe LMF, documents et textes de la page.",
+    links: [
+      { label: "Documents", href: "/admin/documents" },
+      { label: "Équipes", href: "/admin/teams" },
+      { label: "Textes de la page LMF", href: "/admin/pages?edit=lmf" }
+    ]
+  },
+  {
+    title: "Archives",
+    description: "Catégories, groupes d'archives et textes de la page.",
+    links: [
+      { label: "Catégories d'archives", href: "/admin/archives" },
+      { label: "Groupes d'archives", href: "/admin/archive-groups" },
+      { label: "Textes de la page Archives", href: "/admin/pages?edit=archives" }
+    ]
+  }
+];
+---
+
+<AdminLayout title="Gestion du contenu" active="content">
+  <div class="admin-head">
+    <div>
+      <h1>Gestion du contenu</h1>
+      <p>Choisissez une rubrique du site pour en modifier les contenus visibles. Tout est enregistré automatiquement et s'affiche aussitôt sur le site public.</p>
+    </div>
+    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public ↗</a>
+  </div>
+
+  <div class="content-grid">
+    {sections.map((section) => (
+      <div class="content-tile">
+        <h2>{section.title}</h2>
+        <p>{section.description}</p>
+        <div class="content-tile__links">
+          {section.links.map((link) => (
+            <a class="content-link" href={link.href}>
+              <span>{link.label}</span>
+              {link.hint && <small>{link.hint}</small>}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <style is:global>
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+    .content-tile {
+      display: grid; gap: 10px; padding: 20px; border: 1px solid var(--a-line);
+      border-radius: 14px; background: var(--a-surface); box-shadow: 0 8px 22px rgba(16,32,26,0.05);
+      align-content: start;
+    }
+    .content-tile h2 { margin: 0; font-size: 1.2rem; }
+    .content-tile > p { margin: 0; color: var(--a-muted); font-size: 0.9rem; }
+    .content-tile__links { display: grid; gap: 8px; margin-top: 4px; }
+    .content-link {
+      display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--a-line);
+      border-radius: 9px; background: var(--a-paper); font-weight: 700; font-size: 0.9rem;
+    }
+    .content-link:hover { border-color: var(--a-green); background: #eef6f1; }
+    .content-link small { color: var(--a-muted); font-weight: 500; }
+  </style>
+</AdminLayout>

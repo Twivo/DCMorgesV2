@@ -1,0 +1,21 @@
+---
+import { safeUrl } from "../utils/url";
+
+interface Props {
+  title: string;
+  paragraphs: string[];
+  sourceUrl?: string;
+}
+
+const { title, paragraphs, sourceUrl } = Astro.props;
+---
+
+<article class="content-card content-panel">
+  <div class="content-card__body">
+    <h3>{title}</h3>
+    {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    {sourceUrl && (
+      <a class="text-link" href={safeUrl(sourceUrl)} target="_blank" rel="noreferrer">Source originale</a>
+    )}
+  </div>
+</article>

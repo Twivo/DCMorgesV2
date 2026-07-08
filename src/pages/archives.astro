@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { archiveGroups as archiveGroupData } from "../data/archiveGroups";
+import { archiveCategories } from "../data/archives";
+import { documents } from "../data/documents";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import type { ArchiveCategory, DocumentItem } from "../data/types";
+
+const page = getSitePage("archives");
+const overviewSection = formatPageSection(getPageSection(page, "overview"));
+const documentById = new Map(documents.map((document) => [document.id, document]));
+
+const getDocumentsForArchive = (archive: ArchiveCategory) =>
+  archive.documentIds
+    .map((id) => documentById.get(id))
+    .filter((document): document is DocumentItem => Boolean(document));
+
+const getSeasonSummary = (seasons: string[]) => {
+  const years = seasons
+    .flatMap((season) => season.match(/\b\d{4}\b/g) ?? [])
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  if (years.length === 0) {
+    return seasons[0] ?? "Archives historiques";
+  }
+
+  const firstYear = years[0];
+  const lastYear = years[years.length - 1];
+
+  return firstYear === lastYear ? String(firstYear) : `${firstYear} - ${lastYear}`;
+};
+
+const getArchive = (id: string) => archiveCategories.find((archive) => archive.id === id);
+
+const archiveGroups = archiveGroupData.map((group) => ({
+  ...group,
+  archives: group.archiveIds.map(getArchive).filter((archive): archive is ArchiveCategory => Boolean(archive))
+}));
+
+const allArchiveDocuments = archiveCategories.flatMap(getDocumentsForArchive);
+const totalPages = archiveCategories.reduce((total, archive) => total + archive.links.length, 0);
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription}>
+  <PageHero
+    eyebrow={formatPageText(page.heroEyebrow)}
+    title={formatPageText(page.heroTitle)}
+    description={formatPageText(page.heroDescription)}
+    actions={formatPageActions(page.actions)}
+  />
+
+  <section class="section section--muted">
+    <div class="container archive-overview">
+      <SectionHeader
+        eyebrow={overviewSection.eyebrow}
+        title={overviewSection.title}
+        description={overviewSection.description}
+      />
+
+      <div class="archive-summary">
+        <div>
+          <strong>{archiveCategories.length}</strong>
+          <span>catégories</span>
+        </div>
+        <div>
+          <strong>{allArchiveDocuments.length}</strong>
+          <span>documents PDF</span>
+        </div>
+        <div>
+          <strong>{totalPages}</strong>
+          <span>pages historiques</span>
+        </div>
+      </div>
+
+      <div class="archive-group-stack">
+        {archiveGroups.map((group) => (
+          <section class="archive-group" aria-labelledby={`archive-group-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+            <div class="archive-group__header">
+              <h2 id={`archive-group-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{group.title}</h2>
+              <p>{group.description}</p>
+            </div>
+
+            <div class={`archive-category-grid${group.archives.length === 1 ? " archive-category-grid--single" : ""}`}>
+              {group.archives.map((archive) => {
+                const archiveDocuments = getDocumentsForArchive(archive);
+                const featuredPages = archive.links.slice(0, 5);
+                const featuredDocuments = archiveDocuments.slice(0, 5);
+
+                return (
+                  <article class="archive-category-card" id={`category-${archive.id}`}>
+                    <div class="archive-category-card__header">
+                      <div>
+                        <span class="label">Archive</span>
+                        <h3>{archive.title}</h3>
+                      </div>
+                      <strong>{archiveDocuments.length + archive.links.length}</strong>
+                    </div>
+
+                    <p>{archive.description}</p>
+
+                    <div class="archive-card-meta">
+                      <span>{getSeasonSummary(archive.seasons)}</span>
+                      <span>{archiveDocuments.length} PDF</span>
+                      <span>{archive.links.length} pages</span>
+                    </div>
+
+                    {featuredDocuments.length > 0 && (
+                      <div class="archive-card-section">
+                        <h4>Documents</h4>
+                        <ul class="linked-list">
+                          {featuredDocuments.map((document) => (
+                            <li>
+                              <a href={document.url ?? document.sourceUrl}>{document.title}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {featuredPages.length > 0 && (
+                      <div class="archive-card-section">
+                        <h4>Pages</h4>
+                        <ul class="linked-list">
+                          {featuredPages.map((link) => (
+                            <li>
+                              <a href={link.href}>{link.label}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

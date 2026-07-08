@@ -1,0 +1,76 @@
+{
+  "info": {
+    "name": "Darts Club Morges",
+    "shortName": "DC Morges",
+    "tagline": "Club de fléchettes à Morges",
+    "description": "DARTS CLUB MORGES, Rue de la Gare 1b, 1110 Morges.",
+    "address": "Rue de la Gare 1b, 1110 Morges",
+    "location": "Jameson's Pub, Rue de la Gare 1, 1110 Morges (VD)",
+    "email": "dartsclubmorges@gmail.com",
+    "website": "https://www.dcmorges.ch",
+    "iban": "CH87 0900 0000 1734 5611 4",
+    "logo": "/logo.gif",
+    "heroImage": "/images/darts-hero.webp",
+    "update": "26.04.2026"
+  },
+  "navigation": [
+    {
+      "label": "Accueil",
+      "href": "/"
+    },
+    {
+      "label": "News",
+      "href": "/news/"
+    },
+    {
+      "label": "SDA",
+      "href": "/sda/"
+    },
+    {
+      "label": "LMF",
+      "href": "/lmf/"
+    },
+    {
+      "label": "Club",
+      "href": "/club/"
+    },
+    {
+      "label": "Agenda",
+      "href": "/agenda/"
+    },
+    {
+      "label": "Archives",
+      "href": "/archives/"
+    },
+    {
+      "label": "Vidéos",
+      "href": "/videos/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
+  ],
+  "quickLinks": [
+    {
+      "label": "SDA",
+      "href": "/sda/",
+      "description": "Calendriers, matchs, classements, statuts et règlements SDA 2025-26."
+    },
+    {
+      "label": "Ligue Morgienne / LMF",
+      "href": "/lmf/",
+      "description": "Palmarès, calendrier, teams, classements, coupe et feuilles de match LMF 2025-26."
+    },
+    {
+      "label": "Club",
+      "href": "/club/",
+      "description": "Membres actifs 2025-26, équipes SDA et LMF, palmarès du club."
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/",
+      "description": "Adresse, e-mail, IBAN, locaux de jeu et capitaines."
+    }
+  ]
+}

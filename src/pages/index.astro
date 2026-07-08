@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import NewsCard from "../components/NewsCard.astro";
+import EventCard from "../components/EventCard.astro";
+import DocumentCard from "../components/DocumentCard.astro";
+import { documents } from "../data/documents";
+import { homeDocuments } from "../data/homeDocuments";
+import { upcomingEvents } from "../data/events";
+import { newsItems } from "../data/news";
+import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import { seasons } from "../data/seasons";
+import { quickLinks, siteInfo } from "../data/site";
+
+const page = getSitePage("home");
+const currentSeason = seasons.find((season) => season.isCurrent);
+const currentSeasonLabel = currentSeason?.label ?? "2025-26";
+const pageVars = { update: siteInfo.update, siteName: siteInfo.name, currentSeason: currentSeasonLabel };
+const clubInfoSection = formatPageSection(getPageSection(page, "club-info"), pageVars);
+const quickLinksSection = formatPageSection(getPageSection(page, "quick-links"), pageVars);
+const latestNewsSection = formatPageSection(getPageSection(page, "latest-news"), pageVars);
+const nextEventsSection = formatPageSection(getPageSection(page, "next-events"), pageVars);
+const documentsSection = formatPageSection(getPageSection(page, "documents"), pageVars);
+const latestNews = newsItems.slice(0, 3);
+const nextEvents = upcomingEvents.slice(0, 3);
+// The 6 featured document cards are curated in the admin (Documents en avant).
+// Fall back to the newest documents of the season if none are configured yet.
+const highlightedDocuments = (homeDocuments.length > 0
+  ? homeDocuments
+  : documents.filter((document) => document.season === currentSeasonLabel)
+).slice(0, 6);
+---
+
+<BaseLayout title={page.seoTitle} description={page.seoDescription || siteInfo.description}>
+  <PageHero
+    variant="home"
+    image={siteInfo.heroImage}
+    eyebrow={formatPageText(page.heroEyebrow, pageVars)}
+    title={formatPageText(page.heroTitle, pageVars)}
+    description={formatPageText(page.heroDescription, pageVars)}
+    actions={formatPageActions(page.actions, pageVars)}
+  />
+
+  <section class="section">
+    <div class="container split-layout">
+      <div>
+        <SectionHeader
+          eyebrow={clubInfoSection.eyebrow}
+          title={clubInfoSection.title}
+          description={clubInfoSection.description}
+        />
+      </div>
+      <div class="info-strip">
+        <div>
+          <span class="label">Adresse club</span>
+          <strong>{siteInfo.address}</strong>
+        </div>
+        <div>
+          <span class="label">E-mail</span>
+          <strong>{siteInfo.email}</strong>
+        </div>
+        <div>
+          <span class="label">Local LMF</span>
+          <strong>{siteInfo.location}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHeader
+        eyebrow={quickLinksSection.eyebrow}
+        title={quickLinksSection.title}
+        description={quickLinksSection.description}
+      />
+      <div class="card-grid card-grid--four">
+        {quickLinks.map((link) => (
+          <a class="content-card quick-card" href={link.href}>
+            <span>{link.label}</span>
+            <p>{link.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        eyebrow={latestNewsSection.eyebrow}
+        title={latestNewsSection.title}
+        description={latestNewsSection.description}
+      />
+      <div class="card-grid card-grid--three">
+        {latestNews.map((news) => <NewsCard news={news} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <SectionHeader
+        eyebrow={nextEventsSection.eyebrow}
+        title={nextEventsSection.title}
+        description={nextEventsSection.description}
+      />
+      {nextEvents.length > 0 ? (
+        <div class="card-grid card-grid--three">
+          {nextEvents.map((event) => <EventCard event={event} />)}
+        </div>
+      ) : (
+        <p class="muted">Aucun événement à venir pour le moment. Consulte l'agenda pour l'historique.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        eyebrow={documentsSection.eyebrow}
+        title={documentsSection.title}
+        description={documentsSection.description}
+      />
+      <div class="card-grid card-grid--three">
+        {highlightedDocuments.map((document) => <DocumentCard document={document} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

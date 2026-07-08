@@ -1,0 +1,21 @@
+---
+import type { LegacyPage } from "../data/types";
+
+interface Props {
+  page: LegacyPage;
+}
+
+const { page } = Astro.props;
+---
+
+<article class="content-card legacy-card">
+  <div class="content-card__body">
+    <div class="meta-row">
+      <span>{page.destination}</span>
+      <span>{page.documents.length} PDF</span>
+    </div>
+    <h3>{page.title}</h3>
+    <p>{page.summary}</p>
+    <a class="text-link" href={`/sources/${page.slug}/`}>Voir le contenu importé</a>
+  </div>
+</article>

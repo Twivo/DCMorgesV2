@@ -1,0 +1,65 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { collections } from "../../lib/collections";
+import { readAll } from "../../lib/store";
+
+export const prerender = false;
+
+const counts = await Promise.all(
+  collections.map(async (collection) => ({
+    def: collection,
+    count: (await readAll(collection).catch(() => [])).length
+  }))
+);
+const total = counts.reduce((sum, c) => sum + c.count, 0);
+---
+
+<AdminLayout title="Tableau de bord" active="dashboard">
+  <div class="admin-head">
+    <div>
+      <h1>Tableau de bord</h1>
+      <p>{total} éléments gérés dans {collections.length} rubriques. Les modifications sont enregistrées directement dans les données du site.</p>
+    </div>
+    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public ↗</a>
+  </div>
+
+  <a class="content-cta" href="/admin/content">
+    <div>
+      <strong>Gestion du contenu</strong>
+      <span>Modifier les contenus visibles du site, rubrique par rubrique.</span>
+    </div>
+    <span class="content-cta__go">Ouvrir →</span>
+  </a>
+
+  <style is:global>
+    .content-cta {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      margin-bottom: 22px; padding: 20px 24px; border-radius: 14px;
+      background: var(--a-dark); color: #fff; box-shadow: 0 10px 26px rgba(16,32,26,0.18);
+    }
+    .content-cta strong { display: block; font-size: 1.15rem; }
+    .content-cta span { color: #cfe0d8; font-size: 0.92rem; }
+    .content-cta__go { white-space: nowrap; font-weight: 800; color: #fff; }
+    .content-cta:hover { background: #16261f; }
+  </style>
+
+  <div class="card-grid">
+    {counts.map(({ def, count }) => (
+      <a class="stat-card" href={`/admin/${def.name}`}>
+        <strong>{count}</strong>
+        <span>{def.label}</span>
+        <small>Gérer les {def.label.toLowerCase()}</small>
+      </a>
+    ))}
+    <a class="stat-card" href="/admin/site">
+      <strong>⚙︎</strong>
+      <span>Réglages du site</span>
+      <small>Coordonnées, navigation, liens</small>
+    </a>
+    <a class="stat-card" href="/admin/media">
+      <strong>↑</strong>
+      <span>Médiathèque</span>
+      <small>Envoyer et réutiliser des fichiers</small>
+    </a>
+  </div>
+</AdminLayout>
