@@ -1094,11 +1094,28 @@ const rankingSections: RankingSection[] = [
       box-shadow: var(--shadow-sm);
     }
 
+    .live-stats__status > div {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-height: 108px;
+    }
+
+    .live-stats__status .label {
+      display: block;
+      line-height: 1.2;
+    }
+
     .live-stats__status strong {
+      display: block;
       color: var(--color-red-dark);
-      font-size: 1.4rem;
-      line-height: 1.1;
+      font-size: 1.35rem;
+      line-height: 1.18;
       overflow-wrap: anywhere;
+    }
+
+    .live-stats__status strong[data-live-updated] {
+      font-size: 1.2rem;
     }
 
     .live-stats__notice {
