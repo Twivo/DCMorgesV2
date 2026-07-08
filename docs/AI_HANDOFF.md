@@ -50,7 +50,7 @@ Site Astro/TypeScript du Darts Club Morges.
 - Regles LMF codees dans `src/pages/lmf-stats-live.astro` : victoire equipe = 3 points, nul = 1, defaite = 0; simple
   gagne = 1 point MVP; double gagne = 0,5 point par joueur gagnant; Best Player = ratio de legs en simples avec
   affichage provisoire si aucun joueur n'atteint encore 20 simples; high finish et 180s reconstruits depuis les visites
-  501; historique filtrable cote navigateur.
+  501; historique filtrable cote navigateur avec rencontres, parties, manches et visites.
 - `pnpm run seed:lmf-live` peut creer des donnees de test LMF mais demande `SUPABASE_SERVICE_ROLE_KEY` en local. La cle
   anon publique ne peut pas ecrire dans `encounters` a cause de RLS.
 

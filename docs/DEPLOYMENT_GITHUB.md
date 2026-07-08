@@ -39,7 +39,7 @@ PUBLIC_SUPABASE_SCHEMA=public
 ```
 
 Elle calcule ses classements depuis les tables `seasons`, `teams`, `players`, `team_players`, `encounters`, `matches`
-et `match_players`, puis affiche aussi un historique filtrable et le classement des 180s. Ne jamais utiliser une cle
+et `match_players`, puis affiche aussi un historique filtrable par rencontre avec detail des parties/manches et le classement des 180s. Ne jamais utiliser une cle
 `service_role` dans une variable `PUBLIC_*`.
 
 Sur GitHub Actions, definir ces valeurs comme variables/secrets de build si la page live doit fonctionner dans la

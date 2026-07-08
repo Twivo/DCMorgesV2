@@ -196,8 +196,8 @@ const rankingSections: RankingSection[] = [
     <div class="container">
       <SectionHeader
         eyebrow="Historique"
-        title="Historique des matchs"
-        description="Recherche par équipe, joueur, type de partie ou score."
+        title="Historique du championnat"
+        description="Cliquez sur une rencontre pour afficher ses parties, puis ouvrez chaque manche pour voir les visites et les statistiques."
       />
 
       <div class="history-filters" data-history-filters hidden>
@@ -237,22 +237,24 @@ const rankingSections: RankingSection[] = [
 
       <p class="history-count" data-history-count hidden></p>
 
-      <div class="live-table-wrap">
-        <p class="live-table-empty" data-history-empty>Chargement de l'historique...</p>
-        <table class="live-table live-table--history" data-history-table hidden>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Rencontre</th>
-              <th>Type</th>
-              <th>Joueurs</th>
-              <th>Score</th>
-              <th>Vainqueur</th>
-              <th>Stats</th>
-            </tr>
-          </thead>
-          <tbody data-history-body></tbody>
-        </table>
+      <p class="live-table-empty history-empty" data-history-empty>Chargement de l'historique...</p>
+
+      <div class="history-browser" data-history-browser hidden>
+        <div class="history-panel history-panel--list">
+          <div class="history-panel__head">
+            <h3>Rencontres</h3>
+            <span data-history-encounter-total></span>
+          </div>
+          <div class="history-encounter-list" data-history-encounters></div>
+        </div>
+
+        <div class="history-panel history-panel--matches" data-encounter-detail>
+          <p class="history-panel__placeholder">Sélectionnez une rencontre.</p>
+        </div>
+
+        <div class="history-panel history-panel--legs" data-match-detail>
+          <p class="history-panel__placeholder">Sélectionnez une partie pour voir les manches.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -429,6 +431,8 @@ const rankingSections: RankingSection[] = [
       const legsByParticipant = new Map(participantIds.map((participantId) => [participantId, 0]));
       const finishes = [];
       const oneEighties = [];
+      const legs = [];
+      let currentVisits = [];
       const events = getEvents(match)
         .filter((event) => !event?.type || event.type === "VISIT")
         .sort((a, b) => normalizeNumber(a.ts, 0) - normalizeNumber(b.ts, 0));
@@ -452,6 +456,18 @@ const rankingSections: RankingSection[] = [
 
         const before = remaining.get(participantId) ?? variant;
         const after = before - scored;
+        const visit = {
+          participantId,
+          playerId: event.playerId,
+          scored,
+          darts: normalizeNumber(event.darts, 3),
+          before,
+          after: after >= 0 ? after : before,
+          busted: after < 0,
+          oneEighty: scored === 180
+        };
+        currentVisits.push(visit);
+
         if (after === 0) {
           legsByParticipant.set(participantId, (legsByParticipant.get(participantId) ?? 0) + 1);
           finishes.push({
@@ -460,6 +476,14 @@ const rankingSections: RankingSection[] = [
             finish: scored,
             date: match.finished_at || match.updated_at || match.created_at
           });
+          legs.push({
+            number: legs.length + 1,
+            winnerParticipant: participantId,
+            winnerPlayerId: event.playerId,
+            finish: scored,
+            visits: currentVisits
+          });
+          currentVisits = [];
           for (const id of remaining.keys()) remaining.set(id, variant);
         } else if (after > 0) {
           remaining.set(participantId, after);
@@ -472,7 +496,7 @@ const rankingSections: RankingSection[] = [
         legsByParticipant.set(match.winner_participant, legsToWin);
       }
 
-      return { legsByParticipant, finishes, oneEighties };
+      return { legsByParticipant, finishes, oneEighties, legs };
     };
 
     const sideTeamId = (encounter, participantId) => {
@@ -658,7 +682,7 @@ const rankingSections: RankingSection[] = [
       for (const match of officialMatches) {
         const encounter = encountersById.get(match.encounter_id);
         const helpers = buildParticipantHelpers(match, matchPlayersByMatch);
-        const { legsByParticipant, finishes, oneEighties } = inferLegsAndFinishes(match, matchPlayersByMatch);
+        const { legsByParticipant, finishes, oneEighties, legs } = inferLegsAndFinishes(match, matchPlayersByMatch);
         const mode = String(match.mode || helpers.config.mode || "").toUpperCase();
         const isDouble = mode === "DOUBLE";
         const participantIds = helpers.participantIds;
@@ -755,9 +779,53 @@ const rankingSections: RankingSection[] = [
           helpers.playerIdsForParticipant(participantId).map((playerId) => playerName(playerId))
         );
         const maxFinish = finishes.reduce((best, finish) => Math.max(best, finish.finish), 0);
+        const participantLabels = new Map(
+          participantIds.map((participantId) => [participantId, helpers.labelForParticipant(participantId, playerName)])
+        );
+        const legRows = legs.map((leg) => {
+          const visits = asArray(leg.visits).map((visit, index) => ({
+            turn: index + 1,
+            side: visit.participantId,
+            participant: participantLabels.get(visit.participantId) || visit.participantId,
+            player: playerName(visit.playerId),
+            scored: visit.scored,
+            before: visit.before,
+            after: visit.after,
+            darts: visit.darts,
+            note: visit.busted
+              ? "Score non valide"
+              : visit.oneEighty
+                ? "180"
+                : visit.after === 0
+                  ? `Finish ${visit.scored}`
+                  : ""
+          }));
+          const totals = participantIds.map((participantId) => {
+            const sideVisits = asArray(leg.visits).filter((visit) => visit.participantId === participantId);
+            const scored = sideVisits.reduce((sum, visit) => sum + normalizeNumber(visit.scored, 0), 0);
+            return {
+              side: participantId,
+              participant: participantLabels.get(participantId) || participantId,
+              visits: sideVisits.length,
+              scored,
+              oneEighties: sideVisits.filter((visit) => visit.oneEighty).length
+            };
+          });
+          return {
+            number: leg.number,
+            winner: participantLabels.get(leg.winnerParticipant) || leg.winnerParticipant,
+            winnerSide: leg.winnerParticipant,
+            finish: leg.finish,
+            oneEighties: visits.filter((visit) => visit.note === "180").length,
+            visits,
+            totals
+          };
+        });
 
         historyRows.push({
           id: match.id,
+          encounterId: match.encounter_id,
+          fixtureIndex: hasValue(match.fixture_index) ? normalizeNumber(match.fixture_index, 0) + 1 : undefined,
           date: matchDate,
           match: matchLabel(match, encounter, teamsById),
           mode,
@@ -765,6 +833,9 @@ const rankingSections: RankingSection[] = [
           players: playerLabels.join(" / "),
           score: scoreText(legsByParticipant),
           winner: winnerLabel,
+          highFinish: maxFinish,
+          oneEighties: oneEighties.length,
+          legs: legRows,
           stats: [
             oneEighties.length > 0 ? `${oneEighties.length} x 180` : "",
             maxFinish >= 100 ? `HF ${maxFinish}` : ""
@@ -785,6 +856,84 @@ const rankingSections: RankingSection[] = [
           ].join(" ").toLowerCase()
         });
       }
+
+      const matchRowsByEncounter = new Map();
+      for (const row of historyRows) {
+        if (!row.encounterId) continue;
+        if (!matchRowsByEncounter.has(row.encounterId)) matchRowsByEncounter.set(row.encounterId, []);
+        matchRowsByEncounter.get(row.encounterId).push(row);
+      }
+
+      const historyEncounters = officialEncounters
+        .map((encounter) => {
+          const matchesForEncounter = asArray(matchRowsByEncounter.get(encounter.id))
+            .sort(
+              (a, b) =>
+                (hasValue(a.fixtureIndex) ? normalizeNumber(a.fixtureIndex, 999) : 999) -
+                  (hasValue(b.fixtureIndex) ? normalizeNumber(b.fixtureIndex, 999) : 999) ||
+                new Date(a.date).getTime() - new Date(b.date).getTime()
+            )
+            .map((match, index) => ({
+              ...match,
+              fixtureIndex: hasValue(match.fixtureIndex) ? match.fixtureIndex : index + 1
+            }));
+          if (matchesForEncounter.length === 0) return undefined;
+
+          const teamA = sideTeamName(encounter, "A", teamsById) || "Equipe A";
+          const teamB = sideTeamName(encounter, "B", teamsById) || "Equipe B";
+          const gamesA = hasValue(encounter.score_a)
+            ? normalizeNumber(encounter.score_a, 0)
+            : matchesForEncounter.filter((match) => match.winnerTeam === teamA).length;
+          const gamesB = hasValue(encounter.score_b)
+            ? normalizeNumber(encounter.score_b, 0)
+            : matchesForEncounter.filter((match) => match.winnerTeam === teamB).length;
+          const matchDate = encounter.finished_at || encounter.updated_at || encounter.created_at || matchesForEncounter[0]?.date;
+          const teams = [teamA, teamB].filter(Boolean);
+          const playerNames = [...new Set(matchesForEncounter.flatMap((match) => match.playerNames).filter(Boolean))].sort((a, b) =>
+            a.localeCompare(b, "fr")
+          );
+          const winnerTeam =
+            sideTeamName(encounter, encounter.winner, teamsById) ||
+            (gamesA > gamesB ? teamA : gamesB > gamesA ? teamB : "");
+          const highFinish = matchesForEncounter.reduce((best, match) => Math.max(best, normalizeNumber(match.highFinish, 0)), 0);
+          const oneEighties = matchesForEncounter.reduce((sum, match) => sum + normalizeNumber(match.oneEighties, 0), 0);
+          const legsA = matchesForEncounter.reduce((sum, match) => {
+            const [a] = String(match.score).split("-").map((value) => normalizeNumber(value, 0));
+            return sum + a;
+          }, 0);
+          const legsB = matchesForEncounter.reduce((sum, match) => {
+            const [, b] = String(match.score).split("-").map((value) => normalizeNumber(value, 0));
+            return sum + b;
+          }, 0);
+
+          return {
+            id: encounter.id,
+            date: matchDate,
+            title: `${teamA} - ${teamB}`,
+            score: `${gamesA}-${gamesB}`,
+            teamA,
+            teamB,
+            teams,
+            winnerTeam,
+            matches: matchesForEncounter,
+            matchCount: matchesForEncounter.length,
+            legsScore: `${legsA}-${legsB}`,
+            highFinish,
+            oneEighties,
+            playerNames,
+            modes: [...new Set(matchesForEncounter.map((match) => match.mode).filter(Boolean))],
+            searchText: [
+              teamA,
+              teamB,
+              `${gamesA}-${gamesB}`,
+              winnerTeam,
+              playerNames.join(" "),
+              matchesForEncounter.map((match) => `${match.modeLabel} ${match.players} ${match.score} ${match.stats}`).join(" ")
+            ].join(" ").toLowerCase()
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
       for (const encounterMap of encounterMvpPoints.values()) {
         const rows = [...encounterMap.values()];
@@ -919,7 +1068,7 @@ const rankingSections: RankingSection[] = [
           "most-mvp": mostMvpRows,
           "one-eighties": oneEightyRows
         },
-        historyRows: historyRows.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        historyRows: historyEncounters
       };
     };
 
@@ -963,36 +1112,229 @@ const rankingSections: RankingSection[] = [
       }
     };
 
+    let activeHistoryEncounterId = "";
+    let activeHistoryMatchId = "";
+
+    const appendText = (parent, tagName, text, className = "") => {
+      const node = document.createElement(tagName);
+      if (className) node.className = className;
+      node.textContent = text;
+      parent.appendChild(node);
+      return node;
+    };
+
+    const appendStat = (parent, label, value) => {
+      const item = document.createElement("div");
+      appendText(item, "span", label);
+      appendText(item, "strong", value);
+      parent.appendChild(item);
+      return item;
+    };
+
+    const renderMatchDetail = (match) => {
+      const panel = document.querySelector("[data-match-detail]");
+      if (!panel) return;
+      panel.replaceChildren();
+
+      if (!match) {
+        appendText(panel, "p", "Sélectionnez une partie pour voir les manches.", "history-panel__placeholder");
+        return;
+      }
+
+      const head = document.createElement("div");
+      head.className = "history-detail-head";
+      appendText(head, "span", `Partie ${match.fixtureIndex} · ${match.modeLabel}`, "history-kicker");
+      appendText(head, "h3", match.players || match.modeLabel);
+      appendText(head, "p", `${match.score} · vainqueur : ${match.winner || "-"}`);
+      panel.appendChild(head);
+
+      const stats = document.createElement("div");
+      stats.className = "history-stat-grid";
+      appendStat(stats, "Manches", String(match.legs?.length || 0));
+      appendStat(stats, "180s", formatNumber(match.oneEighties || 0, 0));
+      appendStat(stats, "High finish", match.highFinish >= 100 ? String(match.highFinish) : "-");
+      appendStat(stats, "Stats", match.stats || "-");
+      panel.appendChild(stats);
+
+      const legs = asArray(match.legs);
+      if (legs.length === 0) {
+        appendText(panel, "p", "Aucun détail de manche enregistré pour cette partie.", "history-panel__placeholder");
+        return;
+      }
+
+      const legList = document.createElement("div");
+      legList.className = "history-leg-list";
+      for (const leg of legs) {
+        const details = document.createElement("details");
+        details.className = "history-leg";
+        if (leg.number === 1) details.open = true;
+
+        const summary = document.createElement("summary");
+        appendText(summary, "span", `Manche ${leg.number}`);
+        appendText(summary, "strong", `${leg.winner} · finish ${leg.finish}`);
+        details.appendChild(summary);
+
+        const legStats = document.createElement("div");
+        legStats.className = "history-leg__stats";
+        for (const total of asArray(leg.totals)) {
+          appendStat(
+            legStats,
+            total.participant,
+            `${formatNumber(total.scored, 0)} pts · ${formatNumber(total.visits, 0)} visites${total.oneEighties ? ` · ${total.oneEighties} x 180` : ""}`
+          );
+        }
+        details.appendChild(legStats);
+
+        const tableWrap = document.createElement("div");
+        tableWrap.className = "history-visit-wrap";
+        const table = document.createElement("table");
+        table.className = "history-visit-table";
+        const thead = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        for (const label of ["#", "Joueur", "Score", "Restant", "Note"]) {
+          appendText(headRow, "th", label);
+        }
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+        for (const visit of asArray(leg.visits)) {
+          const row = document.createElement("tr");
+          for (const value of [
+            visit.turn,
+            visit.player || visit.participant,
+            formatNumber(visit.scored, 0),
+            formatNumber(visit.after, 0),
+            visit.note || "-"
+          ]) {
+            appendText(row, "td", String(value));
+          }
+          tbody.appendChild(row);
+        }
+        table.appendChild(tbody);
+        tableWrap.appendChild(table);
+        details.appendChild(tableWrap);
+        legList.appendChild(details);
+      }
+      panel.appendChild(legList);
+    };
+
+    const renderEncounterDetail = (encounter, rows) => {
+      const panel = document.querySelector("[data-encounter-detail]");
+      if (!panel) return;
+      panel.replaceChildren();
+
+      if (!encounter) {
+        appendText(panel, "p", "Sélectionnez une rencontre.", "history-panel__placeholder");
+        renderMatchDetail(undefined);
+        return;
+      }
+
+      const head = document.createElement("div");
+      head.className = "history-detail-head";
+      appendText(head, "span", formatDate(encounter.date), "history-kicker");
+      appendText(head, "h3", encounter.title);
+      appendText(head, "p", `${encounter.score} · ${encounter.matchCount} partie${encounter.matchCount > 1 ? "s" : ""}`);
+      panel.appendChild(head);
+
+      const stats = document.createElement("div");
+      stats.className = "history-stat-grid";
+      appendStat(stats, "Vainqueur", encounter.winnerTeam || "Match nul");
+      appendStat(stats, "Legs", encounter.legsScore);
+      appendStat(stats, "180s", formatNumber(encounter.oneEighties || 0, 0));
+      appendStat(stats, "High finish", encounter.highFinish >= 100 ? String(encounter.highFinish) : "-");
+      panel.appendChild(stats);
+
+      const matchList = document.createElement("div");
+      matchList.className = "history-match-list";
+      for (const match of encounter.matches) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "history-match-row";
+        if (match.id === activeHistoryMatchId) button.classList.add("is-active");
+        button.setAttribute("aria-pressed", String(match.id === activeHistoryMatchId));
+        button.dataset.matchId = match.id;
+
+        const main = document.createElement("span");
+        main.className = "history-match-row__main";
+        appendText(main, "strong", `Partie ${match.fixtureIndex} · ${match.modeLabel}`);
+        appendText(main, "span", match.players || "-");
+        button.appendChild(main);
+
+        const score = document.createElement("span");
+        score.className = "history-match-row__score";
+        appendText(score, "strong", match.score);
+        appendText(score, "span", match.stats || "-");
+        button.appendChild(score);
+
+        button.addEventListener("click", () => {
+          activeHistoryMatchId = match.id;
+          renderEncounterDetail(encounter, rows);
+          renderMatchDetail(match);
+        });
+        matchList.appendChild(button);
+      }
+      panel.appendChild(matchList);
+
+      const selectedMatch = encounter.matches.find((match) => match.id === activeHistoryMatchId) || encounter.matches[0];
+      if (selectedMatch) {
+        activeHistoryMatchId = selectedMatch.id;
+        renderMatchDetail(selectedMatch);
+      }
+    };
+
     const renderHistory = (rows) => {
-      const table = document.querySelector("[data-history-table]");
-      const body = document.querySelector("[data-history-body]");
+      const browser = document.querySelector("[data-history-browser]");
+      const list = document.querySelector("[data-history-encounters]");
       const empty = document.querySelector("[data-history-empty]");
       const count = document.querySelector("[data-history-count]");
-      if (!table || !body || !empty || !count) return;
+      const total = document.querySelector("[data-history-encounter-total]");
+      if (!browser || !list || !empty || !count || !total) return;
 
-      body.innerHTML = "";
+      list.replaceChildren();
       if (rows.length === 0) {
-        empty.textContent = "Aucun match ne correspond aux filtres.";
+        empty.textContent = "Aucune rencontre ne correspond aux filtres.";
         empty.hidden = false;
-        table.hidden = true;
+        browser.hidden = true;
         count.hidden = true;
         return;
       }
 
-      for (const row of rows) {
-        const tr = document.createElement("tr");
-        for (const value of [formatDate(row.date), row.match, row.modeLabel, row.players, row.score, row.winner, row.stats]) {
-          const td = document.createElement("td");
-          td.textContent = value;
-          tr.appendChild(td);
-        }
-        body.appendChild(tr);
+      const visibleMatchCount = rows.reduce((sum, row) => sum + row.matchCount, 0);
+      count.textContent = `${rows.length.toLocaleString("fr-CH")} rencontre${rows.length > 1 ? "s" : ""} · ${visibleMatchCount.toLocaleString("fr-CH")} partie${visibleMatchCount > 1 ? "s" : ""}`;
+      total.textContent = `${rows.length.toLocaleString("fr-CH")} affichée${rows.length > 1 ? "s" : ""}`;
+
+      if (!rows.some((row) => row.id === activeHistoryEncounterId)) {
+        activeHistoryEncounterId = rows[0].id;
+        activeHistoryMatchId = rows[0].matches[0]?.id || "";
       }
 
-      count.textContent = `${rows.length.toLocaleString("fr-CH")} match${rows.length > 1 ? "s" : ""} affiché${rows.length > 1 ? "s" : ""}`;
-      count.hidden = false;
+      for (const encounter of rows) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "history-encounter-card";
+        if (encounter.id === activeHistoryEncounterId) button.classList.add("is-active");
+        button.setAttribute("aria-pressed", String(encounter.id === activeHistoryEncounterId));
+        button.dataset.encounterId = encounter.id;
+
+        appendText(button, "span", formatDate(encounter.date), "history-kicker");
+        appendText(button, "strong", encounter.title);
+        appendText(button, "span", `${encounter.score} · ${encounter.matchCount} partie${encounter.matchCount > 1 ? "s" : ""}`);
+        appendText(button, "span", `Legs ${encounter.legsScore}${encounter.oneEighties ? ` · ${encounter.oneEighties} x 180` : ""}`, "history-card-meta");
+
+        button.addEventListener("click", () => {
+          activeHistoryEncounterId = encounter.id;
+          activeHistoryMatchId = encounter.matches[0]?.id || "";
+          renderHistory(rows);
+        });
+        list.appendChild(button);
+      }
+
+      const activeEncounter = rows.find((row) => row.id === activeHistoryEncounterId) || rows[0];
       empty.hidden = true;
-      table.hidden = false;
+      count.hidden = false;
+      browser.hidden = false;
+      renderEncounterDetail(activeEncounter, rows);
     };
 
     const setupHistory = (rows) => {
@@ -1018,9 +1360,9 @@ const rankingSections: RankingSection[] = [
           if (text && !row.searchText.includes(text)) return false;
           if (teamValue && !row.teams.includes(teamValue)) return false;
           if (playerValue && !row.playerNames.includes(playerValue)) return false;
-          if (modeValue && row.mode !== modeValue) return false;
+          if (modeValue && !row.modes.includes(modeValue)) return false;
           if (outcomeValue === "win" && teamValue && row.winnerTeam !== teamValue) return false;
-          if (outcomeValue === "loss" && teamValue && row.winnerTeam === teamValue) return false;
+          if (outcomeValue === "loss" && teamValue && (!row.winnerTeam || row.winnerTeam === teamValue)) return false;
           return true;
         });
         renderHistory(filtered);
@@ -1224,10 +1566,235 @@ const rankingSections: RankingSection[] = [
       font-weight: 750;
     }
 
+    .history-empty {
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .history-browser {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.85fr) minmax(310px, 1.1fr) minmax(360px, 1.4fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .history-panel {
+      min-width: 0;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .history-panel__head,
+    .history-detail-head {
+      display: grid;
+      gap: 6px;
+      padding: 16px;
+      border-bottom: 1px solid var(--color-line);
+      background: #fbfcfa;
+    }
+
+    .history-panel__head {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+
+    .history-panel__head h3,
+    .history-detail-head h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .history-detail-head p,
+    .history-panel__placeholder {
+      margin: 0;
+      color: var(--color-muted);
+      font-weight: 700;
+    }
+
+    .history-panel__placeholder {
+      padding: 18px;
+    }
+
+    .history-kicker {
+      color: var(--color-muted);
+      font-size: 0.75rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .history-encounter-list,
+    .history-match-list,
+    .history-leg-list {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .history-encounter-card,
+    .history-match-row {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--color-ink);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .history-encounter-card {
+      display: grid;
+      gap: 5px;
+      padding: 12px;
+    }
+
+    .history-encounter-card strong {
+      line-height: 1.25;
+    }
+
+    .history-card-meta,
+    .history-match-row span {
+      color: var(--color-muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .history-encounter-card:hover,
+    .history-match-row:hover,
+    .history-encounter-card.is-active,
+    .history-match-row.is-active {
+      border-color: rgba(201, 51, 47, 0.45);
+      background: #fff8f6;
+    }
+
+    .history-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .history-stat-grid > div,
+    .history-leg__stats > div {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f6f8f6;
+    }
+
+    .history-stat-grid span,
+    .history-leg__stats span {
+      color: var(--color-muted);
+      font-size: 0.72rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .history-stat-grid strong,
+    .history-leg__stats strong {
+      color: var(--color-red-dark);
+      font-size: 0.95rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .history-match-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .history-match-row__main,
+    .history-match-row__score {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .history-match-row__score {
+      text-align: right;
+    }
+
+    .history-match-row__main strong,
+    .history-match-row__score strong {
+      color: var(--color-ink);
+      font-size: 0.92rem;
+    }
+
+    .history-leg {
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .history-leg summary {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .history-leg summary strong {
+      color: var(--color-red-dark);
+      overflow-wrap: anywhere;
+    }
+
+    .history-leg__stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 12px 12px;
+    }
+
+    .history-visit-wrap {
+      overflow-x: auto;
+      border-top: 1px solid var(--color-line);
+    }
+
+    .history-visit-table {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .history-visit-table th,
+    .history-visit-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--color-line);
+      text-align: left;
+    }
+
+    .history-visit-table th {
+      color: var(--color-muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
     @media (max-width: 1020px) {
       .live-stats__status,
       .history-filters {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .history-browser {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1239,6 +1806,16 @@ const rankingSections: RankingSection[] = [
 
       .live-stats__status strong {
         font-size: 1.2rem;
+      }
+
+      .history-stat-grid,
+      .history-leg__stats,
+      .history-match-row {
+        grid-template-columns: 1fr;
+      }
+
+      .history-match-row__score {
+        text-align: left;
       }
     }
   </style>

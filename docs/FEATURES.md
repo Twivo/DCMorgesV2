@@ -15,7 +15,7 @@ Pages statiques, rapides, responsive (mobile/tablette/ordinateur), en français.
 | Détail news | `/news/<slug>/` | Article complet : photo + légende, texte, documents liés |
 | SDA | `/sda/` | Saison, équipes SDA, documents officiels |
 | LMF | `/lmf/` | Ligue Morgienne : team, documents, archives |
-| LMF stats live | `/lmf-stats-live/` | Page cachée Supabase : classement ligue, best player, MVP, high finish, most MVP, historique filtrable et 180s |
+| LMF stats live | `/lmf-stats-live/` | Page cachée Supabase : classements, historique filtrable par rencontre, détail des parties/manches et 180s |
 | Club | `/club/` | Palmarès du club |
 | Agenda | `/agenda/` | Événements **à venir** puis **passés** |
 | Archives | `/archives/` | Catégories d'archives, documents et pages historiques |
@@ -28,7 +28,7 @@ Pages statiques, rapides, responsive (mobile/tablette/ordinateur), en français.
 - **News** triées automatiquement (plus récentes en haut) ; chaque article accepte photo + légende, texte en paragraphes et documents liés.
 - **Agenda** : les événements à venir s'affichent en premier ; les événements passés sont regroupés en dessous ; message clair quand il n'y a rien à venir.
 - **Archives** : les tableaux « Hall of Fame » de l'ancien site (championnats, coupes, palmarès) ont été reconstruits en vrais tableaux lisibles, avec des noms de pages précis.
-- **LMF stats live** : page cachée non liée au menu, alimentée par les tables Supabase LMF via clé anon publique et RLS, avec historique filtrable des matchs et classement des 180s.
+- **LMF stats live** : page cachée non liée au menu, alimentée par les tables Supabase LMF via clé anon publique et RLS, avec historique filtrable des rencontres, détail des parties/manches et classement des 180s.
 - **Liens sécurisés** : les liens d'un contenu ne peuvent pas exécuter de code (protection `javascript:`).
 
 ---

@@ -43,7 +43,7 @@ Les vues SQL personnalisées ne sont pas requises. Aucun fichier `.sql` n'est ac
 - classement MVP;
 - high finish groupé par joueur;
 - Most MVP;
-- historique filtrable des matchs;
+- historique filtrable des rencontres de championnat, avec détail des 10 parties, des manches et des visites;
 - classement des 180s.
 
 ## Règles de calcul actuelles
