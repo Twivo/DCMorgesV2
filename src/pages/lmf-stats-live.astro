@@ -1302,8 +1302,6 @@ const rankingSections: RankingSection[] = [
         list.appendChild(button);
       }
 
-      list.querySelector(".history-encounter-card.is-active")?.scrollIntoView({ block: "nearest" });
-
       const activeEncounter = rows.find((row) => row.id === activeHistoryEncounterId) || rows[0];
       empty.hidden = true;
       count.hidden = false;
