@@ -6,6 +6,7 @@ import NewsCard from "../components/NewsCard.astro";
 import EventCard from "../components/EventCard.astro";
 import DocumentCard from "../components/DocumentCard.astro";
 import { documents } from "../data/documents";
+import { clubPalmaresLines } from "../data/clubPalmares";
 import { homeDocuments } from "../data/homeDocuments";
 import { upcomingEvents } from "../data/events";
 import { newsItems } from "../data/news";
@@ -37,12 +38,15 @@ const clubFacts = [
   { label: "Archives", value: "Résultats SDA, LMF, GDL, LVSD, Morges Open, Open Vaudois et Master Tour" }
 ];
 
-const clubMilestones = [
-  "2024-25 : titre LMF, Morges 2 champion de 2ème Ligue Ouest SDA.",
-  "2023-24 : vainqueur de la Coupe Vaudoise et promotion de Morges 1 en 1ère ligue.",
-  "2022-23 : victoire en Coupe Suisse B.",
-  "2017-18 : Morges 1 champion LNC Ouest, promu en LNB."
-];
+const clubMilestones = [...clubPalmaresLines]
+  .filter((line) => !line.result.toLowerCase().includes("pas de"))
+  .sort(
+    (a, b) =>
+      (b.order ?? Number.NEGATIVE_INFINITY) - (a.order ?? Number.NEGATIVE_INFINITY) ||
+      b.season.localeCompare(a.season, "fr")
+  )
+  .slice(0, 4)
+  .map((line) => `${line.season} : ${line.result} (${line.competition}).`);
 ---
 
 <BaseLayout title={page.seoTitle} description={page.seoDescription || siteInfo.description}>
