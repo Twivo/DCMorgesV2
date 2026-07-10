@@ -95,6 +95,7 @@ Dans GitHub :
 Variables GitHub optionnelles :
 
 - `SITE_URL` : URL canonique, par exemple `https://www.dcmorges.ch`.
+- `BASE_PATH` : chemin projet GitHub Pages, par exemple `/DCMorgesV2` si le site n'a pas de domaine custom.
 - `PAGES_CNAME` : domaine custom à écrire dans `public-site/CNAME`.
 - `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY`, `PUBLIC_SUPABASE_SCHEMA` : stats live LMF si elles doivent fonctionner sur le site publié.
 

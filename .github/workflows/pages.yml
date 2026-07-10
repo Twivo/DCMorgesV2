@@ -40,6 +40,7 @@ jobs:
         run: pnpm run build:pages
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://www.dcmorges.ch' }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
           PAGES_CNAME: ${{ vars.PAGES_CNAME }}
           PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
           PUBLIC_SUPABASE_ANON_KEY: ${{ vars.PUBLIC_SUPABASE_ANON_KEY }}

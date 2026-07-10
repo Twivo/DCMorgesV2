@@ -36,6 +36,7 @@ Dans **Settings → Secrets and variables → Actions → Variables** :
 | Variable | Obligatoire | Exemple | Rôle |
 | --- | --- | --- | --- |
 | `SITE_URL` | Recommandé | `https://www.dcmorges.ch` | URL canonique et sitemap. |
+| `BASE_PATH` | Projet sans domaine custom | `/DCMorgesV2` | Préfixe les liens/assets pour `https://twivo.github.io/DCMorgesV2/`. |
 | `PAGES_CNAME` | Si domaine custom | `www.dcmorges.ch` | Génère `public-site/CNAME`. |
 | `PUBLIC_SUPABASE_URL` | Si stats live actives | `https://xxxxx.supabase.co` | Endpoint Supabase public. |
 | `PUBLIC_SUPABASE_ANON_KEY` | Si stats live actives | `ey...` | Clé anon publique Supabase. |
