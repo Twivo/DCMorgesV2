@@ -17,6 +17,7 @@ interface RankingSection {
   description: string;
   emptyText: string;
   columns: Column[];
+  note?: string;
 }
 
 const env = import.meta.env as Record<string, string | undefined>;
@@ -38,6 +39,7 @@ const rankingSections: RankingSection[] = [
     title: "Classement de la ligue",
     description: "Vue d'ensemble par équipe : résultats, parties et legs.",
     emptyText: "Aucune rencontre terminée n'est disponible pour la saison.",
+    note: "Barème : victoire = 3 pts. Une rencontre à égalité tranchée au double décisif rapporte 2 pts au vainqueur et 1 pt au perdant — voir la colonne « DD ». La colonne « N » ne concerne qu'une égalité dont le double décisif n'a pas encore été joué.",
     columns: [
       { label: "#", keys: ["rank"], format: "integer" },
       { label: "Équipe", keys: ["team"], strong: true },
@@ -45,6 +47,7 @@ const rankingSections: RankingSection[] = [
       { label: "V", keys: ["wins"], format: "integer" },
       { label: "N", keys: ["draws"], format: "integer" },
       { label: "D", keys: ["losses"], format: "integer" },
+      { label: "DD", keys: ["decisive"], format: "integer" },
       { label: "Parties G", keys: ["games_won"], format: "integer" },
       { label: "Parties P", keys: ["games_lost"], format: "integer" },
       { label: "Legs joués", keys: ["legs_played"], format: "integer" },
@@ -58,8 +61,8 @@ const rankingSections: RankingSection[] = [
     id: "best-player",
     eyebrow: "Joueurs",
     title: "Best Player",
-    description: "Tri par ratio de legs gagnés en simples, puis ratio de matchs gagnés.",
-    emptyText: "Aucun match simple terminé n'est disponible.",
+    description: "Meilleur ratio de legs gagnés en simples (minimum 20 matchs). En cas d'égalité : ratio de matchs gagnés, puis nombre de matchs.",
+    emptyText: "Aucun joueur n'a encore atteint le minimum de 20 matchs simples.",
     columns: [
       { label: "#", keys: ["rank"], format: "integer" },
       { label: "Joueur", keys: ["player"], strong: true },
@@ -102,21 +105,6 @@ const rankingSections: RankingSection[] = [
       { label: "Meilleur", keys: ["finish"], format: "integer", strong: true },
       { label: "Autres bons finishes", keys: ["other_finishes"] },
       { label: "Dernière date", keys: ["date"], format: "date" }
-    ]
-  },
-  {
-    id: "most-mvp",
-    eyebrow: "Joueurs",
-    title: "Most MVP",
-    description: "Nombre de rencontres où le joueur termine meilleur contributeur.",
-    emptyText: "Aucune rencontre ne permet encore de désigner un MVP.",
-    columns: [
-      { label: "#", keys: ["rank"], format: "integer" },
-      { label: "Joueur", keys: ["player"], strong: true },
-      { label: "Équipe", keys: ["team"] },
-      { label: "MVP", keys: ["mvp_count"], format: "integer", strong: true },
-      { label: "Matchs", keys: ["matches"], format: "integer" },
-      { label: "Dernier MVP", keys: ["last_mvp"], format: "date" }
     ]
   },
   {
@@ -188,6 +176,7 @@ const rankingSections: RankingSection[] = [
             <tbody data-body={section.id}></tbody>
           </table>
         </div>
+        {section.note && <p class="live-table-note">{section.note}</p>}
       </div>
     </section>
   ))}
@@ -567,7 +556,7 @@ const rankingSections: RankingSection[] = [
       const officialEncounters = encounters.filter(
         (encounter) =>
           inCurrentSeason(encounter) &&
-          (encounter.status === "FINISHED" || encounter.finished_at || encounter.winner || encounter.score_a !== null)
+          (encounter.status === "FINISHED" || Boolean(encounter.finished_at) || Boolean(encounter.winner))
       );
 
       const teamName = (teamId) => teamsById.get(teamId)?.name || teamId || "-";
@@ -583,6 +572,7 @@ const rankingSections: RankingSection[] = [
             wins: 0,
             draws: 0,
             losses: 0,
+            decisive: 0,
             games_won: 0,
             games_lost: 0,
             game_diff: 0,
@@ -609,27 +599,39 @@ const rankingSections: RankingSection[] = [
         a.played += 1;
         b.played += 1;
 
-        if (scoreA > scoreB || encounter.winner === "A") {
-          a.wins += 1;
-          b.losses += 1;
-          a.points += 3;
-        } else if (scoreB > scoreA || encounter.winner === "B") {
-          b.wins += 1;
-          a.losses += 1;
-          b.points += 3;
+        if (scoreA !== scoreB) {
+          // Victoire nette : 3 points au vainqueur, 0 au perdant.
+          const winner = scoreA > scoreB ? a : b;
+          const loser = scoreA > scoreB ? b : a;
+          winner.wins += 1;
+          loser.losses += 1;
+          winner.points += 3;
         } else {
-          a.draws += 1;
-          b.draws += 1;
-          a.points += 1;
-          b.points += 1;
+          // Égalité de parties : la rencontre se joue au double décisif.
+          // Pas de match nul : 2 points au vainqueur, 1 au perdant.
+          const winA = encounter.winner === "A";
+          const winB = encounter.winner === "B";
+          if (winA || winB) {
+            const winner = winA ? a : b;
+            const loser = winA ? b : a;
+            winner.wins += 1;
+            winner.decisive += 1;
+            loser.losses += 1;
+            winner.points += 2;
+            loser.points += 1;
+          } else {
+            // Sécurité : rencontre à égalité sans vainqueur renseigné.
+            a.draws += 1;
+            b.draws += 1;
+            a.points += 1;
+            b.points += 1;
+          }
         }
       }
 
       const bestPlayers = new Map();
       const mvpPlayers = new Map();
-      const mostMvpPlayers = new Map();
       const oneEightyPlayers = new Map();
-      const encounterMvpPoints = new Map();
       const highFinishes = [];
       const historyRows = [];
 
@@ -648,8 +650,6 @@ const rankingSections: RankingSection[] = [
             singles_points: 0,
             doubles_points: 0,
             maximum_possible: 0,
-            mvp_count: 0,
-            last_mvp: "",
             count: 0,
             last_180: ""
           });
@@ -660,23 +660,6 @@ const rankingSections: RankingSection[] = [
           player.team = playerTeam(playerId, teamId);
         }
         return player;
-      };
-
-      const addEncounterMvpPoint = (match, playerId, teamId, points) => {
-        if (!match.encounter_id || points <= 0) return;
-        if (!encounterMvpPoints.has(match.encounter_id)) encounterMvpPoints.set(match.encounter_id, new Map());
-        const encounterMap = encounterMvpPoints.get(match.encounter_id);
-        if (!encounterMap.has(playerId)) {
-          encounterMap.set(playerId, {
-            playerId,
-            teamId,
-            points: 0,
-            date: match.finished_at || match.updated_at || match.created_at
-          });
-        }
-        const row = encounterMap.get(playerId);
-        row.points += points;
-        row.date = match.finished_at || row.date;
       };
 
       for (const match of officialMatches) {
@@ -724,7 +707,6 @@ const rankingSections: RankingSection[] = [
             if (isDouble) mvp.doubles_points += wonPoints;
             else mvp.singles_points += wonPoints;
             mvp.maximum_possible += playerPointValue;
-            addEncounterMvpPoint(match, playerId, teamId, wonPoints);
 
             if (!isDouble) {
               const best = ensurePlayer(bestPlayers, playerId, teamId);
@@ -935,19 +917,6 @@ const rankingSections: RankingSection[] = [
         .filter(Boolean)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-      for (const encounterMap of encounterMvpPoints.values()) {
-        const rows = [...encounterMap.values()];
-        const bestScore = Math.max(0, ...rows.map((row) => row.points));
-        if (bestScore <= 0) continue;
-        for (const row of rows.filter((item) => item.points === bestScore)) {
-          const player = ensurePlayer(mostMvpPlayers, row.playerId, row.teamId);
-          if (!player) continue;
-          player.mvp_count += 1;
-          player.last_mvp = !player.last_mvp || new Date(row.date) > new Date(player.last_mvp) ? row.date : player.last_mvp;
-          player.matches = mvpPlayers.get(row.playerId)?.matches || player.matches;
-        }
-      }
-
       const bestPlayerCandidates = [...bestPlayers.values()].map((player) => {
         const totalLegs = player.legs_won + player.legs_lost;
         return {
@@ -956,18 +925,19 @@ const rankingSections: RankingSection[] = [
           match_ratio: player.matches > 0 ? player.match_wins / player.matches : 0
         };
       });
+      // Best Player : uniquement les joueurs ayant atteint le minimum de matchs
+      // simples requis (pas de repli qui afficherait des joueurs non qualifiés).
       const officialBestPlayers = bestPlayerCandidates.filter(
         (player) => player.matches >= supabaseConfig.bestPlayerOfficialMinimum
       );
       const bestPlayerRows = addRank(
-        (officialBestPlayers.length > 0 ? officialBestPlayers : bestPlayerCandidates)
-          .sort(
-            (a, b) =>
-              b.leg_ratio - a.leg_ratio ||
-              b.match_ratio - a.match_ratio ||
-              b.matches - a.matches ||
-              a.player.localeCompare(b.player, "fr")
-          )
+        officialBestPlayers.sort(
+          (a, b) =>
+            b.leg_ratio - a.leg_ratio ||
+            b.match_ratio - a.match_ratio ||
+            b.matches - a.matches ||
+            a.player.localeCompare(b.player, "fr")
+        )
       );
 
       const mvpRows = addRank(
@@ -1019,17 +989,6 @@ const rankingSections: RankingSection[] = [
           )
       );
 
-      const mostMvpRows = addRank(
-        [...mostMvpPlayers.values()]
-          .filter((player) => player.mvp_count > 0)
-          .sort(
-            (a, b) =>
-              b.mvp_count - a.mvp_count ||
-              new Date(b.last_mvp).getTime() - new Date(a.last_mvp).getTime() ||
-              a.player.localeCompare(b.player, "fr")
-          )
-      );
-
       const oneEightyRows = addRank(
         [...oneEightyPlayers.values()]
           .filter((player) => player.count > 0)
@@ -1065,7 +1024,6 @@ const rankingSections: RankingSection[] = [
           "best-player": bestPlayerRows,
           mvp: mvpRows,
           "high-finish": highFinishRows,
-          "most-mvp": mostMvpRows,
           "one-eighties": oneEightyRows
         },
         historyRows: historyEncounters
@@ -1164,56 +1122,89 @@ const rankingSections: RankingSection[] = [
 
       const legList = document.createElement("div");
       legList.className = "history-leg-list";
+      const legDetails = [];
       for (const leg of legs) {
         const details = document.createElement("details");
         details.className = "history-leg";
         if (leg.number === 1) details.open = true;
+        legDetails.push(details);
 
         const summary = document.createElement("summary");
         appendText(summary, "span", `Manche ${leg.number}`);
-        appendText(summary, "strong", `${leg.winner} · finish ${leg.finish}`);
+        appendText(summary, "strong", leg.winner || "-");
         details.appendChild(summary);
 
-        const legStats = document.createElement("div");
-        legStats.className = "history-leg__stats";
-        for (const total of asArray(leg.totals)) {
-          appendStat(
-            legStats,
-            total.participant,
-            `${formatNumber(total.scored, 0)} pts · ${formatNumber(total.visits, 0)} visites${total.oneEighties ? ` · ${total.oneEighties} x 180` : ""}`
-          );
-        }
-        details.appendChild(legStats);
+        const visits = asArray(leg.visits);
+        const totals = asArray(leg.totals);
+        const sideOrder = [
+          ...totals.map((total) => total.side).filter(Boolean),
+          ...visits.map((visit) => visit.side).filter(Boolean)
+        ].filter((side, index, all) => all.indexOf(side) === index).slice(0, 2);
 
-        const tableWrap = document.createElement("div");
-        tableWrap.className = "history-visit-wrap";
-        const table = document.createElement("table");
-        table.className = "history-visit-table";
-        const thead = document.createElement("thead");
-        const headRow = document.createElement("tr");
-        for (const label of ["#", "Joueur", "Score", "Restant", "Note"]) {
-          appendText(headRow, "th", label);
-        }
-        thead.appendChild(headRow);
-        table.appendChild(thead);
+        const scoreboard = document.createElement("div");
+        scoreboard.className = "history-scoreboard";
 
-        const tbody = document.createElement("tbody");
-        for (const visit of asArray(leg.visits)) {
-          const row = document.createElement("tr");
-          for (const value of [
-            visit.turn,
-            visit.player || visit.participant,
-            formatNumber(visit.scored, 0),
-            formatNumber(visit.after, 0),
-            visit.note || "-"
-          ]) {
-            appendText(row, "td", String(value));
+        const boardHead = document.createElement("div");
+        boardHead.className = "history-scoreboard__head";
+        appendText(boardHead, "span", `Visites · manche ${leg.number}`);
+        appendText(boardHead, "span", "Score · reste");
+        scoreboard.appendChild(boardHead);
+
+        const players = document.createElement("div");
+        players.className = "history-scoreboard__players";
+        for (const side of sideOrder) {
+          const total = totals.find((item) => item.side === side);
+          const player = document.createElement("div");
+          appendText(player, "strong", total?.participant || side || "-");
+          players.appendChild(player);
+        }
+        scoreboard.appendChild(players);
+
+        const visitsBySide = new Map(sideOrder.map((side) => [side, []]));
+        for (const visit of visits) {
+          const side = visit.side || sideOrder[0];
+          if (!visitsBySide.has(side)) visitsBySide.set(side, []);
+          visitsBySide.get(side).push(visit);
+        }
+
+        const rows = document.createElement("div");
+        rows.className = "history-scoreboard__rows";
+        const maxTurns = Math.max(0, ...[...visitsBySide.values()].map((sideVisits) => sideVisits.length));
+
+        const createVisitCell = (visit) => {
+          const cell = document.createElement("div");
+          cell.className = "history-scoreboard__cell";
+          if (!visit) {
+            appendText(cell, "span", "-", "history-scoreboard__empty");
+            return cell;
           }
-          tbody.appendChild(row);
+          appendText(cell, "strong", formatNumber(visit.scored, 0));
+          appendText(cell, "span", formatNumber(visit.after, 0));
+          return cell;
+        };
+
+        for (let index = 0; index < maxTurns; index += 1) {
+          const row = document.createElement("div");
+          row.className = "history-scoreboard__row";
+          const turn = document.createElement("span");
+          turn.className = "history-scoreboard__turn";
+          turn.textContent = String(index + 1);
+          row.append(
+            createVisitCell(visitsBySide.get(sideOrder[0])?.[index]),
+            turn,
+            createVisitCell(visitsBySide.get(sideOrder[1])?.[index])
+          );
+          rows.appendChild(row);
         }
-        table.appendChild(tbody);
-        tableWrap.appendChild(table);
-        details.appendChild(tableWrap);
+        details.addEventListener("toggle", () => {
+          if (details.open) {
+            for (const otherDetails of legDetails) {
+              if (otherDetails !== details) otherDetails.open = false;
+            }
+          }
+        });
+        scoreboard.appendChild(rows);
+        details.appendChild(scoreboard);
         legList.appendChild(details);
       }
       panel.appendChild(legList);
@@ -1330,6 +1321,8 @@ const rankingSections: RankingSection[] = [
         list.appendChild(button);
       }
 
+      list.querySelector(".history-encounter-card.is-active")?.scrollIntoView({ block: "nearest" });
+
       const activeEncounter = rows.find((row) => row.id === activeHistoryEncounterId) || rows[0];
       empty.hidden = true;
       count.hidden = false;
@@ -1411,25 +1404,65 @@ const rankingSections: RankingSection[] = [
   </script>
 
   <style is:global>
+    .page-hero:has(+ .live-overview-section) {
+      min-height: 240px;
+      padding-block: 44px;
+    }
+
+    .page-hero:has(+ .live-overview-section) h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2.15rem, 4vw, 2.85rem);
+    }
+
+    .page-hero:has(+ .live-overview-section) .page-hero__description {
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+
+    .live-overview-section,
+    .live-overview-section ~ .section {
+      padding-block: 38px;
+    }
+
+    .live-overview-section ~ .section .section-header {
+      margin-bottom: 16px;
+    }
+
+    .live-overview-section ~ .section .section-header h2 {
+      margin-bottom: 8px;
+      font-size: 1.55rem;
+    }
+
+    .live-overview-section ~ .section .section-header p {
+      margin-bottom: 0;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .live-overview-section ~ .section .eyebrow {
+      margin-bottom: 7px;
+      font-size: 0.72rem;
+    }
+
     .live-overview-section {
-      padding-top: 44px;
+      padding-top: 28px;
     }
 
     .live-stats {
       display: grid;
-      gap: 24px;
+      gap: 14px;
     }
 
     .live-stats__status {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+      gap: 10px;
     }
 
     .live-stats__status > div,
     .live-stats__notice {
       min-width: 0;
-      padding: 18px;
+      padding: 12px 14px;
       border: 1px solid var(--color-line);
       border-radius: 8px;
       background: var(--color-surface);
@@ -1439,8 +1472,8 @@ const rankingSections: RankingSection[] = [
     .live-stats__status > div {
       display: grid;
       align-content: start;
-      gap: 8px;
-      min-height: 108px;
+      gap: 5px;
+      min-height: 78px;
     }
 
     .live-stats__status .label {
@@ -1451,13 +1484,13 @@ const rankingSections: RankingSection[] = [
     .live-stats__status strong {
       display: block;
       color: var(--color-red-dark);
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       line-height: 1.18;
       overflow-wrap: anywhere;
     }
 
     .live-stats__status strong[data-live-updated] {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     .live-stats__notice {
@@ -1472,15 +1505,16 @@ const rankingSections: RankingSection[] = [
     .live-stats__tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
     }
 
     .live-stats__tabs a {
-      padding: 9px 12px;
+      padding: 6px 9px;
       border: 1px solid var(--color-line);
       border-radius: 6px;
       background: var(--color-surface);
       color: var(--color-red-dark);
+      font-size: 0.86rem;
       font-weight: 800;
     }
 
@@ -1491,11 +1525,19 @@ const rankingSections: RankingSection[] = [
 
     .live-table-wrap {
       width: 100%;
-      overflow-x: auto;
+      max-height: 340px;
+      overflow: auto;
       border: 1px solid var(--color-line);
       border-radius: 8px;
       background: var(--color-surface);
       box-shadow: var(--shadow-sm);
+    }
+
+    .live-table-note {
+      margin: 8px 2px 0;
+      color: var(--color-muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
     }
 
     .live-table {
@@ -1507,7 +1549,21 @@ const rankingSections: RankingSection[] = [
     }
 
     .live-table th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       white-space: nowrap;
+    }
+
+    .live-table th,
+    .live-table td {
+      padding: 8px 10px;
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .live-table th {
+      font-size: 0.68rem;
     }
 
     .live-table td {
@@ -1521,15 +1577,15 @@ const rankingSections: RankingSection[] = [
 
     .live-table-empty {
       margin: 0;
-      padding: 24px;
+      padding: 16px;
     }
 
     .history-filters {
       display: grid;
       grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 16px;
-      padding: 16px;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 10px;
       border: 1px solid var(--color-line);
       border-radius: 8px;
       background: var(--color-surface);
@@ -1538,13 +1594,13 @@ const rankingSections: RankingSection[] = [
 
     .history-filters label {
       display: grid;
-      gap: 6px;
+      gap: 4px;
       min-width: 0;
     }
 
     .history-filters span {
       color: var(--color-muted);
-      font-size: 0.76rem;
+      font-size: 0.68rem;
       font-weight: 850;
       text-transform: uppercase;
     }
@@ -1552,8 +1608,8 @@ const rankingSections: RankingSection[] = [
     .history-filters input,
     .history-filters select {
       width: 100%;
-      min-height: 42px;
-      padding: 8px 10px;
+      min-height: 34px;
+      padding: 6px 8px;
       border: 1px solid var(--color-line);
       border-radius: 6px;
       background: #fbfcfa;
@@ -1561,8 +1617,9 @@ const rankingSections: RankingSection[] = [
     }
 
     .history-count {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       color: var(--color-muted);
+      font-size: 0.86rem;
       font-weight: 750;
     }
 
@@ -1576,26 +1633,39 @@ const rankingSections: RankingSection[] = [
     .history-browser {
       display: grid;
       grid-template-columns: minmax(260px, 0.9fr) minmax(340px, 1.05fr) minmax(390px, 1.35fr);
-      gap: 18px;
+      gap: 12px;
       align-items: start;
     }
 
     .history-panel {
+      display: flex;
+      flex-direction: column;
       min-width: 0;
+      min-height: 0;
       border: 1px solid var(--color-line);
       border-radius: 8px;
       background: var(--color-surface);
-      box-shadow: 0 16px 34px rgba(24, 38, 31, 0.08);
+      box-shadow: 0 10px 24px rgba(24, 38, 31, 0.07);
       overflow: hidden;
+    }
+
+    .history-panel--list,
+    .history-panel--matches {
+      height: clamp(430px, 58vh, 580px);
+    }
+
+    .history-panel--legs {
+      overflow: visible;
     }
 
     .history-panel__head,
     .history-detail-head {
       display: grid;
-      gap: 7px;
-      padding: 18px;
+      gap: 5px;
+      padding: 12px 14px;
       border-bottom: 1px solid var(--color-line);
       background: #fbfcfb;
+      flex: 0 0 auto;
     }
 
     .history-panel__head {
@@ -1607,7 +1677,7 @@ const rankingSections: RankingSection[] = [
     .history-detail-head h3 {
       margin: 0;
       color: var(--color-ink);
-      font-size: 1.1rem;
+      font-size: 0.98rem;
       line-height: 1.25;
     }
 
@@ -1615,16 +1685,17 @@ const rankingSections: RankingSection[] = [
     .history-panel__placeholder {
       margin: 0;
       color: var(--color-muted);
+      font-size: 0.84rem;
       font-weight: 700;
     }
 
     .history-panel__placeholder {
-      padding: 18px;
+      padding: 14px;
     }
 
     .history-kicker {
       color: var(--color-red-dark);
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       font-weight: 850;
       text-transform: uppercase;
     }
@@ -1633,8 +1704,27 @@ const rankingSections: RankingSection[] = [
     .history-match-list,
     .history-leg-list {
       display: grid;
-      gap: 10px;
-      padding: 14px;
+      gap: 6px;
+      min-height: 0;
+      padding: 8px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+    }
+
+    .history-encounter-list,
+    .history-match-list {
+      flex: 1 1 auto;
+      align-content: start;
+    }
+
+    .history-leg-list {
+      flex: 1 1 auto;
+    }
+
+    .history-panel--legs .history-leg-list {
+      flex: 0 0 auto;
+      overflow-y: visible;
     }
 
     .history-encounter-card,
@@ -1656,21 +1746,21 @@ const rankingSections: RankingSection[] = [
 
     .history-encounter-card {
       display: grid;
-      gap: 7px;
-      padding: 14px;
-      border-left: 4px solid transparent;
+      gap: 3px;
+      padding: 8px 10px;
+      border-left: 3px solid transparent;
     }
 
     .history-encounter-card strong {
       color: var(--color-ink);
-      font-size: 0.98rem;
+      font-size: 0.84rem;
       line-height: 1.25;
     }
 
     .history-card-meta,
     .history-match-row span {
       color: var(--color-muted);
-      font-size: 0.86rem;
+      font-size: 0.76rem;
       font-weight: 700;
     }
 
@@ -1696,35 +1786,32 @@ const rankingSections: RankingSection[] = [
     .history-stat-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      padding: 14px;
+      gap: 8px;
+      padding: 10px;
       border-bottom: 1px solid var(--color-line);
       background: #fff;
     }
 
-    .history-stat-grid > div,
-    .history-leg__stats > div {
+    .history-stat-grid > div {
       display: grid;
       gap: 4px;
       min-width: 0;
-      padding: 11px;
+      padding: 8px 9px;
       border-radius: 8px;
       border: 1px solid #e8eee9;
       background: #f8fbf8;
     }
 
-    .history-stat-grid span,
-    .history-leg__stats span {
+    .history-stat-grid span {
       color: var(--color-muted);
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       font-weight: 850;
       text-transform: uppercase;
     }
 
-    .history-stat-grid strong,
-    .history-leg__stats strong {
+    .history-stat-grid strong {
       color: var(--color-red-dark);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       line-height: 1.2;
       overflow-wrap: anywhere;
     }
@@ -1732,15 +1819,15 @@ const rankingSections: RankingSection[] = [
     .history-match-row {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 14px;
+      gap: 8px;
       align-items: center;
-      padding: 13px 14px;
+      padding: 8px 10px;
     }
 
     .history-match-row__main,
     .history-match-row__score {
       display: grid;
-      gap: 4px;
+      gap: 2px;
       min-width: 0;
     }
 
@@ -1751,12 +1838,12 @@ const rankingSections: RankingSection[] = [
     .history-match-row__main strong,
     .history-match-row__score strong {
       color: var(--color-ink);
-      font-size: 0.92rem;
+      font-size: 0.82rem;
     }
 
     .history-match-row__score strong {
       color: var(--color-red-dark);
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .history-leg {
@@ -1769,10 +1856,11 @@ const rankingSections: RankingSection[] = [
     .history-leg summary {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
-      gap: 10px;
+      gap: 8px;
       align-items: center;
-      padding: 13px 14px;
+      padding: 9px 10px;
       cursor: pointer;
+      font-size: 0.84rem;
       font-weight: 800;
       background: #fbfcfb;
     }
@@ -1782,42 +1870,136 @@ const rankingSections: RankingSection[] = [
       overflow-wrap: anywhere;
     }
 
-    .history-leg__stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      padding: 12px 14px;
-      background: #fff;
-    }
-
-    .history-visit-wrap {
-      overflow-x: auto;
+    .history-scoreboard {
       border-top: 1px solid var(--color-line);
+      background: #fff;
+      overflow-x: auto;
+      scrollbar-gutter: stable;
     }
 
-    .history-visit-table {
-      width: 100%;
-      min-width: 520px;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-    }
-
-    .history-visit-table th,
-    .history-visit-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--color-line);
-      text-align: left;
-    }
-
-    .history-visit-table th {
-      background: #fbfcfb;
+    .history-scoreboard__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px 6px;
       color: var(--color-muted);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
+      font-weight: 850;
       text-transform: uppercase;
     }
 
-    .history-visit-table td {
+    .history-scoreboard__head,
+    .history-scoreboard__players,
+    .history-scoreboard__rows {
+      min-width: 360px;
+    }
+
+    .history-scoreboard__head span:last-child {
+      color: var(--color-red-dark);
+    }
+
+    .history-scoreboard__players {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0 10px 8px;
+    }
+
+    .history-scoreboard__players > div {
+      display: grid;
+      align-content: center;
+      min-width: 0;
+      min-height: 38px;
+      padding: 7px 9px;
+      border: 1px solid rgba(201, 51, 47, 0.22);
+      border-left: 3px solid var(--color-red-dark);
+      border-radius: 8px;
+      background: #fffafa;
+    }
+
+    .history-scoreboard__players strong {
+      color: var(--color-red-dark);
+      font-size: 0.82rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .history-scoreboard__rows {
+      display: grid;
+      gap: 2px;
+      padding: 2px 8px 8px;
+    }
+
+    .history-scoreboard__row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      min-height: 30px;
+      padding: 3px 6px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .history-scoreboard__row:nth-child(even) {
+      background: #fff7f7;
+    }
+
+    .history-scoreboard__row:hover {
+      border-color: rgba(201, 51, 47, 0.22);
+      background: #fff2f2;
+    }
+
+    .history-scoreboard__cell {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      color: var(--color-muted);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .history-scoreboard__row .history-scoreboard__cell:first-child {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .history-scoreboard__row .history-scoreboard__cell:last-child {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .history-scoreboard__cell strong {
+      min-width: 2.4ch;
+      color: var(--color-red-dark);
+      font-size: 0.88rem;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .history-scoreboard__cell span {
       color: var(--color-ink);
+      font-size: 0.72rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .history-scoreboard__turn {
+      display: grid;
+      place-items: center;
+      height: 20px;
+      border: 1px solid rgba(201, 51, 47, 0.24);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--color-muted);
+      font-size: 0.66rem;
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .history-scoreboard__empty {
+      color: #bca9a9;
     }
 
     @media (max-width: 1020px) {
@@ -1828,6 +2010,16 @@ const rankingSections: RankingSection[] = [
 
       .history-browser {
         grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .history-panel--list,
+      .history-panel--matches {
+        max-height: 480px;
+      }
+
+      .history-panel--legs {
+        max-height: none;
       }
     }
 
@@ -1838,11 +2030,10 @@ const rankingSections: RankingSection[] = [
       }
 
       .live-stats__status strong {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       .history-stat-grid,
-      .history-leg__stats,
       .history-match-row {
         grid-template-columns: 1fr;
       }
@@ -1850,6 +2041,42 @@ const rankingSections: RankingSection[] = [
       .history-match-row__score {
         text-align: left;
       }
+
+      .history-panel--list,
+      .history-panel--matches {
+        max-height: 440px;
+      }
+
+      .history-panel--legs {
+        max-height: none;
+      }
+
+      .history-panel__head,
+      .history-detail-head {
+        padding: 10px 12px;
+      }
+
+      .history-encounter-list,
+      .history-match-list,
+      .history-leg-list {
+        padding: 8px;
+      }
+
+      .history-scoreboard__players {
+        grid-template-columns: 1fr;
+      }
+
+      .history-scoreboard__row {
+        grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+        gap: 6px;
+        padding-inline: 5px;
+      }
+
+      .history-scoreboard__cell {
+        gap: 4px;
+        font-size: 0.78rem;
+      }
+
     }
   </style>
 </BaseLayout>

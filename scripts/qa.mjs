@@ -7,6 +7,7 @@
 // structurés, la validation, les permissions, l'upload et les réglages du site.
 // Aucune donnée réelle n'est modifiée (round-trips sur des éléments jetables).
 import http from "node:http";
+import { existsSync, readFileSync } from "node:fs";
 import { rm } from "node:fs/promises";
 import { resolve } from "node:path";
 
@@ -17,13 +18,41 @@ const failures = [];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+function loadEnvFile(file) {
+  if (!existsSync(file)) return {};
+  return Object.fromEntries(
+    readFileSync(file, "utf8")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line && !line.startsWith("#") && line.includes("="))
+      .map((line) => {
+        const [key, ...rest] = line.split("=");
+        return [key, rest.join("=").replace(/^["']|["']$/g, "")];
+      })
+  );
+}
+
+const localEnv = loadEnvFile(resolve(process.cwd(), ".env.local"));
+const adminUser = process.env.ADMIN_USER || process.env.QA_ADMIN_USER || localEnv.ADMIN_USER;
+const adminPassword = process.env.ADMIN_PASSWORD || process.env.QA_ADMIN_PASSWORD || localEnv.ADMIN_PASSWORD;
+const authHeader = adminUser && adminPassword
+  ? `Basic ${Buffer.from(`${adminUser}:${adminPassword}`).toString("base64")}`
+  : "";
+
+const protectedPath = (path) => path.startsWith("/admin") || path.startsWith("/api");
+
 function once(method, path, { json } = {}) {
   return new Promise((done) => {
     const body = json !== undefined ? JSON.stringify(json) : undefined;
     const u = new URL(BASE + path);
+    const headers = {
+      origin: ORIGIN,
+      ...(body ? { "content-type": "application/json" } : {}),
+      ...(authHeader && protectedPath(path) ? { authorization: authHeader } : {})
+    };
     const r = http.request(
       { hostname: u.hostname, port: u.port, path: u.pathname + u.search, method,
-        headers: { origin: ORIGIN, ...(body ? { "content-type": "application/json" } : {}) } },
+        headers },
       (res) => { let d = ""; res.on("data", (c) => (d += c)); res.on("end", () => done({ status: res.statusCode, body: d })); }
     );
     r.on("error", (e) => done({ status: 0, body: String(e) }));
@@ -57,7 +86,24 @@ for (const p of ["/", "/news/", "/sda/", "/lmf/", "/club/", "/agenda/", "/archiv
 check("GET 404", (await req("GET", "/page-inexistante-xyz/")).status === 404);
 
 console.log("\n[2] Pages admin");
-const collections = ["pages","news","events","documents","home-documents","members","teams","seasons","videos","archives","archive-groups","contact-blocks","legacy-pages"];
+const collections = [
+  "pages",
+  "news",
+  "events",
+  "documents",
+  "home-documents",
+  "sda-documents",
+  "lmf-documents",
+  "members",
+  "club-palmares",
+  "teams",
+  "seasons",
+  "videos",
+  "archives",
+  "archive-groups",
+  "contact-blocks",
+  "legacy-pages"
+];
 for (const p of ["/admin","/admin/content","/admin/site","/admin/media", ...collections.map((c) => "/admin/" + c), "/admin/pages?edit=sda"]) {
   const r = await req("GET", p);
   check("GET " + p, r.status === 200, "-> " + r.status);
@@ -69,7 +115,10 @@ const specs = {
   events: { idKey: "id", create: { title: "__qa_test__", date: "2019-01-01", time: "20h" } },
   documents: { idKey: "id", create: { title: "__qa_test__", competition: "QA", season: "2019-20" } },
   "home-documents": { idKey: "id", create: { title: "__qa_test__", competition: "QA", season: "2019-20" } },
+  "sda-documents": { idKey: "id", create: { title: "__qa_test__", competition: "SDA", season: "2019-20", order: 1 } },
+  "lmf-documents": { idKey: "id", create: { title: "__qa_test__", competition: "LMF", season: "2019-20", order: 1 } },
   members: { idKey: "id", create: { firstName: "__qa__", lastName: "__test__" } },
+  "club-palmares": { idKey: "id", create: { season: "2099 / 2100", competition: "__qa_test__", result: "__qa_result__", order: 999999 } },
   teams: { idKey: "id", create: { name: "__qa_test__", members: ["A", "B"] } },
   seasons: { idKey: "id", create: { label: "__qa_test__" } },
   videos: { idKey: "id", create: { title: "__qa_test__", year: "2019" } },
@@ -119,6 +168,7 @@ function uploadOnce(filename, content, withOrigin = true) {
     const u = new URL(BASE + "/api/upload");
     const headers = { "content-type": `multipart/form-data; boundary=${boundary}`, "content-length": buf.length };
     if (withOrigin) headers.origin = ORIGIN;
+    if (authHeader) headers.authorization = authHeader;
     const r = http.request({ hostname: u.hostname, port: u.port, path: u.pathname, method: "POST", headers },
       (res) => { let d = ""; res.on("data", (c) => (d += c)); res.on("end", () => done({ status: res.statusCode, body: d })); });
     r.on("error", (e) => done({ status: 0, body: String(e) }));

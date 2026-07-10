@@ -1,0 +1,1059 @@
+[
+  {
+    "id": "2025-2026-1",
+    "order": 2025002,
+    "season": "2025 / 2026",
+    "competition": "1ère Ligue Suisse",
+    "result": "Champion"
+  },
+  {
+    "order": 2025001,
+    "season": "2025 / 2026",
+    "competition": "Geneva Darts League",
+    "result": "Champion par équipe",
+    "id": "2025-2026-2"
+  },
+  {
+    "id": "2024-25-1",
+    "order": 2024005,
+    "season": "2024 / 25",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 24-25)",
+    "result": "Champion"
+  },
+  {
+    "id": "2024-25-2",
+    "order": 2024004,
+    "season": "2024 / 25",
+    "competition": "Swiss Darts Association (SDA 24-25)",
+    "result": "5ème de 1ère Ligue Ouest / Morges 1"
+  },
+  {
+    "id": "2024-25-3",
+    "order": 2024003,
+    "season": "2024 / 25",
+    "competition": "Swiss Darts Association (SDA 24-25)",
+    "result": "Champion de 2ème Ligue Ouest / Morges 2"
+  },
+  {
+    "id": "2024-25-4",
+    "order": 2024002,
+    "season": "2024 / 25",
+    "competition": "Swiss Darts Association (SDA 24-25)",
+    "result": "1/2 finale Coupe Suisse / Morges 1"
+  },
+  {
+    "id": "2024-25-5",
+    "order": 2024001,
+    "season": "2024 / 25",
+    "competition": "Swiss InterRegio Cup",
+    "result": "1/2 finale"
+  },
+  {
+    "id": "2023-24-1",
+    "order": 2023005,
+    "season": "2023 / 24",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 23-24)",
+    "result": "2ème rang championnat"
+  },
+  {
+    "id": "2023-24-2",
+    "order": 2023004,
+    "season": "2023 / 24",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 23-24)",
+    "result": "Vainqueur Coupe Vaudoise"
+  },
+  {
+    "id": "2023-24-3",
+    "order": 2023003,
+    "season": "2023 / 24",
+    "competition": "Swiss Darts Association (SDA 23-24)",
+    "result": "2ème LNC Central / Morges 1 (promu en 1ère ligue)"
+  },
+  {
+    "id": "2023-24-4",
+    "order": 2023002,
+    "season": "2023 / 24",
+    "competition": "Swiss Darts Association (SDA 23-24)",
+    "result": "6ème LNC Ouest / Morges 2"
+  },
+  {
+    "id": "2023-24-5",
+    "order": 2023001,
+    "season": "2023 / 24",
+    "competition": "Swiss Darts Association (SDA 23-24)",
+    "result": "1/2 finale Coupe Suisse B / Morges"
+  },
+  {
+    "id": "2022-23-1",
+    "order": 2022004,
+    "season": "2022 / 23",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 22-23)",
+    "result": "2ème rang championnat"
+  },
+  {
+    "id": "2022-23-2",
+    "order": 2022003,
+    "season": "2022 / 23",
+    "competition": "Swiss Darts Association (SDA 22-23)",
+    "result": "4ème LNC Central / Morges 1"
+  },
+  {
+    "id": "2022-23-3",
+    "order": 2022002,
+    "season": "2022 / 23",
+    "competition": "Swiss Darts Association (SDA 22-23)",
+    "result": "2ème LNC Ouest / Morges 2"
+  },
+  {
+    "id": "2022-23-4",
+    "order": 2022001,
+    "season": "2022 / 23",
+    "competition": "Swiss Darts Association (SDA 22-23)",
+    "result": "Vainqueur Coupe Suisse B / Morges"
+  },
+  {
+    "id": "2021-22-1",
+    "order": 2021004,
+    "season": "2021 / 22",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 21-22)",
+    "result": "pas de championnat (Covid)"
+  },
+  {
+    "id": "2021-22-2",
+    "order": 2021003,
+    "season": "2021 / 22",
+    "competition": "Swiss Darts Association (SDA 21-22)",
+    "result": "6ème LNB-Ouest / Morges 1"
+  },
+  {
+    "id": "2021-22-3",
+    "order": 2021002,
+    "season": "2021 / 22",
+    "competition": "Swiss Darts Association (SDA 21-22)",
+    "result": "Champion de LNC Ouest / Morges 2"
+  },
+  {
+    "id": "2021-22-4",
+    "order": 2021001,
+    "season": "2021 / 22",
+    "competition": "Swiss Darts Association (SDA 21-22)",
+    "result": "1/2 finale Coupe Suisse B / Morges 1"
+  },
+  {
+    "id": "2020-21-1",
+    "order": 2020003,
+    "season": "2020 / 21",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 20-21)",
+    "result": "pas de championnat (Covid)"
+  },
+  {
+    "id": "2020-21-2",
+    "order": 2020002,
+    "season": "2020 / 21",
+    "competition": "Swiss Darts Association (SDA 20-21)",
+    "result": "pas de championnat SDA (Covid)"
+  },
+  {
+    "id": "2020-21-3",
+    "order": 2020001,
+    "season": "2020 / 21",
+    "competition": "Swiss Darts Association (SDA 20-21)",
+    "result": "pas de Coupe Suisse (Covid)"
+  },
+  {
+    "id": "2019-20-1",
+    "order": 2019004,
+    "season": "2019 / 20",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 19-20)",
+    "result": "Champion / Morges 1"
+  },
+  {
+    "id": "2019-20-2",
+    "order": 2019003,
+    "season": "2019 / 20",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 19-20)",
+    "result": "4ème / Morges 2"
+  },
+  {
+    "id": "2019-20-3",
+    "order": 2019002,
+    "season": "2019 / 20",
+    "competition": "Swiss Darts Association (SDA 19-20)",
+    "result": "7ème LNB-Ouest"
+  },
+  {
+    "id": "2019-20-4",
+    "order": 2019001,
+    "season": "2019 / 20",
+    "competition": "Swiss Darts Association (SDA 19-20)",
+    "result": "pas de Coupe Suisse (Covid)"
+  },
+  {
+    "id": "2018-19-1",
+    "order": 2018004,
+    "season": "2018 / 19",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 18-19)",
+    "result": "3ème rang"
+  },
+  {
+    "id": "2018-19-2",
+    "order": 2018003,
+    "season": "2018 / 19",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 18-19)",
+    "result": "1/2 finale Coupe Vaudoise"
+  },
+  {
+    "id": "2018-19-3",
+    "order": 2018002,
+    "season": "2018 / 19",
+    "competition": "Swiss Darts Association (SDA 18-19)",
+    "result": "6ème rang LNB"
+  },
+  {
+    "id": "2018-19-4",
+    "order": 2018001,
+    "season": "2018 / 19",
+    "competition": "Swiss Darts Association (SDA 18-19)",
+    "result": "1/4 finale Coupe Suisse A"
+  },
+  {
+    "id": "2017-18-1",
+    "order": 2017003,
+    "season": "2017 / 18",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 17-18)",
+    "result": "2ème rang"
+  },
+  {
+    "id": "2017-18-2",
+    "order": 2017002,
+    "season": "2017 / 18",
+    "competition": "Swiss Darts Association (SDA 17-18)",
+    "result": "Champion LNC ouest (promu en LNB)"
+  },
+  {
+    "id": "2017-18-3",
+    "order": 2017001,
+    "season": "2017 / 18",
+    "competition": "Swiss Darts Association (SDA 17-18)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2016-17-1",
+    "order": 2016003,
+    "season": "2016 / 17",
+    "competition": "Ligue Morgienne de Fléchettes (LMF 16-17)",
+    "result": "2ème rang"
+  },
+  {
+    "id": "2016-17-2",
+    "order": 2016002,
+    "season": "2016 / 17",
+    "competition": "Swiss Darts Association (SDA 16-17)",
+    "result": "2ème LNC ouest"
+  },
+  {
+    "id": "2016-17-3",
+    "order": 2016001,
+    "season": "2016 / 17",
+    "competition": "Swiss Darts Association (SDA 16-17)",
+    "result": "1/8 finale Coupe Suisse A"
+  },
+  {
+    "id": "2015-16-1",
+    "order": 2015002,
+    "season": "2015 / 16",
+    "competition": "Swiss Darts Association (SDA 15-16)",
+    "result": "7ème rang LNB (relégué en LNC)"
+  },
+  {
+    "id": "2015-16-2",
+    "order": 2015001,
+    "season": "2015 / 16",
+    "competition": "Swiss Darts Association (SDA 15-16)",
+    "result": "1/4 finale Coupe Suisse A"
+  },
+  {
+    "id": "2014-15-1",
+    "order": 2014006,
+    "season": "2014 / 15",
+    "competition": "Geneva Darts League (GDL 14-15)",
+    "result": "4ème rang 1ère Div."
+  },
+  {
+    "id": "2014-15-2",
+    "order": 2014005,
+    "season": "2014 / 15",
+    "competition": "Geneva Darts League (GDL 14-15)",
+    "result": "Finaliste Coupe Genevoise"
+  },
+  {
+    "id": "2014-15-3",
+    "order": 2014004,
+    "season": "2014 / 15",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 14-15)",
+    "result": "4ème rang"
+  },
+  {
+    "id": "2014-15-4",
+    "order": 2014003,
+    "season": "2014 / 15",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 14-15)",
+    "result": "1/4 finale Coupe Vaudoise"
+  },
+  {
+    "id": "2014-15-5",
+    "order": 2014002,
+    "season": "2014 / 15",
+    "competition": "Swiss Darts Association (SDA 14-15)",
+    "result": "7ème rang LNB"
+  },
+  {
+    "id": "2014-15-6",
+    "order": 2014001,
+    "season": "2014 / 15",
+    "competition": "Swiss Darts Association (SDA 14-15)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2013-14-1",
+    "order": 2013008,
+    "season": "2013 / 14",
+    "competition": "Geneva Darts League (GDL 13-14)",
+    "result": "2ème rang 1ère Div."
+  },
+  {
+    "id": "2013-14-2",
+    "order": 2013007,
+    "season": "2013 / 14",
+    "competition": "Geneva Darts League (GDL 13-14)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2013-14-3",
+    "order": 2013006,
+    "season": "2013 / 14",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 13-14)",
+    "result": "4ème rang (DCM 1)"
+  },
+  {
+    "id": "2013-14-4",
+    "order": 2013005,
+    "season": "2013 / 14",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 13-14)",
+    "result": "1/2 finale Coupe Vaudoise (DCM 1)"
+  },
+  {
+    "id": "2013-14-5",
+    "order": 2013004,
+    "season": "2013 / 14",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 13-14)",
+    "result": "7ème rang (DCM 2)"
+  },
+  {
+    "id": "2013-14-6",
+    "order": 2013003,
+    "season": "2013 / 14",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 13-14)",
+    "result": "1/2 finale Coupe Vaudoise (DCM 2)"
+  },
+  {
+    "id": "2013-14-7",
+    "order": 2013002,
+    "season": "2013 / 14",
+    "competition": "Swiss Darts Association (SDA 13-14)",
+    "result": "8ème rang LNA (relégué en LNB)"
+  },
+  {
+    "id": "2013-14-8",
+    "order": 2013001,
+    "season": "2013 / 14",
+    "competition": "Swiss Darts Association (SDA 13-14)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2012-13-1",
+    "order": 2012010,
+    "season": "2012 / 13",
+    "competition": "Geneva Darts League (GDL 12-13)",
+    "result": "2ème rang 1ère Div."
+  },
+  {
+    "id": "2012-13-2",
+    "order": 2012009,
+    "season": "2012 / 13",
+    "competition": "Geneva Darts League (GDL 12-13)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2012-13-3",
+    "order": 2012008,
+    "season": "2012 / 13",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 12-13)",
+    "result": "3ème rang (DCM 1)"
+  },
+  {
+    "id": "2012-13-4",
+    "order": 2012007,
+    "season": "2012 / 13",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 12-13)",
+    "result": "Vainqueur Coupe Vaudoise (DCM 1)"
+  },
+  {
+    "id": "2012-13-5",
+    "order": 2012006,
+    "season": "2012 / 13",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 12-13)",
+    "result": "6ème rang (DCM 2)"
+  },
+  {
+    "id": "2012-13-6",
+    "order": 2012005,
+    "season": "2012 / 13",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 12-13)",
+    "result": "1/2 finale Coupe Vaudoise (DCM 2)"
+  },
+  {
+    "id": "2012-13-7",
+    "order": 2012004,
+    "season": "2012 / 13",
+    "competition": "Swiss Darts Association (SDA 12-13)",
+    "result": "Champion LNB (DCM 1) (promu en LNA)"
+  },
+  {
+    "id": "2012-13-8",
+    "order": 2012003,
+    "season": "2012 / 13",
+    "competition": "Swiss Darts Association (SDA 12-13)",
+    "result": "3ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2012-13-9",
+    "order": 2012002,
+    "season": "2012 / 13",
+    "competition": "Swiss Darts Association (SDA 12-13)",
+    "result": "1/4 finale Coupe Suisse A (DCM 1)"
+  },
+  {
+    "id": "2012-13-10",
+    "order": 2012001,
+    "season": "2012 / 13",
+    "competition": "Swiss Darts Association (SDA 12-13)",
+    "result": "Finaliste Coupe Suisse B (DCM 2)"
+  },
+  {
+    "id": "2011-12-1",
+    "order": 2011010,
+    "season": "2011 / 12",
+    "competition": "Geneva Darts League (GDL 11-12)",
+    "result": "3ème rang 1ère Div."
+  },
+  {
+    "id": "2011-12-2",
+    "order": 2011009,
+    "season": "2011 / 12",
+    "competition": "Geneva Darts League (GDL 11-12)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2011-12-3",
+    "order": 2011008,
+    "season": "2011 / 12",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 11-12)",
+    "result": "3ème rang (DCM 1)"
+  },
+  {
+    "id": "2011-12-4",
+    "order": 2011007,
+    "season": "2011 / 12",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 11-12)",
+    "result": "Vainqueur Coupe Vaudoise (DCM 1)"
+  },
+  {
+    "id": "2011-12-5",
+    "order": 2011006,
+    "season": "2011 / 12",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 11-12)",
+    "result": "6ème rang (DCM 2)"
+  },
+  {
+    "id": "2011-12-6",
+    "order": 2011005,
+    "season": "2011 / 12",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 11-12)",
+    "result": "1/2 finale Coupe Vaudoise (DCM 2)"
+  },
+  {
+    "id": "2011-12-7",
+    "order": 2011004,
+    "season": "2011 / 12",
+    "competition": "Swiss Darts Association (SDA 11-12)",
+    "result": "3ème rang LNB (DCM 1)"
+  },
+  {
+    "id": "2011-12-8",
+    "order": 2011003,
+    "season": "2011 / 12",
+    "competition": "Swiss Darts Association (SDA 11-12)",
+    "result": "3ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2011-12-9",
+    "order": 2011002,
+    "season": "2011 / 12",
+    "competition": "Swiss Darts Association (SDA 11-12)",
+    "result": "1/4 finale Coupe Suisse A (DCM 1)"
+  },
+  {
+    "id": "2011-12-10",
+    "order": 2011001,
+    "season": "2011 / 12",
+    "competition": "Swiss Darts Association (SDA 11-12)",
+    "result": "Finaliste Coupe Suisse B (DCM 2)"
+  },
+  {
+    "id": "2010-11-1",
+    "order": 2010009,
+    "season": "2010 / 11",
+    "competition": "Geneva Darts League (GDL 10-11)",
+    "result": "Champion 1ère Div."
+  },
+  {
+    "id": "2010-11-2",
+    "order": 2010008,
+    "season": "2010 / 11",
+    "competition": "Geneva Darts League (GDL 10-11)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2010-11-3",
+    "order": 2010007,
+    "season": "2010 / 11",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 10-11)",
+    "result": "2ème rang (DCM 1)"
+  },
+  {
+    "id": "2010-11-4",
+    "order": 2010006,
+    "season": "2010 / 11",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 10-11)",
+    "result": "Finaliste Coupe Vaudoise (DCM 1)"
+  },
+  {
+    "id": "2010-11-5",
+    "order": 2010005,
+    "season": "2010 / 11",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 10-11)",
+    "result": "7ème rang (DCM 2)"
+  },
+  {
+    "id": "2010-11-6",
+    "order": 2010004,
+    "season": "2010 / 11",
+    "competition": "Swiss Darts Association (SDA 10-11)",
+    "result": "3ème rang LNB (DCM 1)"
+  },
+  {
+    "id": "2010-11-7",
+    "order": 2010003,
+    "season": "2010 / 11",
+    "competition": "Swiss Darts Association (SDA 10-11)",
+    "result": "5ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2010-11-8",
+    "order": 2010002,
+    "season": "2010 / 11",
+    "competition": "Swiss Darts Association (SDA 10-11)",
+    "result": "1/8 finale Coupe Suisse A (DCM 1)"
+  },
+  {
+    "id": "2010-11-9",
+    "order": 2010001,
+    "season": "2010 / 11",
+    "competition": "Swiss Darts Association (SDA 10-11)",
+    "result": "1/4 finale Coupe Suisse B (DCM 2)"
+  },
+  {
+    "id": "2009-10-1",
+    "order": 2009008,
+    "season": "2009 / 10",
+    "competition": "Geneva Darts League (GDL 09-10)",
+    "result": "Champion 1ère Div."
+  },
+  {
+    "id": "2009-10-2",
+    "order": 2009007,
+    "season": "2009 / 10",
+    "competition": "Geneva Darts League (GDL 09-10)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2009-10-3",
+    "order": 2009006,
+    "season": "2009 / 10",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 09-10)",
+    "result": "5ème rang (DCM 1)"
+  },
+  {
+    "id": "2009-10-4",
+    "order": 2009005,
+    "season": "2009 / 10",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 09-10)",
+    "result": "9ème rang (DCM 2)"
+  },
+  {
+    "id": "2009-10-5",
+    "order": 2009004,
+    "season": "2009 / 10",
+    "competition": "Swiss Darts Association (SDA 09-10)",
+    "result": "4ème rang LNB (DCM 1)"
+  },
+  {
+    "id": "2009-10-6",
+    "order": 2009003,
+    "season": "2009 / 10",
+    "competition": "Swiss Darts Association (SDA 09-10)",
+    "result": "3ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2009-10-7",
+    "order": 2009002,
+    "season": "2009 / 10",
+    "competition": "Swiss Darts Association (SDA 09-10)",
+    "result": "Finaliste Coupe Suisse B (DCM 1)"
+  },
+  {
+    "id": "2009-10-8",
+    "order": 2009001,
+    "season": "2009 / 10",
+    "competition": "Tournoi d'été (Ultra 80th)",
+    "result": "2ème rang"
+  },
+  {
+    "id": "2008-09-1",
+    "order": 2008008,
+    "season": "2008 / 09",
+    "competition": "Geneva Darts League (GDL 08-09)",
+    "result": "Champion Div.Elite"
+  },
+  {
+    "id": "2008-09-2",
+    "order": 2008007,
+    "season": "2008 / 09",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 08-09)",
+    "result": "Champion Vaudois (DCM 1)"
+  },
+  {
+    "id": "2008-09-3",
+    "order": 2008006,
+    "season": "2008 / 09",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 08-09)",
+    "result": "6ème rang (DCM 2)"
+  },
+  {
+    "id": "2008-09-4",
+    "order": 2008005,
+    "season": "2008 / 09",
+    "competition": "Swiss Darts Association (SDA 08-09)",
+    "result": "Champion LNC ouest (DCM 1)"
+  },
+  {
+    "id": "2008-09-5",
+    "order": 2008004,
+    "season": "2008 / 09",
+    "competition": "Swiss Darts Association (SDA 08-09)",
+    "result": "4ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2008-09-6",
+    "order": 2008003,
+    "season": "2008 / 09",
+    "competition": "Swiss Darts Association (SDA 08-09)",
+    "result": "Finaliste Coupe Suisse B (DCM 1)"
+  },
+  {
+    "id": "2008-09-7",
+    "order": 2008002,
+    "season": "2008 / 09",
+    "competition": "Swiss Darts Association (SDA 08-09)",
+    "result": "1/2 finale Coupe Suisse B (DCM 2)"
+  },
+  {
+    "id": "2008-09-8",
+    "order": 2008001,
+    "season": "2008 / 09",
+    "competition": "Tournoi d'été (Ultra 80th)",
+    "result": "2ème rang"
+  },
+  {
+    "id": "2007-08-1",
+    "order": 2007007,
+    "season": "2007 / 08",
+    "competition": "Geneva Darts League (GDL 07-08)",
+    "result": "Champion Div.Elite"
+  },
+  {
+    "id": "2007-08-2",
+    "order": 2007006,
+    "season": "2007 / 08",
+    "competition": "Geneva Darts League (GDL 07-08)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2007-08-3",
+    "order": 2007005,
+    "season": "2007 / 08",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 07-08)",
+    "result": "5ème rang"
+  },
+  {
+    "id": "2007-08-4",
+    "order": 2007004,
+    "season": "2007 / 08",
+    "competition": "Swiss Darts Association (SDA 07-08)",
+    "result": "3ème rang LNC sud (DCM 1)"
+  },
+  {
+    "id": "2007-08-5",
+    "order": 2007003,
+    "season": "2007 / 08",
+    "competition": "Swiss Darts Association (SDA 07-08)",
+    "result": "6ème rang LNC sud (DCM 2)"
+  },
+  {
+    "id": "2007-08-6",
+    "order": 2007002,
+    "season": "2007 / 08",
+    "competition": "Swiss Darts Association (SDA 07-08)",
+    "result": "1/2 finale Coupe Suisse B (DCM 1)"
+  },
+  {
+    "id": "2007-08-7",
+    "order": 2007001,
+    "season": "2007 / 08",
+    "competition": "Swiss InterRegio Cup",
+    "result": "2ème rang (par équipe)"
+  },
+  {
+    "id": "2006-07-1",
+    "order": 2006006,
+    "season": "2006 / 07",
+    "competition": "Geneva Darts League (GDL 06-07)",
+    "result": "Champion Div.Elite"
+  },
+  {
+    "id": "2006-07-2",
+    "order": 2006005,
+    "season": "2006 / 07",
+    "competition": "Geneva Darts League (GDL 06-07)",
+    "result": "Vainqueur Coupe Genevoise"
+  },
+  {
+    "id": "2006-07-3",
+    "order": 2006004,
+    "season": "2006 / 07",
+    "competition": "Swiss Darts Association (SDA 06-07)",
+    "result": "2ème rang LNC ouest (DCM 1)"
+  },
+  {
+    "id": "2006-07-4",
+    "order": 2006003,
+    "season": "2006 / 07",
+    "competition": "Swiss Darts Association (SDA 06-07)",
+    "result": "5ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2006-07-5",
+    "order": 2006002,
+    "season": "2006 / 07",
+    "competition": "Swiss Darts Association (SDA 06-07)",
+    "result": "1/2 finale Coupe Suisse B (DCM 1)"
+  },
+  {
+    "id": "2006-07-6",
+    "order": 2006001,
+    "season": "2006 / 07",
+    "competition": "Swiss InterRegio Cup",
+    "result": "12ème rang (par équipe)"
+  },
+  {
+    "id": "2005-06-1",
+    "order": 2005006,
+    "season": "2005 / 06",
+    "competition": "Geneva Darts League (GDL 05-06)",
+    "result": "Champion 1ère Div."
+  },
+  {
+    "id": "2005-06-2",
+    "order": 2005005,
+    "season": "2005 / 06",
+    "competition": "Geneva Darts League (GDL 05-06)",
+    "result": "Finaliste Coupe Genevoise"
+  },
+  {
+    "id": "2005-06-3",
+    "order": 2005004,
+    "season": "2005 / 06",
+    "competition": "Swiss Darts Association (SDA 05-06)",
+    "result": "6ème rang LNB ouest"
+  },
+  {
+    "id": "2005-06-4",
+    "order": 2005003,
+    "season": "2005 / 06",
+    "competition": "Swiss Darts Association (SDA 05-06)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2005-06-5",
+    "order": 2005002,
+    "season": "2005 / 06",
+    "competition": "Swiss InterRegio Cup",
+    "result": "2ème rang (par équipe)"
+  },
+  {
+    "id": "2005-06-6",
+    "order": 2005001,
+    "season": "2005 / 06",
+    "competition": "Swiss InterRegio Cup",
+    "result": "Blaise Vaudan vainqueur individuel"
+  },
+  {
+    "id": "2004-05-1",
+    "order": 2004006,
+    "season": "2004 / 05",
+    "competition": "Geneva Darts League (GDL 04-05)",
+    "result": "Champion 2ème Div. et promu en 1ère Div."
+  },
+  {
+    "id": "2004-05-2",
+    "order": 2004005,
+    "season": "2004 / 05",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 04-05)",
+    "result": "2ème rang"
+  },
+  {
+    "id": "2004-05-3",
+    "order": 2004004,
+    "season": "2004 / 05",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 04-05)",
+    "result": "Finale Coupe Vaudoise"
+  },
+  {
+    "id": "2004-05-4",
+    "order": 2004003,
+    "season": "2004 / 05",
+    "competition": "Swiss Darts Association (SDA 04-05)",
+    "result": "5ème rang LNB ouest"
+  },
+  {
+    "id": "2004-05-5",
+    "order": 2004002,
+    "season": "2004 / 05",
+    "competition": "Swiss Darts Association (SDA 04-05)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2004-05-6",
+    "order": 2004001,
+    "season": "2004 / 05",
+    "competition": "Swiss InterRegio Cup",
+    "result": "12ème rang (par équipe)"
+  },
+  {
+    "id": "2003-04-1",
+    "order": 2003006,
+    "season": "2003 / 04",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 03-04)",
+    "result": "3ème rang"
+  },
+  {
+    "id": "2003-04-2",
+    "order": 2003005,
+    "season": "2003 / 04",
+    "competition": "Swiss Darts Association (SDA 03-04)",
+    "result": "2ème rang LNB ouest (DCM 1)"
+  },
+  {
+    "id": "2003-04-3",
+    "order": 2003004,
+    "season": "2003 / 04",
+    "competition": "Swiss Darts Association (SDA 03-04)",
+    "result": "3ème rang LNC ouest (DCM 2)"
+  },
+  {
+    "id": "2003-04-4",
+    "order": 2003003,
+    "season": "2003 / 04",
+    "competition": "Swiss Darts Association (SDA 03-04)",
+    "result": "1/2 finale Coupe Suisse B (DCM 1)"
+  },
+  {
+    "id": "2003-04-5",
+    "order": 2003002,
+    "season": "2003 / 04",
+    "competition": "Swiss Darts Association (SDA 03-04)",
+    "result": "1/4 finale Coupe Suisse A (DCM 2)"
+  },
+  {
+    "id": "2003-04-6",
+    "order": 2003001,
+    "season": "2003 / 04",
+    "competition": "Swiss InterRegio Cup",
+    "result": "13ème rang (par équipe)"
+  },
+  {
+    "id": "2002-03-1",
+    "order": 2002005,
+    "season": "2002 / 03",
+    "competition": "Ligue Vaudoise de Steel Darts (LVSD 02-03)",
+    "result": "3ème rang"
+  },
+  {
+    "id": "2002-03-2",
+    "order": 2002004,
+    "season": "2002 / 03",
+    "competition": "Swiss Darts Association (SDA 02-03)",
+    "result": "4ème rang LNB ouest"
+  },
+  {
+    "id": "2002-03-3",
+    "order": 2002003,
+    "season": "2002 / 03",
+    "competition": "Swiss Darts Association (SDA 02-03)",
+    "result": "Finaliste Coupe Suisse B"
+  },
+  {
+    "id": "2002-03-4",
+    "order": 2002002,
+    "season": "2002 / 03",
+    "competition": "Swiss InterRegio Cup",
+    "result": "2ème rang (par équipe)"
+  },
+  {
+    "id": "2002-03-5",
+    "order": 2002001,
+    "season": "2002 / 03",
+    "competition": "Swiss InterRegio Cup",
+    "result": "David Pidoux vainqueur individuel"
+  },
+  {
+    "id": "2001-02-1",
+    "order": 2001004,
+    "season": "2001 / 02",
+    "competition": "Geneva Darts League (GDL 01-02)",
+    "result": "2ème rang / 1ère Div. (DCM 1)"
+  },
+  {
+    "id": "2001-02-2",
+    "order": 2001003,
+    "season": "2001 / 02",
+    "competition": "Geneva Darts League (GDL 01-02)",
+    "result": "5ème rang / 2ème Div. (DCM 2)"
+  },
+  {
+    "id": "2001-02-3",
+    "order": 2001002,
+    "season": "2001 / 02",
+    "competition": "Swiss Darts Association (SDA 01-02)",
+    "result": "5ème rang LNB ouest"
+  },
+  {
+    "id": "2001-02-4",
+    "order": 2001001,
+    "season": "2001 / 02",
+    "competition": "Swiss InterRegio Cup",
+    "result": "4ème rang (par équipe)"
+  },
+  {
+    "id": "2000-01-1",
+    "order": 2000007,
+    "season": "2000 / 01",
+    "competition": "Geneva Darts League (GDL 00-01)",
+    "result": "2ème rang / 1ère Div. (DCM 1)"
+  },
+  {
+    "id": "2000-01-2",
+    "order": 2000006,
+    "season": "2000 / 01",
+    "competition": "Geneva Darts League (GDL 00-01)",
+    "result": "2ème rang / 3ème Div. (DCM 2)"
+  },
+  {
+    "id": "2000-01-3",
+    "order": 2000005,
+    "season": "2000 / 01",
+    "competition": "Geneva Darts League (GDL 00-01)",
+    "result": "1/2 finale Coupe Genevoise"
+  },
+  {
+    "id": "2000-01-4",
+    "order": 2000004,
+    "season": "2000 / 01",
+    "competition": "Swiss Darts Association (SDA 00-01)",
+    "result": "6ème rang LNB ouest"
+  },
+  {
+    "id": "2000-01-5",
+    "order": 2000003,
+    "season": "2000 / 01",
+    "competition": "Swiss Darts Association (SDA 00-01)",
+    "result": "1/2 finale Coupe Suisse B"
+  },
+  {
+    "id": "2000-01-6",
+    "order": 2000002,
+    "season": "2000 / 01",
+    "competition": "Swiss InterRegio Cup",
+    "result": "2ème rang (par équipe)"
+  },
+  {
+    "id": "2000-01-7",
+    "order": 2000001,
+    "season": "2000 / 01",
+    "competition": "Swiss InterRegio Cup",
+    "result": "Omar Capraro vainqueur individuel"
+  },
+  {
+    "id": "1999-2000-1",
+    "order": 1999003,
+    "season": "1999 / 2000",
+    "competition": "Geneva Darts League (GDL 99-00)",
+    "result": "5ème rang / 1ère Div."
+  },
+  {
+    "id": "1999-2000-2",
+    "order": 1999002,
+    "season": "1999 / 2000",
+    "competition": "Geneva Darts League (GDL 99-00)",
+    "result": "Finaliste Coupe Genevoise"
+  },
+  {
+    "id": "1999-2000-3",
+    "order": 1999001,
+    "season": "1999 / 2000",
+    "competition": "Swiss Darts Association (SDA 99-2000)",
+    "result": "3ème rang LNC ouest et promu en LNB"
+  },
+  {
+    "id": "1998-99-1",
+    "order": 1998001,
+    "season": "1998 / 99",
+    "competition": "Geneva Darts League (GDL 98-99)",
+    "result": "3ème rang / 2ème Div. (Galway Darts) et promu en 1ère Div."
+  },
+  {
+    "id": "1997-98-1",
+    "order": 1997001,
+    "season": "1997 / 98",
+    "competition": "Geneva Darts League (GDL 97-98)",
+    "result": "Champion 2ème Div. (Triple One) et promu en 1ère Div."
+  },
+  {
+    "order": 2025003,
+    "season": "2025 / 2026",
+    "competition": "Geneva Darts League",
+    "result": "Champion en coupe",
+    "id": "champion-en-coupe"
+  }
+]

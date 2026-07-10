@@ -4,8 +4,8 @@ import PageHero from "../components/PageHero.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import DocumentCard from "../components/DocumentCard.astro";
 import TeamCard from "../components/TeamCard.astro";
-import { getDocumentsByCompetition } from "../data/documents";
 import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
+import { sdaDocuments } from "../data/sdaDocuments";
 import { seasons } from "../data/seasons";
 import { teams } from "../data/teams";
 
@@ -16,8 +16,11 @@ const pageVars = { currentSeason: currentSeasonLabel };
 const currentSeasonSection = formatPageSection(getPageSection(page, "current-season"), pageVars);
 const teamsSection = formatPageSection(getPageSection(page, "teams"), pageVars);
 const documentsSection = formatPageSection(getPageSection(page, "documents"), pageVars);
-const sdaDocuments = getDocumentsByCompetition("SDA");
-const currentSdaDocuments = sdaDocuments.filter((document) => document.season === currentSeasonLabel);
+const visibleSdaDocuments = [...sdaDocuments].sort(
+  (a, b) =>
+    (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) ||
+    a.title.localeCompare(b.title, "fr")
+);
 const sdaTeams = teams.filter((team) => team.competition === "SDA");
 ---
 
@@ -45,7 +48,7 @@ const sdaTeams = teams.filter((team) => team.competition === "SDA");
         </div>
         <div>
           <span class="label">Documents SDA</span>
-          <strong>{currentSdaDocuments.length} fichiers</strong>
+          <strong>{visibleSdaDocuments.length} fichiers</strong>
         </div>
       </div>
     </div>
@@ -68,7 +71,7 @@ const sdaTeams = teams.filter((team) => team.competition === "SDA");
         description={documentsSection.description}
       />
       <div class="card-grid card-grid--three">
-        {currentSdaDocuments.map((document) => <DocumentCard document={document} />)}
+        {visibleSdaDocuments.map((document) => <DocumentCard document={document} />)}
       </div>
     </div>
   </section>

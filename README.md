@@ -1,127 +1,150 @@
 # Darts Club Morges - Nouveau site
 
-Ce projet contient la version moderne du site du Darts Club Morges, remplie avec les contenus publics récupérés depuis `https://www.dcmorges.ch/`.
+Site moderne du Darts Club Morges, construit avec Astro et rempli avec les contenus publics récupérés depuis `https://www.dcmorges.ch/`.
 
-## Commandes
+Le projet combine :
+
+- un site public statique rapide;
+- une administration locale protégée pour modifier les contenus;
+- un export GitHub Pages sans admin ni API;
+- une page cachée de stats live LMF alimentée par Supabase.
+
+## Démarrage
 
 ```bash
 pnpm install
+cp .env.example .env.local
 pnpm run dev
-pnpm run check:content
-pnpm run build
 ```
 
-Les pages publiques sont générées en statique par Astro. Une interface d'administration
-(SSR via l'adaptateur `@astrojs/node`) permet de gérer tous les contenus.
-
-Documentation utile :
-
-- Liste des fonctionnalités : `docs/FEATURES.md`
-- Guide client de l'admin : `docs/ADMIN_CLIENT.md`
-- Stats live LMF Supabase : `docs/LMF_STATS_SUPABASE.md`
-- Tests (`check:content` et `qa`) : `docs/TESTING.md`
-- Déploiement GitHub : `docs/DEPLOYMENT_GITHUB.md`
-- Reprise par une autre IA : `docs/AI_HANDOFF.md`
-
-## Publication en ligne (sans authentification)
-
-Le site est **hybride** : les pages publiques sont statiques, l'admin + l'API
-tournent sur Node **sans mot de passe**. On ne publie donc **que le site public
-statique** ; l'admin reste un outil **local**.
+Renseigner au minimum dans `.env.local` :
 
 ```bash
-# 1) Générer le dossier à mettre en ligne
-SITE_URL=https://mon-domaine.ch pnpm run build:public   # -> crée public-site/
-#    (sans SITE_URL, le domaine par défaut est https://www.dcmorges.ch)
-
-# 2) (optionnel) Prévisualiser exactement ce qui sera publié
-pnpm run preview:public                                  # http://127.0.0.1:4322
-
-# 3) Téléverser le CONTENU de public-site/ à la racine de l'hébergeur
+ADMIN_USER=admin
+ADMIN_PASSWORD=un-mot-de-passe-local
 ```
 
-`public-site/` est un site 100 % statique (HTML, images, PDF, sitemap, robots) :
-il fonctionne sur n'importe quel hébergeur (Infomaniak, Netlify, GitHub Pages,
-o2switch…) **sans serveur**. Il ne contient **aucune trace de l'admin**.
+Site local : `http://127.0.0.1:4321`
 
-> ⚠️ **Ne jamais mettre `dist/server/` en ligne** : il contient l'admin ouvert
-> sans mot de passe. Pour éditer le contenu, lance l'admin **en local**
-> (`pnpm run dev` → `http://127.0.0.1:4321/admin`), puis régénère et republie
-> `public-site/`. Si tu changes de domaine, adapte `SITE_URL` et la ligne
-> `Sitemap:` de `public/robots.txt`.
+Admin locale : `http://127.0.0.1:4321/admin`
+
+## Documentation
+
+Point d'entrée complet : [`docs/README.md`](docs/README.md)
+
+Pour les membres du club :
+
+- [`docs/ADMIN_CLIENT.md`](docs/ADMIN_CLIENT.md) : modifier le site depuis l'admin.
+- [`docs/FEATURES.md`](docs/FEATURES.md) : fonctionnalités publiques et administration.
+- [`docs/DEPLOYMENT_GITHUB.md`](docs/DEPLOYMENT_GITHUB.md) : publier sur GitHub Pages.
+
+Pour les développeurs :
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) : architecture Astro, données, admin, API.
+- [`docs/TESTING.md`](docs/TESTING.md) : contrôles, QA, build public.
+- [`docs/LMF_STATS_SUPABASE.md`](docs/LMF_STATS_SUPABASE.md) : stats live LMF, Supabase et RLS.
+- [`SECURITY.md`](SECURITY.md) : sécurité, secrets, signalement.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) : workflow de contribution.
+
+Pour les IA et agents de maintenance :
+
+- [`AGENTS.md`](AGENTS.md) : règles de travail sur le dépôt.
+- [`docs/AI_HANDOFF.md`](docs/AI_HANDOFF.md) : résumé technique pour reprise rapide.
+
+## Commandes utiles
+
+```bash
+pnpm run dev              # serveur local + admin
+pnpm run check:content    # UTF-8, liens internes, fichiers référencés
+pnpm run build            # build Astro complet
+pnpm run build:pages      # export public-site/ + contrôle sécurité
+pnpm run preview:public   # aperçu exact de public-site/
+pnpm run qa               # QA complète, serveur dev déjà lancé
+```
+
+## Publication en ligne
+
+Le site est hybride : les pages publiques sont statiques, mais l'admin et l'API demandent un runtime Node.
+
+Pour GitHub Pages ou un hébergement 100 % statique, publier uniquement le dossier généré `public-site/` :
+
+```bash
+SITE_URL=https://www.dcmorges.ch pnpm run build:pages
+```
+
+`build:pages` :
+
+1. compile Astro;
+2. copie le site public dans `public-site/`;
+3. supprime toute trace `/admin` et `/api`;
+4. ajoute `.nojekyll`;
+5. lance `pnpm run security:check`.
+
+Ne jamais publier `dist/server/`. Il contient les routes serveur de l'admin et de l'API.
+
+## GitHub Pages
+
+Le workflow [`pages.yml`](.github/workflows/pages.yml) publie uniquement `public-site/`.
+
+Dans GitHub :
+
+1. aller dans **Settings -> Pages**;
+2. choisir **Source: GitHub Actions**;
+3. pousser sur `main`.
+
+Variables GitHub optionnelles :
+
+- `SITE_URL` : URL canonique, par exemple `https://www.dcmorges.ch`.
+- `PAGES_CNAME` : domaine custom à écrire dans `public-site/CNAME`.
+- `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY`, `PUBLIC_SUPABASE_SCHEMA` : stats live LMF si elles doivent fonctionner sur le site publié.
 
 ## Administration
 
-Interface d'admin pour gérer l'ensemble du contenu visible du site :
-pages, news, agenda, documents, membres, équipes, saisons, vidéos, archives,
-groupes d'archives, blocs contact, pages sources, médiathèque et réglages du site.
+L'admin sert à gérer le contenu visible du site sans écrire de code :
 
-- URL : `/admin` — à utiliser **en local uniquement** via `pnpm run dev`
-  (écoute sur `127.0.0.1`, non exposé). N'expose pas le serveur Node en ligne :
-  l'admin n'a pas de mot de passe.
-- Les modifications sont enregistrées **directement dans les données du site**
-  (`src/data/*.json`) : ajout, édition et suppression en direct.
-- La rubrique **Pages du site** pilote les textes de bandeau, boutons et sections
-  des pages publiques. Les fiches de contenu (news, documents, membres, etc.)
-  sont gérées dans leurs rubriques dédiées.
-- La rubrique **Pages sources** rend administrables les anciennes pages importées
-  sous `/sources/<slug>/`, y compris textes, tableaux, images, documents et liens.
-- La **Médiathèque** permet d'envoyer un fichier et de réutiliser son URL partout
-  dans l'admin.
-- Interface pensée pour un usage non technique : **aucun JSON à saisir**. Les
-  fichiers (PDF, photos) s'ajoutent par **upload** (`POST /api/upload` →
-  `public/uploads/`), les documents liés se **cochent dans une liste**, et les
-  listes (paragraphes, joueurs, menus…) s'éditent avec des boutons Ajouter/Supprimer.
-- Les fichiers ajoutés dans `public/uploads/` sont versionnés dans Git afin
-  d'être déployés avec les données JSON modifiées.
-- Protection optionnelle en production : définir `ADMIN_USER` et `ADMIN_PASSWORD`
-  pour protéger `/admin` et `/api/*` par authentification HTTP Basic.
-- API REST sous-jacente : `GET/POST /api/<collection>`, `PUT/DELETE /api/<collection>/<id>`,
-  et `GET/PUT /api/site` pour les réglages.
-- Registre des collections et schémas de formulaires : `src/lib/collections.ts` ;
-  lecture/écriture fichier : `src/lib/store.ts`.
+- textes de pages et bandeaux;
+- news, agenda, vidéos, membres, équipes;
+- cartes documents Accueil, SDA et LMF;
+- palmarès Club ligne par ligne;
+- carrés et groupes d'archives;
+- blocs contact;
+- médiathèque et uploads.
 
-> Pour un hébergement 100 % statique, on continue d'utiliser `pnpm run build` (les pages
-> publiques restent statiques) ; l'admin nécessite un runtime Node.
+Les modifications sont enregistrées dans `src/data/*.json`. Les fichiers envoyés sont placés dans `public/uploads/`. Après modification, committer les JSON et uploads, puis pousser sur GitHub pour republier le site public.
+
+`/admin` et `/api/*` sont protégés par `ADMIN_USER` / `ADMIN_PASSWORD` et par un contrôle d'origine sur les écritures. Si ces variables manquent, l'admin et l'API refusent de fonctionner.
 
 ## Données principales
 
-- News : `src/data/news.ts`
-- Pages visibles du site : `src/data/pages.ts`
-- Événements : `src/data/events.ts`
-- Documents PDF : `src/data/documents.ts`
-- Membres : `src/data/members.ts`
-- Équipes : `src/data/teams.ts`
-- Saisons : `src/data/seasons.ts`
-- Archives : `src/data/archives.ts`
-- Groupes d'archives : `src/data/archiveGroups.ts`
-- Blocs contact : `src/data/contactBlocks.ts`
-- Vidéos : `src/data/videos.ts`
-- Informations de contact : `src/data/site.ts`
-- Pages sources importées : `src/data/legacyPages.ts`
+- Pages visibles : `src/data/pages.json`
+- News : `src/data/news.json`
+- Agenda : `src/data/events.json`
+- Documents globaux : `src/data/documents.json`
+- Documents accueil : `src/data/homeDocuments.json`
+- Documents SDA : `src/data/sdaDocuments.json`
+- Documents LMF : `src/data/lmfDocuments.json`
+- Palmarès Club : `src/data/clubPalmares.json`
+- Membres : `src/data/members.json`
+- Équipes : `src/data/teams.json`
+- Saisons : `src/data/seasons.json`
+- Archives : `src/data/archives.json`
+- Groupes d'archives : `src/data/archiveGroups.json`
+- Contact : `src/data/contactBlocks.json`
+- Vidéos : `src/data/videos.json`
+- Réglages du site : `src/data/site.json`
+- Pages sources importées : `src/data/legacyPages.json`
 
-## Assets importés
-
-Les PDF, images et vidéos détectés sur le site actuel ont été copiés sous `public/legacy/` en conservant l'arborescence d'origine.
-
-Inventaires de migration :
-
-- `migration/inventory.md`
-- `migration/pdf-inventory.md`
-- `migration/non-integrated.md`
-- `migration/downloaded-assets.json`
-
-## Pages disponibles
+## Pages publiques
 
 - Accueil : `/`
 - News : `/news/`
 - Détail news : `/news/<slug>/`
 - SDA : `/sda/`
 - Ligue Morgienne / LMF : `/lmf/`
-- Stats live LMF cachees : `/lmf-stats-live/`
-- Club / palmares : `/club/`
+- Stats live LMF cachées : `/lmf-stats-live/`
+- Club / palmarès : `/club/`
 - Agenda : `/agenda/`
 - Archives : `/archives/`
 - Vidéos : `/videos/`
 - Contact : `/contact/`
-- Fiches des anciennes pages importées : `/sources/<slug>/`
+- Anciennes pages importées : `/sources/<slug>/`

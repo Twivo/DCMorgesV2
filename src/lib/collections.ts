@@ -33,6 +33,7 @@ export interface CollectionDef {
   idKey: string; // "id" | "slug"
   titleKey: string; // field used as the item title / id source
   listColumns: string[]; // columns shown in the admin table
+  orderDirection?: "asc" | "desc"; // optional numeric "order" sorting in the admin list
   allowCreate?: boolean; // defaults to true
   allowDelete?: boolean; // defaults to true
   fields: Field[];
@@ -188,6 +189,42 @@ export const collections: CollectionDef[] = [
     ]
   },
   {
+    name: "sda-documents",
+    label: "Cartes documents SDA",
+    file: "sdaDocuments",
+    idKey: "id",
+    titleKey: "title",
+    listColumns: ["order", "title", "type", "season"],
+    fields: [
+      { key: "order", label: "Ordre d'affichage", type: "number", help: "Plus le nombre est petit, plus la carte apparaît tôt." },
+      { key: "title", label: "Titre de la carte", type: "text", required: true },
+      { key: "url", label: "Document affiché / mis à disposition", type: "file", accept: "application/pdf,image/*" },
+      { key: "type", label: "Type affiché", type: "text", help: "Ex : Calendrier, Classement, Règlement…" },
+      { key: "season", label: "Saison affichée", type: "text", help: "Ex : 2025-26" },
+      { key: "competition", label: "Catégorie affichée", type: "text", help: "Ex : SDA" },
+      { key: "actionLabel", label: "Texte du bouton ouvrir (optionnel)", type: "text", help: "Vide = Voir le document" },
+      { key: "downloadLabel", label: "Texte du bouton télécharger (optionnel)", type: "text", help: "Vide = Télécharger" }
+    ]
+  },
+  {
+    name: "lmf-documents",
+    label: "Cartes documents LMF",
+    file: "lmfDocuments",
+    idKey: "id",
+    titleKey: "title",
+    listColumns: ["order", "title", "type", "season"],
+    fields: [
+      { key: "order", label: "Ordre d'affichage", type: "number", help: "Plus le nombre est petit, plus la carte apparaît tôt." },
+      { key: "title", label: "Titre de la carte", type: "text", required: true },
+      { key: "url", label: "Document affiché / mis à disposition", type: "file", accept: "application/pdf,image/*" },
+      { key: "type", label: "Type affiché", type: "text", help: "Ex : Calendrier, Classement, Coupe, Règlement…" },
+      { key: "season", label: "Saison affichée", type: "text", help: "Ex : 2025-26" },
+      { key: "competition", label: "Catégorie affichée", type: "text", help: "Ex : LMF" },
+      { key: "actionLabel", label: "Texte du bouton ouvrir (optionnel)", type: "text", help: "Vide = Voir le document" },
+      { key: "downloadLabel", label: "Texte du bouton télécharger (optionnel)", type: "text", help: "Vide = Télécharger" }
+    ]
+  },
+  {
     name: "members",
     label: "Membres",
     file: "members",
@@ -200,6 +237,21 @@ export const collections: CollectionDef[] = [
       { key: "role", label: "Rôle", type: "text", help: "Ex : Membre actif 2025-26 / Ancien membre" },
       { key: "team", label: "Équipe (optionnel)", type: "text" },
       { key: "photo", label: "Photo", type: "file", accept: "image/*" }
+    ]
+  },
+  {
+    name: "club-palmares",
+    label: "Lignes palmarès Club",
+    file: "clubPalmares",
+    idKey: "id",
+    titleKey: "result",
+    listColumns: ["order", "season", "competition", "result"],
+    orderDirection: "desc",
+    fields: [
+      { key: "order", label: "Classement d'affichage", type: "number", help: "Plus le chiffre est élevé, plus la ligne apparaît haut." },
+      { key: "season", label: "Année / saison", type: "text", required: true, help: "Ex : 2025 / 2026" },
+      { key: "competition", label: "Compétition", type: "text", required: true },
+      { key: "result", label: "Ligne de palmarès", type: "textarea", required: true, help: "Une entrée = une ligne de palmarès." }
     ]
   },
   {
@@ -246,19 +298,20 @@ export const collections: CollectionDef[] = [
   },
   {
     name: "archives",
-    label: "Archives",
+    label: "Carrés archives",
     file: "archives",
     idKey: "id",
     titleKey: "title",
-    listColumns: ["id", "title"],
+    listColumns: ["order", "title", "description"],
     fields: [
-      { key: "title", label: "Titre", type: "text", required: true },
-      { key: "description", label: "Description", type: "textarea" },
-      { key: "seasons", label: "Saisons concernées", type: "lines" },
-      { key: "documentIds", label: "Documents", type: "reference", refCollection: "documents" },
+      { key: "order", label: "Ordre d'affichage", type: "number", help: "Plus le nombre est petit, plus le carré apparaît tôt dans son groupe." },
+      { key: "title", label: "Titre du carré", type: "text", required: true },
+      { key: "description", label: "Texte du carré", type: "textarea" },
+      { key: "seasons", label: "Pastilles / saisons affichées", type: "lines" },
+      { key: "documentIds", label: "Documents affichés dans le carré", type: "reference", refCollection: "documents" },
       {
         key: "links",
-        label: "Pages liées",
+        label: "Pages affichées dans le carré",
         type: "repeater",
         subfields: [
           { key: "label", label: "Texte du lien", type: "text", required: true },

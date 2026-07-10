@@ -1,6 +1,7 @@
 [
   {
     "id": "championnat-du-monde",
+    "order": 1,
     "title": "Championnat du Monde",
     "description": "Palmarès Championnat du Monde, WDF et PDC.",
     "seasons": [
@@ -32,6 +33,7 @@
   },
   {
     "id": "sda",
+    "order": 1,
     "title": "SDA",
     "description": "Championnat suisse, Swiss Cup, classements, matchs et documents SDA.",
     "seasons": [
@@ -112,6 +114,7 @@
   },
   {
     "id": "ligue-morgienne",
+    "order": 2,
     "title": "Ligue Morgienne / Ligue Vaudoise",
     "description": "Archives LMF, championnats, coupes, feuilles de match et palmarès.",
     "seasons": [
@@ -164,6 +167,7 @@
   },
   {
     "id": "geneva-darts-league",
+    "order": 3,
     "title": "Geneva Darts League",
     "description": "Anciennes archives Geneva Darts League.",
     "seasons": [
@@ -190,6 +194,7 @@
   },
   {
     "id": "morges-open",
+    "order": 1,
     "title": "Morges Open / Open Vaudois",
     "description": "Résultats, photos, hall of fame et documents des opens.",
     "seasons": [
@@ -375,6 +380,7 @@
   },
   {
     "id": "master-tour",
+    "order": 2,
     "title": "Master Tour",
     "description": "Hall of fame et archives Master Tour.",
     "seasons": [
@@ -391,6 +397,7 @@
   },
   {
     "id": "autres-archives",
+    "order": 3,
     "title": "Autres archives",
     "description": "Tournois de Pâques, Pentecôte, Open La Sportive et pages historiques.",
     "seasons": [
@@ -407,16 +414,6 @@
       "tournoi-open-la-sportive-2026-ols-2026-classement-pdf"
     ],
     "links": [
-      {
-        "label": "Accueil (ancien site)",
-        "href": "/sources/accueil-actuel/",
-        "description": "Darts Club Morges"
-      },
-      {
-        "label": "Agenda (ancien site)",
-        "href": "/sources/agenda-htm/",
-        "description": "Tournoi de Pâques - Lundi 6 avril (11h) - ---------------------------------------------------------"
-      },
       {
         "label": "Archives — Sommaire",
         "href": "/sources/archives-htm/",
@@ -448,23 +445,8 @@
         "description": "DC Morges 1 - SDA Team 2025-26 - Michel"
       },
       {
-        "label": "Contact (ancien site)",
-        "href": "/sources/contact-html/",
-        "description": "DARTS CLUB MORGES - Adresse - Rue de la Gare 1b"
-      },
-      {
         "label": "Photos des Opens de Morges",
         "href": "/sources/indexomphoto-htm/",
-        "description": "Darts Club Morges"
-      },
-      {
-        "label": "Menu de navigation (ancien site)",
-        "href": "/sources/leftframe-htm/",
-        "description": "Darts Club Morges"
-      },
-      {
-        "label": "Section Musique (ancien site)",
-        "href": "/sources/music/",
         "description": "Darts Club Morges"
       },
       {
@@ -488,11 +470,6 @@
         "description": "Darts Club Morges"
       },
       {
-        "label": "News (ancien site)",
-        "href": "/sources/news-html/",
-        "description": "Coupe Vaudoise en - Simples Open (27.04.2026) - Résultats et"
-      },
-      {
         "label": "Photos Open de Morges 2001",
         "href": "/sources/om2001photo-htm/",
         "description": "Darts Club Morges"
@@ -513,19 +490,36 @@
         "description": "Darts Club Morges"
       },
       {
-        "label": "Cadre principal (ancien site)",
-        "href": "/sources/rightframe-htm/",
-        "description": "Darts Club Morges"
-      },
-      {
-        "label": "Bandeau d'en-tête (ancien site)",
-        "href": "/sources/topframe-htm/",
-        "description": "DARTS - CLUB MORGES Rue de la Gare 1b, 1110 Morges, - dartsclubmorges(at)gmail.com"
-      },
-      {
         "label": "Vidéos — Sommaire",
         "href": "/sources/videos-htm/",
         "description": "Update - 12.09.2023 - VIDEOS"
+      }
+    ]
+  },
+  {
+    "id": "tournois-du-club",
+    "order": 4,
+    "title": "Tournois du club",
+    "description": "Les tournois organisés par le Darts Club Morges. Résultats et parcours complets sur DartConnect.",
+    "seasons": [
+      "Récents"
+    ],
+    "documentIds": [],
+    "links": [
+      {
+        "label": "La Sportive Open",
+        "href": "https://tv.dartconnect.com/event/mt_nlwvb72z_2",
+        "description": "Résultats complets sur DartConnect."
+      },
+      {
+        "label": "Summer Open",
+        "href": "https://tv.dartconnect.com/event/mt_nlwvb72z_4",
+        "description": "Résultats complets sur DartConnect."
+      },
+      {
+        "label": "Easter Open",
+        "href": "https://tv.dartconnect.com/event/mt_nlwvb72z_3",
+        "description": "Résultats complets sur DartConnect."
       }
     ]
   }

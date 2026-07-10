@@ -1,0 +1,112 @@
+[
+  {
+    "id": "sda-calendrier",
+    "order": 1,
+    "title": "SDA Calendrier",
+    "type": "Calendrier",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-calendrier.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-calendrier-dcm",
+    "order": 2,
+    "title": "SDA Calendrier DCM",
+    "type": "Calendrier",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-calendrier-DCM.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement",
+    "order": 3,
+    "title": "SDA Classement",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement-average",
+    "order": 4,
+    "title": "SDA Classement average",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-average.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement-best-finish",
+    "order": 5,
+    "title": "SDA Classement best finish",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-best-finish.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement-most-180",
+    "order": 6,
+    "title": "SDA Classement most 180",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-most-180.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement-mvp",
+    "order": 7,
+    "title": "SDA Classement MVP",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-MVP.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-classement-ratio",
+    "order": 8,
+    "title": "SDA Classement ratio",
+    "type": "Classement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-classement-ratio.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-matchs",
+    "order": 9,
+    "title": "SDA matchs",
+    "type": "Matchs",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-matchs.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-reglements",
+    "order": 10,
+    "title": "SDA Règlements",
+    "type": "Règlement",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-reglements.pdf",
+    "actionLabel": "Voir le document"
+  },
+  {
+    "id": "sda-statuts",
+    "order": 11,
+    "title": "SDA statuts",
+    "type": "Statuts",
+    "season": "2025-26",
+    "competition": "SDA",
+    "url": "/legacy/sda/sda-2025-26/SDA-statuts.pdf",
+    "actionLabel": "Voir le document"
+  }
+]

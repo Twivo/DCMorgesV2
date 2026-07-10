@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
-const env = Object.fromEntries(
+const fileEnv = Object.fromEntries(
   readFileSync(".env.local", "utf8")
     .split(/\r?\n/)
     .filter((line) => line && line.includes("="))
@@ -10,6 +10,7 @@ const env = Object.fromEntries(
       return [line.slice(0, index), line.slice(index + 1)];
     })
 );
+const env = { ...fileEnv, ...process.env };
 
 const supabaseUrl = env.PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_WRITE_KEY;
@@ -50,6 +51,12 @@ const request = async (path, options = {}) => {
 };
 
 const selectAll = (table) => request(`${table}?select=*&limit=10000`);
+const deleteWhere = async (table, filter) => {
+  await request(`${table}?${filter}`, {
+    method: "DELETE",
+    headers: { ...headers, Prefer: "return=minimal" }
+  });
+};
 const insertRows = async (table, rows) => {
   if (rows.length === 0) return [];
   return request(`${table}?select=*`, {
@@ -62,23 +69,25 @@ const insertRows = async (table, rows) => {
 const sum = (values) => values.reduce((total, value) => total + value, 0);
 
 const winnerVisits = [
-  [60, 45, 81, 60, 100, 51, 104],
-  [45, 60, 41, 81, 60, 100, 54, 60],
-  [26, 60, 45, 85, 60, 95, 40, 90],
-  [60, 45, 100, 81, 60, 45, 110],
-  [41, 60, 60, 85, 60, 100, 45, 50],
-  [60, 45, 100, 180, 41, 75],
-  [26, 45, 60, 60, 81, 74, 55, 100],
-  [45, 60, 95, 60, 85, 56, 100]
+  [60, 60, 45, 85, 60, 60, 41, 90],
+  [45, 81, 60, 60, 45, 85, 60, 65],
+  [81, 45, 60, 60, 60, 41, 74, 80],
+  [60, 45, 45, 100, 60, 60, 45, 86],
+  [45, 60, 60, 41, 85, 60, 60, 90],
+  [60, 60, 60, 60, 45, 80, 60, 76],
+  [45, 45, 81, 60, 60, 60, 70, 80],
+  [60, 60, 45, 60, 81, 45, 60, 90],
+  [45, 60, 60, 60, 60, 60, 60, 36, 60],
+  [41, 60, 60, 60, 60, 60, 60, 60, 40]
 ];
 
 const loserVisits = [
-  [45, 41, 60, 26, 45, 60],
-  [26, 60, 45, 41, 60, 45],
-  [60, 26, 45, 45, 60, 41],
-  [41, 45, 26, 60, 45, 60],
-  [45, 60, 26, 41, 45, 45],
-  [26, 41, 60, 60, 45, 26]
+  [60, 60, 60, 60, 60, 60, 60, 50],
+  [60, 60, 60, 60, 60, 60, 60, 60],
+  [60, 60, 60, 60, 60, 60, 60, 45],
+  [81, 60, 60, 60, 60, 60, 60, 39],
+  [60, 60, 60, 60, 60, 60, 45, 60],
+  [60, 60, 60, 60, 60, 60, 60, 41]
 ];
 
 const assertLeg = (visits) => {
@@ -90,10 +99,19 @@ const assertLeg = (visits) => {
 
 winnerVisits.forEach(assertLeg);
 
-const buildLegEvents = ({ matchSeed, legIndex, winnerSide, participants, visitOffset, startsWith = "A" }) => {
+const buildLegEvents = ({
+  matchSeed,
+  legIndex,
+  winnerSide,
+  participants,
+  visitOffset,
+  startsWith = "A",
+  winnerScoresOverride,
+  loserScoresOverride
+}) => {
   const loserSide = winnerSide === "A" ? "B" : "A";
-  const winnerScores = winnerVisits[(matchSeed + legIndex) % winnerVisits.length];
-  const loserScores = loserVisits[(matchSeed + legIndex) % loserVisits.length];
+  const winnerScores = winnerScoresOverride || winnerVisits[(matchSeed + legIndex) % winnerVisits.length];
+  const loserScores = loserScoresOverride || loserVisits[(matchSeed + legIndex) % loserVisits.length];
   const events = [];
   let winnerVisitIndex = 0;
   let loserVisitIndex = 0;
@@ -127,22 +145,25 @@ const buildLegEvents = ({ matchSeed, legIndex, winnerSide, participants, visitOf
   return events;
 };
 
-const buildMatchEvents = ({ matchSeed, winnerSide, participants, startedAt, result }) => {
+const buildMatchEvents = ({ matchSeed, winnerSide, participants, startedAt, result, specialLegs = {} }) => {
   const legWinners =
     result === "2-0"
       ? [winnerSide, winnerSide]
       : [winnerSide, winnerSide === "A" ? "B" : "A", winnerSide];
 
-  return legWinners.flatMap((side, index) =>
-    buildLegEvents({
+  return legWinners.flatMap((side, index) => {
+    const specialLeg = specialLegs[index] || {};
+    return buildLegEvents({
       matchSeed,
       legIndex: index,
       winnerSide: side,
       participants,
       visitOffset: startedAt + index * 120000,
-      startsWith: index % 2 === 0 ? "A" : "B"
-    })
-  );
+      startsWith: specialLeg.startsWith || (index % 2 === 0 ? "A" : "B"),
+      winnerScoresOverride: specialLeg.winnerScores,
+      loserScoresOverride: specialLeg.loserScores
+    });
+  });
 };
 
 const fixturePlan = [
@@ -159,23 +180,60 @@ const fixturePlan = [
 ];
 
 const encountersToSeed = [
-  { index: 4, date: "2026-12-17T19:11:00+00:00", teamA: "DC MORGES", teamB: "SNIPERS DARTS", winners: "AABBAABABA" },
-  { index: 5, date: "2027-01-08T19:11:00+00:00", teamA: "GALWAY DARTS", teamB: "LAUSANNE SOCIAL DARTS", winners: "BABAABABBA" },
-  { index: 6, date: "2027-01-22T19:11:00+00:00", teamA: "LES FREESTYLERS", teamB: "DC MORGES", winners: "BBAABABBAB" },
-  { index: 7, date: "2027-02-05T19:11:00+00:00", teamA: "SNIPERS DARTS", teamB: "GALWAY DARTS", winners: "ABAABBABBA" },
-  { index: 8, date: "2027-02-19T19:11:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "LES FREESTYLERS", winners: "ABABBAABBA" },
-  { index: 9, date: "2027-03-05T19:11:00+00:00", teamA: "DC MORGES", teamB: "LAUSANNE SOCIAL DARTS", winners: "AABABBAABA" },
-  { index: 10, date: "2027-03-19T19:11:00+00:00", teamA: "LES FREESTYLERS", teamB: "SNIPERS DARTS", winners: "BAABABBABA" }
+  { index: 1, date: "2026-08-20T19:15:00+00:00", teamA: "DC MORGES", teamB: "SNIPERS DARTS", winners: "AABBAABABA" },
+  { index: 2, date: "2026-09-03T19:15:00+00:00", teamA: "DC MORGES", teamB: "GALWAY DARTS", winners: "ABBABABBAB" },
+  { index: 3, date: "2026-09-17T19:15:00+00:00", teamA: "DC MORGES", teamB: "LAUSANNE SOCIAL DARTS", winners: "ABAABAABBA" },
+  { index: 4, date: "2026-10-01T19:15:00+00:00", teamA: "DC MORGES", teamB: "LES FREESTYLERS", winners: "BBABAABBAB" },
+  { index: 5, date: "2026-10-15T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "GALWAY DARTS", winners: "BAABABABAA" },
+  { index: 6, date: "2026-10-29T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "LAUSANNE SOCIAL DARTS", winners: "ABABBABABB" },
+  { index: 7, date: "2026-11-12T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "LES FREESTYLERS", winners: "BABAABBAAA" },
+  { index: 8, date: "2026-11-26T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "LAUSANNE SOCIAL DARTS", winners: "BAABBABBAB" },
+  { index: 9, date: "2026-12-10T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "LES FREESTYLERS", winners: "AABBABAABA" },
+  { index: 10, date: "2027-01-07T19:15:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "LES FREESTYLERS", winners: "BBABABBAAB" },
+  { index: 11, date: "2027-01-21T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "DC MORGES", winners: "ABBABAABBA" },
+  { index: 12, date: "2027-02-04T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "DC MORGES", winners: "BAABABBABA" },
+  { index: 13, date: "2027-02-18T19:15:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "DC MORGES", winners: "ABBAABABBA" },
+  { index: 14, date: "2027-03-04T19:15:00+00:00", teamA: "LES FREESTYLERS", teamB: "DC MORGES", winners: "BAABBABAAB" },
+  { index: 15, date: "2027-03-18T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "SNIPERS DARTS", winners: "ABAABBABAB" },
+  { index: 16, date: "2027-04-01T19:15:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "SNIPERS DARTS", winners: "BBAABAABAB" },
+  { index: 17, date: "2027-04-15T19:15:00+00:00", teamA: "LES FREESTYLERS", teamB: "SNIPERS DARTS", winners: "AABABBABBA" },
+  { index: 18, date: "2027-04-29T19:15:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "GALWAY DARTS", winners: "BABAAABBAB" },
+  { index: 19, date: "2027-05-13T19:15:00+00:00", teamA: "LES FREESTYLERS", teamB: "GALWAY DARTS", winners: "ABBBAAABAB" },
+  { index: 20, date: "2027-05-27T19:15:00+00:00", teamA: "LES FREESTYLERS", teamB: "LAUSANNE SOCIAL DARTS", winners: "AABAABBABB" },
+  { index: 21, date: "2027-06-10T19:15:00+00:00", teamA: "DC MORGES", teamB: "SNIPERS DARTS", winners: "ABABBAAABB" },
+  { index: 22, date: "2027-06-24T19:15:00+00:00", teamA: "DC MORGES", teamB: "GALWAY DARTS", winners: "BAABAABABB" },
+  { index: 23, date: "2027-07-08T19:15:00+00:00", teamA: "DC MORGES", teamB: "LAUSANNE SOCIAL DARTS", winners: "AABABABBBA" },
+  { index: 24, date: "2027-07-22T19:15:00+00:00", teamA: "DC MORGES", teamB: "LES FREESTYLERS", winners: "BBABAAABBA" },
+  { index: 25, date: "2027-08-05T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "GALWAY DARTS", winners: "AABBABABBA" },
+  { index: 26, date: "2027-08-19T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "LAUSANNE SOCIAL DARTS", winners: "BABBABAABA" },
+  { index: 27, date: "2027-09-02T19:15:00+00:00", teamA: "SNIPERS DARTS", teamB: "LES FREESTYLERS", winners: "ABAABABBBA" },
+  { index: 28, date: "2027-09-16T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "LAUSANNE SOCIAL DARTS", winners: "BBABAABBAA" },
+  { index: 29, date: "2027-09-30T19:15:00+00:00", teamA: "GALWAY DARTS", teamB: "LES FREESTYLERS", winners: "ABABABBBAA" },
+  { index: 30, date: "2027-10-14T19:15:00+00:00", teamA: "LAUSANNE SOCIAL DARTS", teamB: "LES FREESTYLERS", winners: "BAABBAABAB" },
+  {
+    index: 31,
+    date: "2027-10-28T19:15:00+00:00",
+    teamA: "DC MORGES",
+    teamB: "GALWAY DARTS",
+    winners: "AABABBABAA",
+    specialMatches: {
+      0: {
+        0: {
+          startsWith: "B",
+          winnerScores: [60, 60, 45, 60, 36, 60, 60, 120],
+          loserScores: [45, 45, 180, 30, 45, 45, 30, 30]
+        }
+      }
+    }
+  }
 ];
 
 const main = async () => {
-  const [seasons, teams, players, teamPlayers, existingEncounters, existingMatches] = await Promise.all([
+  const [seasons, teams, players, teamPlayers] = await Promise.all([
     selectAll("seasons"),
     selectAll("teams"),
     selectAll("players"),
-    selectAll("team_players"),
-    selectAll("encounters"),
-    selectAll("matches")
+    selectAll("team_players")
   ]);
 
   const season = seasons.find((item) => item.is_current) || seasons[0];
@@ -190,8 +248,6 @@ const main = async () => {
     if (player) rosterByTeamId.get(row.team_id).push({ id: player.id, name: player.name });
   }
 
-  const existingEncounterIds = new Set(existingEncounters.map((row) => row.id));
-  const existingMatchIds = new Set(existingMatches.map((row) => row.id));
   const encounters = [];
   const matches = [];
   const matchPlayers = [];
@@ -235,100 +291,100 @@ const main = async () => {
         starterSide: fixtureIndex % 2 === 0 ? "A" : "B"
       });
 
-      if (!existingMatchIds.has(matchId)) {
-        const timestamp = Date.parse(item.date) + fixtureIndex * 600000;
-        const playerList = [...aPlayers, ...bPlayers].map((player) => ({ id: player.id, name: player.name }));
-        matches.push({
-          id: matchId,
-          season_id: season.id,
-          config: {
-            id: `${seedTag}-fixture-${fixtureIndex + 1}`,
-            mode: fixture.kind,
-            outRule: "DOUBLE",
-            players: playerList,
-            variant: 501,
-            createdAt: timestamp,
-            legsToWin: 2,
-            participants: [
-              {
-                id: "A",
-                label: fixture.kind === "DOUBLE" ? teamA.name : aPlayers[0].name,
-                playerIds: participants.A
-              },
-              {
-                id: "B",
-                label: fixture.kind === "DOUBLE" ? teamB.name : bPlayers[0].name,
-                playerIds: participants.B
-              }
-            ],
-            firstStarterId: fixtureIndex % 2 === 0 ? "A" : "B",
-            startingPolicy: "MANUAL",
-            alternateStarter: true
-          },
-          events: buildMatchEvents({
-            matchSeed: item.index * 100 + fixtureIndex,
-            winnerSide: winner,
-            participants,
-            startedAt: timestamp,
-            result
-          }),
+      const timestamp = Date.parse(item.date) + fixtureIndex * 600000;
+      const playerList = [...aPlayers, ...bPlayers].map((player) => ({ id: player.id, name: player.name }));
+      matches.push({
+        id: matchId,
+        season_id: season.id,
+        config: {
+          id: `${seedTag}-fixture-${fixtureIndex + 1}`,
           mode: fixture.kind,
+          outRule: "DOUBLE",
+          players: playerList,
           variant: 501,
-          status: "GAME_OVER",
-          winner_participant: winner,
-          created_at: new Date(timestamp).toISOString(),
-          updated_at: new Date(timestamp + 480000).toISOString(),
-          finished_at: new Date(timestamp + 480000).toISOString(),
-          encounter_id: encounterId,
-          fixture_index: fixtureIndex,
-          is_training: false
-        });
+          createdAt: timestamp,
+          legsToWin: 2,
+          participants: [
+            {
+              id: "A",
+              label: fixture.kind === "DOUBLE" ? teamA.name : aPlayers[0].name,
+              playerIds: participants.A
+            },
+            {
+              id: "B",
+              label: fixture.kind === "DOUBLE" ? teamB.name : bPlayers[0].name,
+              playerIds: participants.B
+            }
+          ],
+          firstStarterId: fixtureIndex % 2 === 0 ? "A" : "B",
+          startingPolicy: "MANUAL",
+          alternateStarter: true
+        },
+        events: buildMatchEvents({
+          matchSeed: item.index * 100 + fixtureIndex,
+          winnerSide: winner,
+          participants,
+          startedAt: timestamp,
+          result,
+          specialLegs: item.specialMatches?.[fixtureIndex]
+        }),
+        mode: fixture.kind,
+        variant: 501,
+        status: "GAME_OVER",
+        winner_participant: winner,
+        created_at: new Date(timestamp).toISOString(),
+        updated_at: new Date(timestamp + 540000).toISOString(),
+        finished_at: new Date(timestamp + 540000).toISOString(),
+        encounter_id: encounterId,
+        fixture_index: fixtureIndex
+      });
 
-        for (const playerId of participants.A) {
-          matchPlayers.push({ match_id: matchId, player_id: playerId, participant_id: "A" });
-        }
-        for (const playerId of participants.B) {
-          matchPlayers.push({ match_id: matchId, player_id: playerId, participant_id: "B" });
-        }
+      for (const playerId of participants.A) {
+        matchPlayers.push({ match_id: matchId, player_id: playerId, participant_id: "A" });
+      }
+      for (const playerId of participants.B) {
+        matchPlayers.push({ match_id: matchId, player_id: playerId, participant_id: "B" });
       }
     }
 
-    if (!existingEncounterIds.has(encounterId)) {
-      encounters.push({
-        id: encounterId,
-        season_id: season.id,
-        team_a_id: teamA.id,
-        team_b_id: teamB.id,
-        plan: {
-          teams: {
-            A: { id: teamA.id, name: teamA.name, players: rosterA },
-            B: { id: teamB.id, name: teamB.name, players: rosterB }
-          },
-          format: [
-            { kind: "SINGLE", count: 4 },
-            { kind: "DOUBLE", count: 2 },
-            { kind: "SINGLE", count: 4 }
-          ],
-          seedTag,
-          fixtures: fixtureRows,
-          settings: {
-            legsToWin: 2,
-            starterSide: "A",
-            startingPolicy: "MANUAL",
-            alternateStarter: true
-          }
+    encounters.push({
+      id: encounterId,
+      season_id: season.id,
+      team_a_id: teamA.id,
+      team_b_id: teamB.id,
+      plan: {
+        teams: {
+          A: { id: teamA.id, name: teamA.name, players: rosterA },
+          B: { id: teamB.id, name: teamB.name, players: rosterB }
         },
-        status: "FINISHED",
-        current_index: 10,
-        score_a: scoreA,
-        score_b: scoreB,
-        winner: scoreA === scoreB ? null : scoreA > scoreB ? "A" : "B",
-        created_at: item.date,
-        updated_at: item.date,
-        finished_at: item.date
-      });
-    }
+        format: [
+          { kind: "SINGLE", count: 4 },
+          { kind: "DOUBLE", count: 2 },
+          { kind: "SINGLE", count: 4 }
+        ],
+        seedTag,
+        fixtures: fixtureRows,
+        settings: {
+          legsToWin: 2,
+          starterSide: "A",
+          startingPolicy: "MANUAL",
+          alternateStarter: true
+        }
+      },
+      status: "FINISHED",
+      current_index: 10,
+      score_a: scoreA,
+      score_b: scoreB,
+      winner: scoreA === scoreB ? null : scoreA > scoreB ? "A" : "B",
+      created_at: item.date,
+      updated_at: item.date,
+      finished_at: item.date
+    });
   }
+
+  await deleteWhere("match_players", "match_id=not.is.null");
+  await deleteWhere("matches", "id=not.is.null");
+  await deleteWhere("encounters", "id=not.is.null");
 
   await insertRows("encounters", encounters);
   await insertRows("matches", matches);

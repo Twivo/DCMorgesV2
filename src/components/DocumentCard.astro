@@ -10,6 +10,7 @@ const { document } = Astro.props;
 const url = safeUrl(document.url);
 const hasUrl = Boolean(url);
 const actionLabel = document.actionLabel?.trim() || "Voir le document";
+const downloadLabel = document.downloadLabel?.trim() || "Télécharger";
 ---
 
 <article class="content-card document-card">
@@ -28,7 +29,7 @@ const actionLabel = document.actionLabel?.trim() || "Voir le document";
           {actionLabel}
         </a>
         <a class="button button--small button--outline" href={url} download>
-          Télécharger
+          {downloadLabel}
         </a>
       </div>
     ) : (

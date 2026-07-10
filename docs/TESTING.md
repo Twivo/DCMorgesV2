@@ -1,56 +1,96 @@
-# Tests
+# Tests et contrôles
 
-Deux vérifications automatiques sont fournies.
+## Contrôle contenu
 
-## 1. Contrôle du contenu — `pnpm run check:content`
+```bash
+pnpm run check:content
+```
 
-Vérifie, sans serveur, l'intégrité des données :
+Vérifie :
 
-- encodage UTF-8 des fichiers `src/data/*.json` (accents non cassés) ;
-- existence des fichiers locaux référencés (PDF, images) ;
-- validité des liens de documents internes.
+- encodage UTF-8;
+- caractères Unicode cassés;
+- séquences d'encodage suspectes;
+- fichiers locaux référencés;
+- documents liés aux news et archives;
+- images, vidéos et vignettes.
 
-À lancer avant chaque `build` / déploiement.
+À lancer après toute modification de `src/data/*.json`, `public/uploads/` ou `public/legacy/`.
 
-## 2. Suite fonctionnelle — `pnpm run qa`
+## Build public GitHub Pages
 
-Teste toutes les fonctionnalités contre le serveur en marche.
+```bash
+pnpm run build:pages
+```
+
+Cette commande compile, exporte `public-site/`, puis lance le contrôle sécurité.
+
+## Contrôle sécurité
+
+```bash
+pnpm run security:check
+```
+
+Vérifie notamment :
+
+- pas de `public-site/admin`;
+- pas de `public-site/api`;
+- présence de `public-site/.nojekyll`;
+- absence de traces `ADMIN_PASSWORD` ou `SUPABASE_SERVICE_ROLE_KEY` dans l'artefact public;
+- absence d'appels API admin dans l'artefact publié.
+
+## QA fonctionnelle
 
 ```bash
 # terminal 1
 pnpm run dev
+
 # terminal 2
 pnpm run qa
 ```
 
-Résultat attendu : `RÉSULTAT: 103 OK / 0 échec(s)` (code de sortie `0`).
+Pré-requis :
 
-Couverture :
+- `.env.local` contient `ADMIN_USER` et `ADMIN_PASSWORD`;
+- ou les variables sont disponibles dans l'environnement;
+- le serveur tourne sur `QA_BASE` ou `http://127.0.0.1:4321`.
 
-| Bloc | Ce qui est testé |
-| --- | --- |
-| 1. Pages publiques | Accueil, News, SDA, LMF, Club, Agenda, Archives, Vidéos, Contact, page source, `robots.txt`, favicon, logo, page 404 |
-| 2. Pages admin | Tableau de bord, Gestion du contenu, Réglages, Médiathèque, les 13 collections, deep-link `?edit=` |
-| 3. CRUD API | Création → lecture → modification → suppression pour **chaque** collection (nettoyé automatiquement) |
-| 4. Champs structurés | Paragraphes (ligne vide = nouveau paragraphe), répéteurs (lignes vides ignorées) |
-| 5. Validation & permissions | Champ requis manquant → 400, collection inconnue → 404, création/suppression interdites (`pages`) → 405 |
-| 6. Upload | `.png` accepté (201), `.svg` refusé (400), envoi sans `Origin` refusé (403 — protection CSRF) |
-| 7. Réglages du site | Lecture puis écriture (aller-retour neutre) de `/api/site` |
+La QA teste :
 
-La suite ne modifie **aucune donnée réelle** : elle crée des éléments jetables
-qu'elle supprime, et nettoie le fichier de test envoyé.
+- pages publiques;
+- pages admin;
+- CRUD de toutes les collections;
+- champs structurés;
+- validations;
+- permissions;
+- upload;
+- réglages du site;
+- protection CSRF.
 
-### Notes
+Pour cibler un autre serveur :
 
-- `pnpm run qa` doit tourner contre un serveur (`pnpm run dev` ou le serveur
-  compilé). En mode `dev`, chaque écriture déclenche un rechargement Vite ; la
-  suite ré-essaie automatiquement en cas de coupure passagère.
-- `/sitemap-index.xml` n'existe **qu'après un build** (`pnpm run build`), pas en
-  mode `dev` — c'est normal.
-- Cibler un autre serveur : `QA_BASE=http://127.0.0.1:4325 node scripts/qa.mjs`.
+```bash
+QA_BASE=http://127.0.0.1:4325 pnpm run qa
+```
 
-## 3. Aperçu du site publié — `pnpm run preview:public`
+## Aperçu de l'artefact publié
 
-Après `pnpm run build:public`, sert le dossier `public-site/` en statique pur
-(sans admin) sur `http://127.0.0.1:4322` pour vérifier exactement ce qui sera
-mis en ligne.
+```bash
+pnpm run build:pages
+pnpm run preview:public
+```
+
+Ouvrir `http://127.0.0.1:4322`.
+
+Cet aperçu sert exactement `public-site/`, sans admin ni API.
+
+## Checklist avant merge
+
+```bash
+pnpm run check:content
+pnpm run build:pages
+git diff --check
+git status --short
+```
+
+Ajouter `pnpm run qa` si l'admin, les API, `src/lib/store.ts`, `src/lib/collections.ts` ou `public/admin/forms.js` ont changé.

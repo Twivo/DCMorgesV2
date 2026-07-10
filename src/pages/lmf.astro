@@ -4,7 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import DocumentCard from "../components/DocumentCard.astro";
 import TeamCard from "../components/TeamCard.astro";
-import { getDocumentsByCompetition } from "../data/documents";
+import { lmfDocuments } from "../data/lmfDocuments";
 import { formatPageActions, formatPageSection, formatPageText, getPageSection, getSitePage } from "../data/pages";
 import { seasons } from "../data/seasons";
 import { teams } from "../data/teams";
@@ -17,9 +17,13 @@ const presentationSection = formatPageSection(getPageSection(page, "presentation
 const teamSection = formatPageSection(getPageSection(page, "team"), pageVars);
 const documentsSection = formatPageSection(getPageSection(page, "documents"), pageVars);
 const previousDocumentsSection = formatPageSection(getPageSection(page, "previous-documents"), pageVars);
-const lmfDocuments = getDocumentsByCompetition("LMF");
-const currentLmfDocuments = lmfDocuments.filter((document) => document.season === currentSeasonLabel);
-const previousLmfDocuments = lmfDocuments.filter((document) => document.season !== currentSeasonLabel);
+const visibleLmfDocuments = [...lmfDocuments].sort(
+  (a, b) =>
+    (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) ||
+    a.title.localeCompare(b.title, "fr")
+);
+const currentLmfDocuments = visibleLmfDocuments.filter((document) => document.season === currentSeasonLabel);
+const previousLmfDocuments = visibleLmfDocuments.filter((document) => document.season !== currentSeasonLabel);
 const lmfTeams = teams.filter((team) => team.competition === "LMF");
 ---
 

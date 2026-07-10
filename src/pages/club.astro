@@ -2,22 +2,24 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import { legacyPages } from "../data/legacyPages";
+import { clubPalmaresLines } from "../data/clubPalmares";
 
-const palmaresPage = legacyPages.find((page) => page.slug === "club-palmares-html");
-const rawRows = palmaresPage?.tables?.flatMap((table) => table.rows) ?? [];
+const palmaresLines = [...clubPalmaresLines].sort(
+  (a, b) =>
+    (b.order ?? Number.NEGATIVE_INFINITY) - (a.order ?? Number.NEGATIVE_INFINITY) ||
+    b.season.localeCompare(a.season, "fr") ||
+    a.competition.localeCompare(b.competition, "fr")
+);
 
-const normalizeSeason = (value: string) => value.replace(/\s+/g, "").replace("/", " / ");
-const palmaresRows = rawRows
-  .map((row) => {
-    const [season = "", competitions = "", results = ""] = row.c;
-    return {
-      season: normalizeSeason(season),
-      competitions: competitions.trim(),
-      results: results.trim()
-    };
-  })
-  .filter((row) => row.season && row.competitions && row.results);
+const palmaresGroups = palmaresLines.reduce<Array<{ season: string; lines: typeof palmaresLines }>>((groups, line) => {
+  const current = groups.at(-1);
+  if (current?.season === line.season) {
+    current.lines.push(line);
+  } else {
+    groups.push({ season: line.season, lines: [line] });
+  }
+  return groups;
+}, []);
 ---
 
 <BaseLayout title="Palmarès du club" description="Palmarès historique du Darts Club Morges.">
@@ -35,25 +37,33 @@ const palmaresRows = rawRows
         description="Championnat, coupes et résultats marquants du club."
       />
 
-      <div class="palmares-table-wrap">
-        <table class="palmares-table">
-          <thead>
-            <tr>
-              <th>Saison</th>
-              <th>Compétitions</th>
-              <th>Résultats</th>
-            </tr>
-          </thead>
-          <tbody>
-            {palmaresRows.map((row) => (
-              <tr>
-                <td class="palmares-table__season">{row.season}</td>
-                <td>{row.competitions}</td>
-                <td>{row.results}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div class="palmares-years">
+        {palmaresGroups.map((group) => {
+          const headingId = `palmares-${group.season.replace(/\W+/g, "-")}`;
+          return (
+            <section class="palmares-year" aria-labelledby={headingId}>
+              <h3 id={headingId}>{group.season}</h3>
+              <div class="palmares-table-wrap">
+                <table class="palmares-table">
+                  <thead>
+                    <tr>
+                      <th>Compétition</th>
+                      <th>Résultat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {group.lines.map((line) => (
+                      <tr>
+                        <td>{line.competition}</td>
+                        <td>{line.result}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -62,6 +72,24 @@ const palmaresRows = rawRows
     .palmares-page {
       display: grid;
       gap: 20px;
+    }
+
+    .palmares-years {
+      display: grid;
+      gap: 18px;
+    }
+
+    .palmares-year {
+      display: grid;
+      gap: 10px;
+    }
+
+    .palmares-year h3 {
+      margin: 0;
+      color: var(--color-red-dark);
+      font-size: 1.15rem;
+      font-weight: 850;
+      line-height: 1.2;
     }
 
     .palmares-table-wrap {
@@ -74,18 +102,11 @@ const palmaresRows = rawRows
     }
 
     .palmares-table {
-      min-width: 820px;
+      min-width: 680px;
     }
 
-    .palmares-table th:first-child,
-    .palmares-table td:first-child {
-      width: 145px;
-    }
-
-    .palmares-table__season {
-      color: var(--color-red-dark);
-      font-weight: 850;
-      white-space: nowrap;
+    .palmares-table th:first-child {
+      width: 42%;
     }
 
     .palmares-table td {

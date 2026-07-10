@@ -1,6 +1,7 @@
 [
   {
     "id": "lmf-1",
+    "order": 1,
     "title": "LMF Calendrier",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-calendrier.pdf",
     "season": "2025-26",
@@ -10,6 +11,7 @@
   },
   {
     "id": "lmf-2",
+    "order": 2,
     "title": "LMF Classement",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement.pdf",
     "season": "2025-26",
@@ -19,6 +21,7 @@
   },
   {
     "id": "lmf-3",
+    "order": 3,
     "title": "LMF Classement best finish",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-finish.pdf",
     "season": "2025-26",
@@ -28,6 +31,7 @@
   },
   {
     "id": "lmf-4",
+    "order": 4,
     "title": "LMF Classement best player",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-best-player.pdf",
     "season": "2025-26",
@@ -37,6 +41,7 @@
   },
   {
     "id": "lmf-5",
+    "order": 5,
     "title": "LMF Classement most 180",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-most-180.pdf",
     "season": "2025-26",
@@ -46,6 +51,7 @@
   },
   {
     "id": "lmf-6",
+    "order": 6,
     "title": "LMF Classement MVP",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-classement-MVP.pdf",
     "season": "2025-26",
@@ -55,6 +61,7 @@
   },
   {
     "id": "lmf-7",
+    "order": 7,
     "title": "LMF coupe",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe.pdf",
     "season": "2025-26",
@@ -64,6 +71,7 @@
   },
   {
     "id": "lmf-8",
+    "order": 8,
     "title": "LMF coupe matchs",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-coupe-matchs.pdf",
     "season": "2025-26",
@@ -73,6 +81,7 @@
   },
   {
     "id": "lmf-9",
+    "order": 9,
     "title": "LMF feuille coupe",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-coupe.pdf",
     "season": "2025-26",
@@ -82,6 +91,7 @@
   },
   {
     "id": "lmf-10",
+    "order": 10,
     "title": "LMF feuille match",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-feuille-match.pdf",
     "season": "2025-26",
@@ -91,6 +101,7 @@
   },
   {
     "id": "lmf-11",
+    "order": 11,
     "title": "LMF matchs",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-matchs.pdf",
     "season": "2025-26",
@@ -100,6 +111,7 @@
   },
   {
     "id": "lmf-12",
+    "order": 12,
     "title": "LMF Palmarès",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-palmares.pdf",
     "season": "2025-26",
@@ -109,6 +121,7 @@
   },
   {
     "id": "lmf-13",
+    "order": 13,
     "title": "LMF Règlement",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-rules.pdf",
     "season": "2025-26",
@@ -118,6 +131,7 @@
   },
   {
     "id": "lmf-14",
+    "order": 14,
     "title": "LMF Résultats",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-resultats.pdf",
     "season": "2025-26",
@@ -127,6 +141,7 @@
   },
   {
     "id": "lmf-15",
+    "order": 15,
     "title": "LMF teams",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/LMF-teams.pdf",
     "season": "2025-26",
@@ -136,6 +151,7 @@
   },
   {
     "id": "lmf-16",
+    "order": 16,
     "title": "Tournoi VD Coupe 2026",
     "url": "/legacy/ligue-morgienne/LMF-2025-26/Tournoi-VD-Coupe-2026.pdf",
     "season": "2025-26",

@@ -13,6 +13,8 @@ export default defineConfig({
   // rendering (dist/server) and must stay LOCAL — never expose them publicly.
   output: "static",
   adapter: node({ mode: "standalone" }),
+  // Hide the Astro dev toolbar (the black oval that appears at the bottom in dev).
+  devToolbar: { enabled: false },
   integrations: [
     sitemap({
       // Never advertise the admin in the sitemap.

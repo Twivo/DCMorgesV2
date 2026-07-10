@@ -1,125 +1,116 @@
-# Fonctionnalités du site — Darts Club Morges
+# Fonctionnalités du site - Darts Club Morges
 
-Récapitulatif complet de ce que fait le site, côté public et côté administration.
+Récapitulatif du site public, de l'administration et des contrôles de publication.
 
----
+## Site public
 
-## 1. Site public
-
-Pages statiques, rapides, responsive (mobile/tablette/ordinateur), en français.
+Pages statiques, rapides, responsive et en français.
 
 | Page | Adresse | Contenu |
 | --- | --- | --- |
-| Accueil | `/` | Bandeau, infos club, accès rapides, 3 dernières news, prochains événements, 6 documents mis en avant |
-| News | `/news/` | Liste des actualités (triées de la plus récente à la plus ancienne) |
-| Détail news | `/news/<slug>/` | Article complet : photo + légende, texte, documents liés |
-| SDA | `/sda/` | Saison, équipes SDA, documents officiels |
-| LMF | `/lmf/` | Ligue Morgienne : team, documents, archives |
-| LMF stats live | `/lmf-stats-live/` | Page cachée Supabase : classements, historique filtrable par rencontre, détail des parties/manches et 180s |
-| Club | `/club/` | Palmarès du club |
-| Agenda | `/agenda/` | Événements **à venir** puis **passés** |
-| Archives | `/archives/` | Catégories d'archives, documents et pages historiques |
-| Vidéos | `/videos/` | Vidéos du club (⚠ voir note en fin de document) |
-| Contact | `/contact/` | Coordonnées, IBAN, locaux, capitaines |
-| Pages sources | `/sources/<slug>/` | 73 anciennes pages importées (textes, **tableaux Hall of Fame reconstruits**, images, documents) |
-| Page 404 | — | Page d'erreur personnalisée |
+| Accueil | `/` | Bandeau, présentation du club, accès rapides, news, événements, documents mis en avant |
+| News | `/news/` | Liste des actualités, triées de la plus récente à la plus ancienne |
+| Détail news | `/news/<slug>/` | Article complet, photo, légende, texte et documents liés |
+| SDA | `/sda/` | Saison, équipes SDA et cartes documents entièrement éditables |
+| LMF | `/lmf/` | Ligue Morgienne, équipe LMF et cartes documents entièrement éditables |
+| Stats live LMF | `/lmf-stats-live/` | Page cachée Supabase : classements, historique, matchs, manches, visites et 180s |
+| Club | `/club/` | Palmarès du club groupé par saison, une ligne par fait d'armes |
+| Agenda | `/agenda/` | Événements à venir puis passés |
+| Archives | `/archives/` | Carrés archives, documents, liens historiques et groupes |
+| Vidéos | `/videos/` | Vidéos du club |
+| Contact | `/contact/` | Coordonnées, IBAN, locaux et capitaines |
+| Pages sources | `/sources/<slug>/` | Anciennes pages importées : textes, tableaux, images, documents et liens |
+| Page 404 | - | Page d'erreur personnalisée |
 
-**Détails notables**
-- **News** triées automatiquement (plus récentes en haut) ; chaque article accepte photo + légende, texte en paragraphes et documents liés.
-- **Agenda** : les événements à venir s'affichent en premier ; les événements passés sont regroupés en dessous ; message clair quand il n'y a rien à venir.
-- **Archives** : les tableaux « Hall of Fame » de l'ancien site (championnats, coupes, palmarès) ont été reconstruits en vrais tableaux lisibles, avec des noms de pages précis.
-- **LMF stats live** : page cachée non liée au menu, alimentée par les tables Supabase LMF via clé anon publique et RLS, avec historique filtrable des rencontres, détail des parties/manches et classement des 180s.
-- **Liens sécurisés** : les liens d'un contenu ne peuvent pas exécuter de code (protection `javascript:`).
+## Détails publics importants
 
----
+- Les news sont triées automatiquement.
+- L'agenda sépare les événements à venir et passés.
+- Les pages SDA et LMF affichent des cartes documents dédiées, indépendantes de la bibliothèque globale.
+- Le bouton d'accueil **Palmarès** mène à `/club/`; le bouton **Archives** mène à `/archives/`.
+- Le palmarès Club est groupé par saison et chaque fait d'armes occupe une ligne.
+- Les archives sont construites avec des carrés éditables : titre, texte, pastilles, documents et liens.
+- Les liens dangereux de type `javascript:` sont neutralisés.
 
-## 2. Administration (`/admin`)
+## Stats live LMF
 
-Interface simple, **sans code**, pensée pour un usage non technique. Chaque
-modification est enregistrée directement et visible sur le site après
-régénération.
+La page `/lmf-stats-live/` n'est pas liée dans le menu public. Elle est statique mais lit Supabase côté navigateur avec une clé anon publique.
 
-### Point d'entrée
-- **Gestion du contenu** (`/admin/content`) : choisir une rubrique du site
-  (Documents, News, Agenda, Vidéo, Club, SDA, LMF, Archives) et accéder
-  directement à tout ce qui est modifiable pour elle.
+Elle affiche :
 
-### Rubriques gérables
-- **Pages du site** : textes des bandeaux, boutons et titres de sections de chaque page.
-- **Documents en avant (accueil)** : les 6 cartes de la page d'accueil (texte, fichier, saison, catégorie).
-- **News** : articles, photo + légende, texte, catégorie, documents liés.
-- **Agenda** : événements (date, heure, lieu, type, description).
-- **Documents** : PDF/fichiers officiels (titre, type, saison, compétition, fichier).
-- **Membres** : prénom, nom, rôle, équipe, photo.
-- **Équipes** : nom, compétition, saison, joueurs.
-- **Saisons** : la saison cochée « en cours » se répercute partout automatiquement.
-- **Vidéos** : titre, année, description, lien, vignette.
-- **Archives** / **Groupes d'archives** : catégories, documents et organisation.
-- **Blocs contact** : locaux, capitaines, coordonnées.
-- **Pages sources** : anciennes pages (textes, tableaux, images, documents, liens).
-- **Médiathèque** : envoyer un fichier seul et récupérer son URL.
-- **Réglages du site** : nom, adresse, e-mail, logo, image d'accueil, menu, IBAN…
+- classement de ligue;
+- Best Player;
+- classement MVP;
+- High finish;
+- classement des 180s;
+- historique filtrable des rencontres;
+- détail des parties, manches et visites.
 
-### Confort d'utilisation
-- **Champs simples** : aucun code ni JSON à saisir. Listes avec boutons
-  Ajouter/Supprimer, cases à cocher, sélection de documents dans une liste.
-- **Upload de fichiers** : bouton « Choisir un fichier » avec aperçu. Seuls
-  **PDF, images et vidéos** sont acceptés (sécurité).
-- **Recherche** : dans les longues listes (Membres, Documents, Pages sources),
-  un champ filtre les résultats instantanément.
-- **Accents** gérés directement (é, è, à, ç, ô…).
-- **Variables de texte** : `{{currentSeason}}`, `{{newsCount}}`,
-  `{{activeMembersCount}}`, `{{formerMembersCount}}`.
+Les règles détaillées sont dans [`LMF_STATS_SUPABASE.md`](./LMF_STATS_SUPABASE.md).
 
----
+## Administration
 
-## 3. SEO & performance
+L'admin `/admin` est pensée pour un usage non technique. Elle est protégée par `ADMIN_USER` et `ADMIN_PASSWORD`.
 
-- **Génération statique** : pages HTML pré-calculées, très rapides.
-- **Images optimisées** : photos de membres converties en JPEG, image d'accueil
-  en WebP (~66 Ko au lieu de 1,7 Mo). ~4 Mo économisés sur les pages courantes.
-- **Sitemap** (`/sitemap-index.xml`) + **robots.txt** générés au build.
-- **Balises canoniques + Open Graph + Twitter** sur chaque page (partage réseaux).
-- **Données structurées JSON-LD** (`SportsClub` avec adresse) pour le
-  référencement local (Google, Maps).
+Point d'entrée recommandé : `/admin/content`.
 
----
+Rubriques principales :
 
-## 4. Sécurité
+- **Pages du site** : textes, bandeaux, boutons et sections visibles.
+- **Accueil** : texte sous "Le Club", boutons, accès rapides et documents en avant.
+- **SDA** : textes, équipes et cartes documents.
+- **LMF** : textes, équipe et cartes documents.
+- **Club** : textes, membres, équipes et lignes du palmarès.
+- **Archives** : carrés archives, groupes et documents liés.
+- **News** : articles, images, résumés, textes et documents liés.
+- **Agenda** : dates, lieux, horaires, types et liens.
+- **Documents** : bibliothèque globale de PDF et fichiers.
+- **Membres** : fiches membres, rôles, équipes et photos.
+- **Équipes** : équipes SDA/LMF, saison, description et joueurs.
+- **Saisons** : saison courante utilisée par le site.
+- **Vidéos** : titre, année, description, lien et vignette.
+- **Contact** : blocs de coordonnées.
+- **Pages sources** : anciennes pages importées.
+- **Médiathèque** : upload autonome et URL réutilisable.
+- **Réglages du site** : logo, image d'accueil, adresse, e-mail, menu et accès rapides.
 
-- **Upload restreint** aux formats sûrs (PDF, images, vidéos).
-- **Anti-XSS** : contenus échappés côté admin, liens `javascript:` neutralisés côté public.
-- **Protection CSRF** sur les envois de fichiers.
-- **Erreurs internes non divulguées** (messages génériques).
-- ⚠️ **L'admin n'a pas de mot de passe** : elle ne doit tourner qu'en **local**.
-  On publie uniquement le site public statique (voir §5).
+Confort d'utilisation :
 
----
+- aucun JSON à saisir;
+- listes avec boutons Ajouter/Supprimer;
+- cases à cocher pour les références;
+- upload de fichiers depuis les formulaires;
+- recherche dans les longues listes;
+- aides courtes sur les champs sensibles.
 
-## 5. Publication & maintenance
+## Sécurité
 
-- `pnpm run dev` → éditer le contenu en local (`http://127.0.0.1:4321/admin`).
-- `pnpm run build:public` → génère le dossier **`public-site/`** à téléverser.
-- `pnpm run preview:public` → aperçu exact de ce qui sera publié.
-- `pnpm run qa` → teste toutes les fonctionnalités (103 vérifications).
-- `pnpm run check:content` → vérifie accents, fichiers et liens internes.
+- `/admin` et `/api/*` demandent HTTP Basic Auth.
+- L'admin et l'API échouent fermement si `ADMIN_USER` ou `ADMIN_PASSWORD` manque.
+- Les écritures cross-origin sont refusées.
+- Les uploads sont limités aux PDF, images et vidéos.
+- SVG, HTML et JS sont refusés en upload.
+- Le site public exporté ne contient ni `/admin`, ni `/api`, ni `dist/server`.
+- La clé Supabase `service_role` ne doit jamais être exposée dans une variable `PUBLIC_*`.
 
-Détails : voir `README.md` (« Publication en ligne ») et `docs/TESTING.md`.
+Voir [`../SECURITY.md`](../SECURITY.md).
 
----
+## Publication et maintenance
 
-## ⚠️ Point à régler avant la mise en ligne : les vidéos
+Commandes courantes :
 
-Les 4 vidéos sont **hébergées localement** dans `public/legacy/videos/` et pèsent
-**~407 Mo au total** (une seule fait **332 Mo**). Le dossier à publier fait donc
-**~429 Mo**, ce qui est trop lourd pour la plupart des hébergeurs et très lent
-pour les visiteurs.
+```bash
+pnpm run dev
+pnpm run check:content
+pnpm run build:pages
+pnpm run preview:public
+pnpm run qa
+```
 
-**Recommandation** : mettre ces vidéos sur **YouTube** (ou Vimeo), puis remplacer
-leur « Lien de la vidéo » dans l'admin (rubrique **Vidéos**) par le lien YouTube,
-et supprimer les fichiers `.mp4` locaux. Le site publié tomberait alors de
-**~429 Mo à ~2 Mo**.
+`pnpm run build:pages` génère `public-site/`, ajoute `.nojekyll`, retire toute trace admin/API et lance le contrôle sécurité.
 
-> Ce point n'a pas été modifié automatiquement car il s'agit d'un choix
-> d'hébergement des vidéos. Dis-le si tu veux que je bascule les vidéos vers
-> YouTube et que je retire les fichiers locaux.
+Le workflow GitHub Pages publie uniquement `public-site/`.
+
+## Point vidéo
+
+Les vidéos historiques locales dans `public/legacy/videos/` sont lourdes. Pour alléger le site publié, la meilleure option reste de les héberger sur YouTube ou Vimeo, puis de remplacer les liens dans l'admin rubrique **Vidéos**.

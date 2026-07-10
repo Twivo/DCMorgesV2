@@ -1,33 +1,33 @@
 [
   {
     "id": "emission-sportive-la-tele-2012",
-    "title": "Emission sportive La Télé 2012",
+    "title": "Émission sportive La Télé 2012",
     "year": "2012",
-    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "description": "Reportage de La Télé consacré au Darts Club Morges et aux fléchettes (2012).",
     "url": "/legacy/videos/Les-Sports-La-tele.mp4",
     "thumbnail": "/legacy/clipart/cameraman.gif"
   },
   {
     "id": "pdc-worldcup-2017-switzerland-brazil",
-    "title": "PDC Worldcup 2017 Switzerland-Brazil",
+    "title": "PDC World Cup 2017 – Suisse / Brésil",
     "year": "2017",
-    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "description": "La Suisse face au Brésil lors de la PDC World Cup 2017.",
     "url": "/legacy/videos/WorldCup-2017-Switzerland-Brazil.mp4",
     "thumbnail": "/legacy/clipart/cameraman.gif"
   },
   {
     "id": "wdf-world-cup-2019-romania",
-    "title": "WDF World Cup 2019 Cluj-Napoca / Romania",
+    "title": "WDF World Cup 2019 – Cluj-Napoca, Roumanie",
     "year": "2019",
-    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "description": "La WDF World Cup 2019 disputée à Cluj-Napoca, en Roumanie.",
     "url": "/legacy/videos/WorldCup-2019-Romania.mp4",
     "thumbnail": "/legacy/clipart/cameraman.gif"
   },
   {
     "id": "wdf-europe-cup-2022-spain",
-    "title": "WDF Europe Cup 2022 Gandia / Spain",
+    "title": "WDF Europe Cup 2022 – Gandia, Espagne",
     "year": "2022",
-    "description": "Vidéo présente sur la page Vidéos du site actuel.",
+    "description": "La WDF Europe Cup 2022 disputée à Gandia, en Espagne.",
     "url": "/legacy/videos/EuropeCup-2022-Spain.mp4",
     "thumbnail": "/legacy/clipart/cameraman.gif"
   }

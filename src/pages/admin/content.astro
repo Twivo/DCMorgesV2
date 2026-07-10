@@ -8,20 +8,98 @@ interface Link {
   href: string;
   hint?: string;
 }
+
+interface Highlight {
+  label: string;
+  title: string;
+  href: string;
+  description: string;
+}
+
 interface Section {
+  id?: string;
   title: string;
   description: string;
   links: Link[];
 }
 
-// Each public section maps to the admin editors that drive its visible content.
+const highlights: Highlight[] = [
+  {
+    label: "Accueil",
+    title: "Texte sous Le Club",
+    href: "/admin/pages?edit=home",
+    description: "Modifier le texte de présentation et les sections de la page d'accueil."
+  },
+  {
+    label: "SDA",
+    title: "Cartes documents",
+    href: "/admin/sda-documents",
+    description: "Changer les titres, boutons, fichiers et l'ordre des cartes SDA."
+  },
+  {
+    label: "LMF",
+    title: "Cartes documents",
+    href: "/admin/lmf-documents",
+    description: "Piloter entièrement les documents affichés sur la page LMF."
+  },
+  {
+    label: "Archives",
+    title: "Carrés archives",
+    href: "/admin/archives",
+    description: "Modifier les textes, documents, liens et pastilles des carrés."
+  }
+];
+
 const sections: Section[] = [
   {
-    title: "Documents",
-    description: "Les 6 cartes mises en avant sur l'accueil et la bibliothèque complète.",
+    title: "Accueil",
+    description: "Bandeau, texte de présentation sous Le Club, titres des sections et cartes en avant.",
     links: [
-      { label: "Les 6 cartes de l'accueil", href: "/admin/home-documents", hint: "Texte, fichier, saison, catégorie" },
-      { label: "Tous les documents", href: "/admin/documents" }
+      { label: "Texte sous Le Club", href: "/admin/pages?edit=home", hint: "Page Accueil, section club-info" },
+      { label: "Cartes documents de l'accueil", href: "/admin/home-documents", hint: "Les 6 documents visibles sur la page d'accueil" },
+      { label: "Accès rapides de l'accueil", href: "/admin/site", hint: "Dans Réglages du site" }
+    ]
+  },
+  {
+    id: "club-archives",
+    title: "Club",
+    description: "Textes de la page Club, membres, équipes et lignes du palmarès.",
+    links: [
+      { label: "Textes de la page Club", href: "/admin/pages?edit=club" },
+      { label: "Lignes du palmarès", href: "/admin/club-palmares", hint: "Ajouter, modifier ou réordonner les lignes" },
+      { label: "Membres", href: "/admin/members" },
+      { label: "Équipes", href: "/admin/teams" }
+    ]
+  },
+  {
+    title: "SDA",
+    description: "Page SDA, équipes et documents affichés dans les carrés.",
+    links: [
+      { label: "Textes de la page SDA", href: "/admin/pages?edit=sda" },
+      { label: "Cartes documents SDA", href: "/admin/sda-documents", hint: "Ordre, titre, type, saison, boutons et fichier" },
+      { label: "Équipes SDA", href: "/admin/teams" },
+      { label: "Bibliothèque documents", href: "/admin/documents" }
+    ]
+  },
+  {
+    title: "LMF",
+    description: "Page LMF, équipe et documents affichés dans les carrés.",
+    links: [
+      { label: "Textes de la page LMF", href: "/admin/pages?edit=lmf" },
+      { label: "Cartes documents LMF", href: "/admin/lmf-documents", hint: "Ordre, titre, type, saison, boutons et fichier" },
+      { label: "Équipe LMF", href: "/admin/teams" },
+      { label: "Bibliothèque documents", href: "/admin/documents" }
+    ]
+  },
+  {
+    id: "archives",
+    title: "Archives",
+    description: "Page Archives, carrés affichés, groupes et documents associés.",
+    links: [
+      { label: "Textes de la page Archives", href: "/admin/pages?edit=archives" },
+      { label: "Carrés archives", href: "/admin/archives", hint: "Titre, texte, pastilles, documents et liens" },
+      { label: "Groupes d'archives", href: "/admin/archive-groups" },
+      { label: "Documents", href: "/admin/documents" }
     ]
   },
   {
@@ -29,59 +107,32 @@ const sections: Section[] = [
     description: "Articles, résumés, photos et documents liés.",
     links: [
       { label: "Articles", href: "/admin/news" },
-      { label: "Textes de la page News", href: "/admin/pages?edit=news" }
+      { label: "Textes de la page News", href: "/admin/pages?edit=news" },
+      { label: "Documents liés", href: "/admin/documents" }
     ]
   },
   {
     title: "Agenda",
-    description: "Événements à venir et pages sources.",
+    description: "Événements à venir et textes de la page Agenda.",
     links: [
       { label: "Événements", href: "/admin/events" },
       { label: "Textes de la page Agenda", href: "/admin/pages?edit=agenda" }
     ]
   },
   {
-    title: "Vidéo",
-    description: "Liste des vidéos et vignettes.",
+    title: "Vidéos",
+    description: "Liste des vidéos, descriptions et vignettes.",
     links: [
       { label: "Vidéos", href: "/admin/videos" },
       { label: "Textes de la page Vidéos", href: "/admin/pages?edit=videos" }
     ]
   },
   {
-    title: "Club",
-    description: "Membres, équipes et textes de présentation.",
+    title: "Contact",
+    description: "Textes et blocs de coordonnées visibles sur la page Contact.",
     links: [
-      { label: "Membres", href: "/admin/members" },
-      { label: "Équipes", href: "/admin/teams" },
-      { label: "Textes de la page Club", href: "/admin/pages?edit=club" }
-    ]
-  },
-  {
-    title: "SDA",
-    description: "Équipes SDA, documents et textes de la page.",
-    links: [
-      { label: "Équipes", href: "/admin/teams" },
-      { label: "Documents", href: "/admin/documents" },
-      { label: "Textes de la page SDA", href: "/admin/pages?edit=sda" }
-    ]
-  },
-  {
-    title: "LMF",
-    description: "Équipe LMF, documents et textes de la page.",
-    links: [
-      { label: "Documents", href: "/admin/documents" },
-      { label: "Équipes", href: "/admin/teams" },
-      { label: "Textes de la page LMF", href: "/admin/pages?edit=lmf" }
-    ]
-  },
-  {
-    title: "Archives",
-    description: "Catégories, groupes d'archives et textes de la page.",
-    links: [
-      { label: "Catégories d'archives", href: "/admin/archives" },
-      { label: "Groupes d'archives", href: "/admin/archive-groups" },
-      { label: "Textes de la page Archives", href: "/admin/pages?edit=archives" }
+      { label: "Textes de la page Contact", href: "/admin/pages?edit=contact" },
+      { label: "Blocs contact", href: "/admin/contact-blocks" }
     ]
   }
 ];
@@ -91,43 +142,213 @@ const sections: Section[] = [
   <div class="admin-head">
     <div>
       <h1>Gestion du contenu</h1>
-      <p>Choisissez une rubrique du site pour en modifier les contenus visibles. Tout est enregistré automatiquement et s'affiche aussitôt sur le site public.</p>
+      <p>Choisissez ce que vous voulez modifier. Chaque bouton mène directement au bon formulaire.</p>
     </div>
-    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public ↗</a>
+    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public</a>
   </div>
 
-  <div class="content-grid">
-    {sections.map((section) => (
-      <div class="content-tile">
-        <h2>{section.title}</h2>
-        <p>{section.description}</p>
-        <div class="content-tile__links">
-          {section.links.map((link) => (
-            <a class="content-link" href={link.href}>
-              <span>{link.label}</span>
-              {link.hint && <small>{link.hint}</small>}
-            </a>
-          ))}
-        </div>
+  <div class="content-admin">
+    <section class="content-block" aria-labelledby="content-focus-title">
+      <div class="content-block__head">
+        <h2 id="content-focus-title">Modifications rapides</h2>
+        <p>Les zones les plus utilisées sont regroupées ici.</p>
       </div>
-    ))}
+
+      <div class="quick-list">
+        {highlights.map((item) => (
+          <a class="quick-link" href={item.href}>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+            <small>{item.description}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="content-map-title">
+      <div class="content-block__head">
+        <h2 id="content-map-title">Par page du site</h2>
+        <p>Chaque bloc rassemble les formulaires liés à une même page publique.</p>
+      </div>
+
+      <div class="page-list">
+        {sections.map((section) => (
+          <article class="page-edit" id={section.id}>
+            <div class="page-edit__text">
+              <h3>{section.title}</h3>
+              <p>{section.description}</p>
+            </div>
+            <div class="page-edit__actions">
+              {section.links.map((link) => (
+                <a class="edit-link" href={link.href}>
+                  <strong>{link.label}</strong>
+                  {link.hint && <small>{link.hint}</small>}
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   </div>
 
   <style is:global>
-    .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
-    .content-tile {
-      display: grid; gap: 10px; padding: 20px; border: 1px solid var(--a-line);
-      border-radius: 14px; background: var(--a-surface); box-shadow: 0 8px 22px rgba(16,32,26,0.05);
+    .content-admin {
+      display: grid;
+      gap: 28px;
+      max-width: 1160px;
+      min-width: 0;
+    }
+
+    .content-block {
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .content-block__head h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+
+    .content-block__head p {
+      margin: 3px 0 0;
+      color: var(--a-muted);
+      font-size: 0.92rem;
+    }
+
+    .quick-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .quick-link {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid var(--a-line);
+      border-radius: 10px;
+      background: var(--a-surface);
+      box-shadow: 0 8px 20px rgba(16, 32, 26, 0.045);
+      overflow: hidden;
+    }
+
+    .quick-link:hover {
+      border-color: var(--a-green);
+      background: #f7fbf8;
+    }
+
+    .quick-link span {
+      color: var(--a-green);
+      font-size: 0.72rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .quick-link strong {
+      min-width: 0;
+      color: var(--a-ink);
+      font-size: 1rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .quick-link small {
+      min-width: 0;
+      color: var(--a-muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .page-list {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .page-edit {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.8fr) minmax(0, 1.7fr);
+      gap: 18px;
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid var(--a-line);
+      border-radius: 10px;
+      background: var(--a-surface);
+    }
+
+    .page-edit:target {
+      border-color: var(--a-green);
+      background: #f5faf6;
+    }
+
+    .page-edit__text {
+      min-width: 0;
+    }
+
+    .page-edit__text h3 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .page-edit__text p {
+      margin: 5px 0 0;
+      color: var(--a-muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .page-edit__actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+      gap: 8px;
+      min-width: 0;
       align-content: start;
     }
-    .content-tile h2 { margin: 0; font-size: 1.2rem; }
-    .content-tile > p { margin: 0; color: var(--a-muted); font-size: 0.9rem; }
-    .content-tile__links { display: grid; gap: 8px; margin-top: 4px; }
-    .content-link {
-      display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--a-line);
-      border-radius: 9px; background: var(--a-paper); font-weight: 700; font-size: 0.9rem;
+
+    .edit-link {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+      padding: 10px 12px;
+      border: 1px solid var(--a-line);
+      border-radius: 8px;
+      background: var(--a-paper);
+      overflow: hidden;
     }
-    .content-link:hover { border-color: var(--a-green); background: #eef6f1; }
-    .content-link small { color: var(--a-muted); font-weight: 500; }
+
+    .edit-link:hover {
+      border-color: var(--a-green);
+      background: #eef6f1;
+    }
+
+    .edit-link strong {
+      min-width: 0;
+      font-size: 0.88rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .edit-link small {
+      min-width: 0;
+      color: var(--a-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 980px) {
+      .page-edit {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </AdminLayout>

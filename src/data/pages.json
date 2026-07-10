@@ -1,45 +1,12 @@
 [
   {
-    "id": "home",
     "label": "Accueil",
     "path": "/",
     "seoTitle": "Accueil",
-    "seoDescription": "DARTS CLUB MORGES, Rue de la Gare 1b, 1110 Morges.",
-    "heroEyebrow": "Mise à jour : {{update}}",
+    "seoDescription": "Le Darts Club Morges, club de fléchettes à Morges : actualités, SDA, LMF, agenda, archives et contact.",
+    "heroEyebrow": "Club de fléchettes à Morges",
     "heroTitle": "Darts Club Morges",
-    "heroDescription": "DARTS CLUB MORGES, Rue de la Gare 1b, 1110 Morges. News, SDA, LMF, Club, Agenda, Archives, Vidéos et Contact.",
-    "sections": [
-      {
-        "id": "club-info",
-        "eyebrow": "Club",
-        "title": "Darts Club Morges",
-        "description": "Adresse du club, e-mail, locaux de jeu et documents officiels sont repris depuis le site actuel."
-      },
-      {
-        "id": "quick-links",
-        "eyebrow": "Accès rapide",
-        "title": "Rubriques principales",
-        "description": "Les liens principaux reprennent la logique de navigation du site actuel."
-      },
-      {
-        "id": "latest-news",
-        "eyebrow": "Actualités",
-        "title": "Dernières news",
-        "description": "Actualités publiques extraites de la page News actuelle."
-      },
-      {
-        "id": "next-events",
-        "eyebrow": "Agenda",
-        "title": "Prochains événements affichés",
-        "description": "Événements repris depuis la page Agenda actuelle."
-      },
-      {
-        "id": "documents",
-        "eyebrow": "Documents",
-        "title": "Documents {{currentSeason}}",
-        "description": "Sélection de documents officiels SDA et LMF copiés localement."
-      }
-    ],
+    "heroDescription": "Bienvenue au Darts Club Morges. Retrouvez nos actualités, la SDA, la LMF, l'agenda, le club, les archives, les vidéos et nos coordonnées.",
     "actions": [
       {
         "label": "Voir les news",
@@ -51,27 +18,55 @@
         "href": "/contact/",
         "variant": "secondary"
       }
-    ]
+    ],
+    "sections": [
+      {
+        "id": "club-info",
+        "eyebrow": "Le club",
+        "title": "Présentation du DC Morges",
+        "description": "Le Darts Club Morges réunit des passionnés de fléchettes dans une ambiance conviviale, sportive et accessible à tous.\n\nQue vous soyez joueur confirmé, débutant ou simplement curieux de découvrir ce sport, le club offre un cadre idéal pour jouer, progresser et partager de bons moments autour des fléchettes.\n\nActif dans la région et engagé dans le développement de la pratique, le DC Morges met en avant l’esprit d’équipe, le fair-play et le plaisir du jeu. Ici, chacun peut trouver sa place, quel que soit son niveau."
+      },
+      {
+        "id": "quick-links",
+        "eyebrow": "Accès rapide",
+        "title": "Rubriques principales",
+        "description": "Accédez directement aux principales rubriques du club."
+      },
+      {
+        "id": "latest-news",
+        "eyebrow": "Actualités",
+        "title": "Dernières news",
+        "description": "Les dernières actualités du Darts Club Morges."
+      },
+      {
+        "id": "next-events",
+        "eyebrow": "Agenda",
+        "title": "Prochains événements",
+        "description": "Les prochains rendez-vous du club."
+      },
+      {
+        "id": "documents",
+        "eyebrow": "Documents",
+        "title": "Documents {{currentSeason}}",
+        "description": "Une sélection de documents officiels SDA et LMF de la saison en cours."
+      }
+    ],
+    "id": "home"
   },
   {
     "id": "news",
     "label": "News",
     "path": "/news/",
     "seoTitle": "News",
-    "seoDescription": "Actualités publiques du Darts Club Morges importées depuis le site actuel.",
+    "seoDescription": "Actualités du Darts Club Morges : résultats, tournois et vie du club.",
     "heroEyebrow": "Actualités",
     "heroTitle": "News",
-    "heroDescription": "{{newsCount}} actualités importées depuis la page News actuelle, avec images et documents liés lorsque disponibles.",
+    "heroDescription": "{{newsCount}} actualités du club : résultats, tournois et temps forts du Darts Club Morges.",
     "sections": [
       {
         "id": "list",
-        "title": "Liste des news",
-        "description": "Chaque carte reprend le titre, la date, la catégorie, le résumé, l'image et les PDF liés lorsqu'ils existent sur le site actuel."
-      },
-      {
-        "id": "sources",
-        "title": "Pages sources News",
-        "description": "Anciennes pages news et frames conservées sous forme de fiches locales."
+        "title": "Toutes les actualités",
+        "description": "Résultats, tournois et temps forts du club, du plus récent au plus ancien."
       }
     ]
   },
@@ -80,26 +75,26 @@
     "label": "SDA",
     "path": "/sda/",
     "seoTitle": "SDA",
-    "seoDescription": "Saison SDA {{currentSeason}} et documents officiels du Darts Club Morges.",
+    "seoDescription": "Saison SDA {{currentSeason}} du Darts Club Morges : calendrier, matchs, classements et documents officiels.",
     "heroEyebrow": "Swiss Darts Association",
     "heroTitle": "SDA {{currentSeason}}",
-    "heroDescription": "Calendrier SDA, calendrier DCM, matchs, classements, statistiques, statuts et règlements importés depuis le site actuel.",
+    "heroDescription": "Calendrier SDA, calendrier DCM, matchs, classements, statistiques, statuts et règlements de la saison {{currentSeason}}.",
     "sections": [
       {
         "id": "current-season",
-        "title": "Saison actuelle",
-        "description": "La page SDA actuelle indique une mise à jour au 13.04.2026 et référence les documents officiels de la saison {{currentSeason}}."
+        "title": "Saison {{currentSeason}}",
+        "description": "Les documents officiels de la saison {{currentSeason}} en Swiss Darts Association."
       },
       {
         "id": "teams",
         "title": "Équipes SDA",
-        "description": "Équipes SDA {{currentSeason}} reprises depuis la rubrique Club du site actuel."
+        "description": "Les équipes SDA du Darts Club Morges pour la saison {{currentSeason}}."
       },
       {
         "id": "documents",
         "eyebrow": "Documents",
         "title": "Calendriers, matchs et classements",
-        "description": "Les informations sportives restent dans les PDF officiels d'origine, copiés localement pour conserver les liens."
+        "description": "Retrouvez les calendriers, matchs et classements officiels de la SDA."
       }
     ]
   },
@@ -108,7 +103,7 @@
     "label": "LMF",
     "path": "/lmf/",
     "seoTitle": "Ligue Morgienne / LMF",
-    "seoDescription": "Ligue Morgienne de Fléchettes {{currentSeason}}, documents et archives.",
+    "seoDescription": "Ligue Morgienne de Fléchettes {{currentSeason}} : équipe, documents, classements et Coupe Vaudoise.",
     "heroEyebrow": "Ligue Morgienne de Fléchettes",
     "heroTitle": "LMF {{currentSeason}}",
     "heroDescription": "Palmarès, calendrier, teams, matchs de championnat, résultats, classements, Coupe Vaudoise, règlements et feuilles de match.",
@@ -117,12 +112,12 @@
         "id": "presentation",
         "eyebrow": "Présentation",
         "title": "Ligue Morgienne de Fléchettes {{currentSeason}}",
-        "description": "La rubrique actuelle liste les documents officiels LMF et Coupe Vaudoise, mis à jour le 26.04.2026."
+        "description": "Les documents officiels LMF et Coupe Vaudoise de la saison {{currentSeason}}."
       },
       {
         "id": "team",
         "title": "Team LMF",
-        "description": "Team LMF {{currentSeason}} repris depuis le site actuel."
+        "description": "L'équipe LMF du Darts Club Morges pour la saison {{currentSeason}}."
       },
       {
         "id": "documents",
@@ -131,13 +126,8 @@
       },
       {
         "id": "previous-documents",
-        "title": "Documents LMF précédents",
-        "description": "Documents 2024-25 encore accessibles depuis les news du site actuel."
-      },
-      {
-        "id": "sources",
-        "title": "Pages sources LMF",
-        "description": "Hall of fame et anciennes pages liées à la Ligue Morgienne / Vaudoise."
+        "title": "Documents des saisons précédentes",
+        "description": "Les documents des saisons antérieures restent accessibles."
       }
     ]
   },
@@ -149,17 +139,17 @@
     "seoDescription": "Membres, équipes, coordonnées et palmarès du Darts Club Morges.",
     "heroEyebrow": "Club",
     "heroTitle": "Darts Club Morges",
-    "heroDescription": "Membres actifs {{currentSeason}}, équipes SDA et LMF, anciens membres et palmarès repris depuis le site actuel.",
+    "heroDescription": "Membres actifs {{currentSeason}}, équipes SDA et LMF, anciens membres et palmarès du club.",
     "sections": [
       {
         "id": "info",
-        "title": "Informations club",
-        "description": "DARTS CLUB MORGES, Rue de la Gare 1b, 1110 Morges. E-mail : dartsclubmorges@gmail.com."
+        "title": "Informations du club",
+        "description": "Toutes les informations pratiques du Darts Club Morges."
       },
       {
         "id": "active-members",
         "title": "Membres actifs {{currentSeason}}",
-        "description": "{{activeMembersCount}} membres actifs repris depuis la page membres du club."
+        "description": "{{activeMembersCount}} membres actifs composent le club cette saison."
       },
       {
         "id": "teams",
@@ -169,12 +159,7 @@
       {
         "id": "former-members",
         "title": "Anciens membres",
-        "description": "{{formerMembersCount}} anciens membres conservés depuis le site actuel."
-      },
-      {
-        "id": "sources",
-        "title": "Palmarès et pages club",
-        "description": "Palmarès, membres, teams et pages historiques conservés sous forme de fiches sources."
+        "description": "{{formerMembersCount}} anciens membres ont marqué l'histoire du club."
       }
     ]
   },
@@ -183,20 +168,15 @@
     "label": "Agenda",
     "path": "/agenda/",
     "seoTitle": "Agenda",
-    "seoDescription": "Événements affichés sur l'agenda actuel du Darts Club Morges.",
+    "seoDescription": "Agenda du Darts Club Morges : matchs, tournois et rendez-vous.",
     "heroEyebrow": "Agenda",
     "heroTitle": "Événements",
-    "heroDescription": "Tournoi de Pâques, Ligue Morgienne, SDA et Coupe Vaudoise repris depuis la page Agenda actuelle.",
+    "heroDescription": "Tournois, matchs SDA et LMF et Coupe Vaudoise : tous les rendez-vous du Darts Club Morges.",
     "sections": [
       {
         "id": "list",
-        "title": "Liste d'événements",
-        "description": "Les dates et lieux sont conservés tels qu'affichés sur le site actuel."
-      },
-      {
-        "id": "sources",
-        "title": "Pages sources Agenda",
-        "description": "Pages historiques liées aux événements et tournois."
+        "title": "Nos événements",
+        "description": "Les rendez-vous à venir et passés du club."
       }
     ]
   },
@@ -205,15 +185,15 @@
     "label": "Archives",
     "path": "/archives/",
     "seoTitle": "Archives",
-    "seoDescription": "Archives publiques du Darts Club Morges importées depuis le site actuel.",
+    "seoDescription": "Archives et palmarès du Darts Club Morges.",
     "heroEyebrow": "Historique",
     "heroTitle": "Archives",
-    "heroDescription": "Championnat du Monde, SDA, Ligue Morgienne / Vaudoise, Geneva Darts League, Morges Open / Open Vaudois, Master Tour et autres archives.",
+    "heroDescription": "Championnat du Monde, SDA, Ligue Morgienne / Vaudoise, Geneva Darts League, Morges Open / Open Vaudois, Master Tour et bien plus.",
     "sections": [
       {
         "id": "overview",
         "title": "Archives par catégorie",
-        "description": "Une entrée simple par famille d'archives, avec les pages et documents importants directement accessibles."
+        "description": "Le palmarès et l'historique du club, organisés par famille de compétitions."
       }
     ]
   },
@@ -222,20 +202,15 @@
     "label": "Vidéos",
     "path": "/videos/",
     "seoTitle": "Vidéos",
-    "seoDescription": "Vidéos publiques du Darts Club Morges copiées depuis le site actuel.",
+    "seoDescription": "Vidéos du Darts Club Morges et de ses compétitions.",
     "heroEyebrow": "Médias",
     "heroTitle": "Vidéos",
-    "heroDescription": "Emission La Télé 2012, PDC Worldcup 2017, WDF World Cup 2019 et WDF Europe Cup 2022.",
+    "heroDescription": "Émission La Télé 2012, PDC Worldcup 2017, WDF World Cup 2019 et WDF Europe Cup 2022.",
     "sections": [
       {
         "id": "list",
-        "title": "Liste des vidéos",
-        "description": "Les fichiers MP4 détectés ont été copiés localement sous public/legacy/videos."
-      },
-      {
-        "id": "sources",
-        "title": "Page source Vidéos",
-        "description": ""
+        "title": "Nos vidéos",
+        "description": "Retrouvez les vidéos du club et de ses compétitions."
       }
     ]
   },
@@ -244,7 +219,7 @@
     "label": "Contact",
     "path": "/contact/",
     "seoTitle": "Contact",
-    "seoDescription": "Coordonnées du Darts Club Morges reprises depuis le site actuel.",
+    "seoDescription": "Contactez le Darts Club Morges : adresse, e-mail, locaux de jeu et capitaines.",
     "heroEyebrow": "Contact",
     "heroTitle": "Nous contacter",
     "heroDescription": "Adresse, e-mail, site web, IBAN, locaux de jeu SDA/LMF et capitaines.",
@@ -252,16 +227,11 @@
       {
         "id": "contact-info",
         "title": "Darts Club Morges",
-        "description": "Coordonnées exactes publiées sur la page Contact actuelle."
+        "description": "Nos coordonnées."
       },
       {
         "id": "locations",
         "title": "Locaux de jeu et capitaines",
-        "description": ""
-      },
-      {
-        "id": "sources",
-        "title": "Page source Contact",
         "description": ""
       }
     ]

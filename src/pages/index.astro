@@ -30,6 +30,19 @@ const highlightedDocuments = (homeDocuments.length > 0
   ? homeDocuments
   : documents.filter((document) => document.season === currentSeasonLabel)
 ).slice(0, 6);
+
+const clubFacts = [
+  { label: "Lieu", value: siteInfo.location },
+  { label: "Compétitions", value: "Swiss Darts Association, Ligue Morgienne de Fléchettes, coupes suisses et vaudoises" },
+  { label: "Archives", value: "Résultats SDA, LMF, GDL, LVSD, Morges Open, Open Vaudois et Master Tour" }
+];
+
+const clubMilestones = [
+  "2024-25 : titre LMF, Morges 2 champion de 2ème Ligue Ouest SDA.",
+  "2023-24 : vainqueur de la Coupe Vaudoise et promotion de Morges 1 en 1ère ligue.",
+  "2022-23 : victoire en Coupe Suisse B.",
+  "2017-18 : Morges 1 champion LNC Ouest, promu en LNB."
+];
 ---
 
 <BaseLayout title={page.seoTitle} description={page.seoDescription || siteInfo.description}>
@@ -42,27 +55,35 @@ const highlightedDocuments = (homeDocuments.length > 0
     actions={formatPageActions(page.actions, pageVars)}
   />
 
-  <section class="section">
-    <div class="container split-layout">
-      <div>
+  <section class="section home-history-section">
+    <div class="container home-history">
+      <div class="home-history__main">
         <SectionHeader
           eyebrow={clubInfoSection.eyebrow}
           title={clubInfoSection.title}
           description={clubInfoSection.description}
         />
+        <div class="button-row">
+          <a class="button button--outline" href="/club/">Palmarès</a>
+          <a class="button button--outline" href="/archives/">Archives</a>
+        </div>
       </div>
-      <div class="info-strip">
-        <div>
-          <span class="label">Adresse club</span>
-          <strong>{siteInfo.address}</strong>
-        </div>
-        <div>
-          <span class="label">E-mail</span>
-          <strong>{siteInfo.email}</strong>
-        </div>
-        <div>
-          <span class="label">Local LMF</span>
-          <strong>{siteInfo.location}</strong>
+
+      <div class="home-history__details" aria-label="Repères du club">
+        <dl class="home-history__facts">
+          {clubFacts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="home-history__milestones">
+          <h3>Repères récents</h3>
+          <ul>
+            {clubMilestones.map((milestone) => <li>{milestone}</li>)}
+          </ul>
         </div>
       </div>
     </div>
@@ -128,4 +149,102 @@ const highlightedDocuments = (homeDocuments.length > 0
       </div>
     </div>
   </section>
+
+  <style is:global>
+    .home-history-section {
+      padding-block: 48px;
+    }
+
+    .home-history {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .home-history .section-header {
+      margin-bottom: 18px;
+    }
+
+    .home-history .section-header p {
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    .home-history__details {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    .home-history__facts {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+
+    .home-history__facts > div {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .home-history__facts dt,
+    .home-history__milestones h3 {
+      color: var(--color-red-dark);
+      font-size: 0.78rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .home-history__facts dd {
+      margin: 0;
+      color: var(--color-ink);
+      line-height: 1.45;
+    }
+
+    .home-history__milestones {
+      display: grid;
+      gap: 8px;
+    }
+
+    .home-history__milestones h3 {
+      margin: 0;
+      font-size: 0.82rem;
+    }
+
+    .home-history__milestones ul {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--color-ink);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .home-history {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .home-history__details {
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .home-history-section {
+        padding-block: 38px;
+      }
+
+      .home-history__facts > div {
+        grid-template-columns: 1fr;
+        gap: 3px;
+      }
+    }
+  </style>
 </BaseLayout>

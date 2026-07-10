@@ -40,6 +40,7 @@ export interface EventItem {
 
 export interface DocumentItem {
   id: string;
+  order?: number;
   title: string;
   type: string;
   season: string;
@@ -48,6 +49,7 @@ export interface DocumentItem {
   url?: string;
   sourceUrl?: string;
   actionLabel?: string;
+  downloadLabel?: string;
 }
 
 export interface TeamItem {
@@ -79,6 +81,7 @@ export interface VideoItem {
 
 export interface ArchiveCategory {
   id: string;
+  order?: number;
   title: string;
   description: string;
   seasons: string[];

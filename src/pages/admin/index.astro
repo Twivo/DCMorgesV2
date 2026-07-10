@@ -11,55 +11,276 @@ const counts = await Promise.all(
     count: (await readAll(collection).catch(() => [])).length
   }))
 );
+
+const countsByName = new Map(counts.map(({ def, count }) => [def.name, count]));
+const countFor = (name: string) => countsByName.get(name) ?? 0;
 const total = counts.reduce((sum, c) => sum + c.count, 0);
+
+const quickActions = [
+  {
+    title: "Modifier l'accueil",
+    description: "Texte sous Le Club, bandeau et documents mis en avant.",
+    href: "/admin/pages?edit=home",
+    meta: "Accueil"
+  },
+  {
+    title: "Mettre à jour les cartes SDA",
+    description: "Titres, textes, boutons et documents affichés sur la page SDA.",
+    href: "/admin/sda-documents",
+    meta: `${countFor("sda-documents")} cartes`
+  },
+  {
+    title: "Mettre à jour les cartes LMF",
+    description: "Documents visibles, saisons, ordre d'affichage et libellés.",
+    href: "/admin/lmf-documents",
+    meta: `${countFor("lmf-documents")} cartes`
+  },
+  {
+    title: "Modifier Club et archives",
+    description: "Lignes du palmarès, carrés archives et textes des pages.",
+    href: "/admin/content#club-archives",
+    meta: "Club"
+  }
+];
+
+const frequentLinks = [
+  { label: "Gestion du contenu", href: "/admin/content", note: "Toutes les pages, organisées par rubrique" },
+  { label: "Médiathèque", href: "/admin/media", note: "Ajouter ou copier l'URL d'un fichier" },
+  { label: "Réglages du site", href: "/admin/site", note: "Coordonnées, menu, liens rapides" },
+  { label: "News", href: "/admin/news", note: `${countFor("news")} articles` },
+  { label: "Agenda", href: "/admin/events", note: `${countFor("events")} événements` },
+  { label: "Documents", href: "/admin/documents", note: `${countFor("documents")} fichiers référencés` }
+];
+
+const overviewGroups = [
+  {
+    title: "Pages et actualités",
+    items: [
+      ["Pages", "pages"],
+      ["News", "news"],
+      ["Agenda", "events"],
+      ["Vidéos", "videos"]
+    ]
+  },
+  {
+    title: "Documents",
+    items: [
+      ["Accueil", "home-documents"],
+      ["SDA", "sda-documents"],
+      ["LMF", "lmf-documents"],
+      ["Bibliothèque", "documents"]
+    ]
+  },
+  {
+    title: "Club",
+    items: [
+      ["Palmarès", "club-palmares"],
+      ["Membres", "members"],
+      ["Équipes", "teams"],
+      ["Saisons", "seasons"]
+    ]
+  },
+  {
+    title: "Archives et contact",
+    items: [
+      ["Carrés archives", "archives"],
+      ["Groupes archives", "archive-groups"],
+      ["Contact", "contact-blocks"],
+      ["Pages sources", "legacy-pages"]
+    ]
+  }
+];
 ---
 
 <AdminLayout title="Tableau de bord" active="dashboard">
   <div class="admin-head">
     <div>
       <h1>Tableau de bord</h1>
-      <p>{total} éléments gérés dans {collections.length} rubriques. Les modifications sont enregistrées directement dans les données du site.</p>
+      <p>Les actions importantes sont regroupées ici. Les rubriques techniques restent accessibles dans le menu de gauche.</p>
     </div>
-    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public ↗</a>
+    <a class="btn btn--ghost" href="/" target="_blank" rel="noreferrer">Voir le site public</a>
   </div>
 
-  <a class="content-cta" href="/admin/content">
-    <div>
-      <strong>Gestion du contenu</strong>
-      <span>Modifier les contenus visibles du site, rubrique par rubrique.</span>
+  <section class="dashboard-hero" aria-label="Action principale">
+    <a class="dashboard-hero__main" href="/admin/content">
+      <small>Entrée recommandée</small>
+      <strong>Modifier le contenu visible du site</strong>
+      <span>Accueil, Club, SDA, LMF, Archives, News, Agenda et textes de pages.</span>
+    </a>
+    <div class="dashboard-hero__meta">
+      <strong>{total}</strong>
+      <span>éléments gérés dans l'administration</span>
     </div>
-    <span class="content-cta__go">Ouvrir →</span>
-  </a>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="dashboard-section__head">
+      <h2>Modifications fréquentes</h2>
+      <p>Les endroits les plus utiles, sans devoir chercher dans toutes les collections.</p>
+    </div>
+    <div class="action-grid">
+      {quickActions.map((action) => (
+        <a class="action-card" href={action.href}>
+          <small>{action.meta}</small>
+          <strong>{action.title}</strong>
+          <span>{action.description}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="dashboard-section__head">
+      <h2>Accès rapides</h2>
+      <p>Pour les tâches courantes qui ne concernent pas une page précise.</p>
+    </div>
+    <div class="shortcut-list">
+      {frequentLinks.map((link) => (
+        <a class="shortcut-link" href={link.href}>
+          <span>{link.label}</span>
+          <small>{link.note}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="dashboard-section__head">
+      <h2>Vue d'ensemble</h2>
+      <p>Un résumé compact des données, utile pour vérifier rapidement ce qui existe déjà.</p>
+    </div>
+    <div class="overview-grid">
+      {overviewGroups.map((group) => (
+        <div class="overview-panel">
+          <h3>{group.title}</h3>
+          <div>
+            {group.items.map(([label, name]) => (
+              <a href={`/admin/${name}`}>
+                <span>{label}</span>
+                <strong>{countFor(name)}</strong>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
 
   <style is:global>
-    .content-cta {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      margin-bottom: 22px; padding: 20px 24px; border-radius: 14px;
-      background: var(--a-dark); color: #fff; box-shadow: 0 10px 26px rgba(16,32,26,0.18);
+    .dashboard-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, 260px);
+      gap: 16px;
+      margin-bottom: 28px;
     }
-    .content-cta strong { display: block; font-size: 1.15rem; }
-    .content-cta span { color: #cfe0d8; font-size: 0.92rem; }
-    .content-cta__go { white-space: nowrap; font-weight: 800; color: #fff; }
-    .content-cta:hover { background: #16261f; }
-  </style>
+    .dashboard-hero__main,
+    .dashboard-hero__meta {
+      border-radius: 12px;
+      background: var(--a-dark);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(16,32,26,0.16);
+    }
+    .dashboard-hero__main {
+      display: grid;
+      gap: 7px;
+      padding: 24px;
+    }
+    .dashboard-hero__main small {
+      color: #a9c6ba;
+      font-size: 0.76rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .dashboard-hero__main strong { font-size: clamp(1.25rem, 2.5vw, 1.8rem); line-height: 1.15; }
+    .dashboard-hero__main span { color: #d5e4de; max-width: 760px; }
+    .dashboard-hero__main:hover { background: #16261f; }
+    .dashboard-hero__meta {
+      display: grid;
+      align-content: center;
+      gap: 4px;
+      padding: 22px;
+      background: #fff;
+      color: var(--a-ink);
+      border: 1px solid var(--a-line);
+    }
+    .dashboard-hero__meta strong { color: var(--a-red-dark); font-size: 2.25rem; line-height: 1; }
+    .dashboard-hero__meta span { color: var(--a-muted); font-weight: 700; }
 
-  <div class="card-grid">
-    {counts.map(({ def, count }) => (
-      <a class="stat-card" href={`/admin/${def.name}`}>
-        <strong>{count}</strong>
-        <span>{def.label}</span>
-        <small>Gérer les {def.label.toLowerCase()}</small>
-      </a>
-    ))}
-    <a class="stat-card" href="/admin/site">
-      <strong>⚙︎</strong>
-      <span>Réglages du site</span>
-      <small>Coordonnées, navigation, liens</small>
-    </a>
-    <a class="stat-card" href="/admin/media">
-      <strong>↑</strong>
-      <span>Médiathèque</span>
-      <small>Envoyer et réutiliser des fichiers</small>
-    </a>
-  </div>
+    .dashboard-section { display: grid; gap: 14px; margin-top: 28px; }
+    .dashboard-section__head h2 { margin: 0; font-size: 1.2rem; }
+    .dashboard-section__head p { margin: 3px 0 0; color: var(--a-muted); }
+
+    .action-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .action-card {
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      min-height: 160px;
+      padding: 18px;
+      border: 1px solid var(--a-line);
+      border-radius: 10px;
+      background: var(--a-surface);
+      box-shadow: 0 8px 22px rgba(16,32,26,0.05);
+    }
+    .action-card:hover { border-color: var(--a-green); background: #f7fbf8; }
+    .action-card small { color: var(--a-green); font-weight: 850; font-size: 0.75rem; text-transform: uppercase; }
+    .action-card strong { font-size: 1rem; line-height: 1.25; }
+    .action-card span { color: var(--a-muted); font-size: 0.9rem; }
+
+    .shortcut-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .shortcut-link {
+      display: grid;
+      gap: 2px;
+      padding: 13px 15px;
+      border: 1px solid var(--a-line);
+      border-radius: 9px;
+      background: #fff;
+    }
+    .shortcut-link:hover { border-color: #b9c4be; }
+    .shortcut-link span { font-weight: 800; }
+    .shortcut-link small { color: var(--a-muted); }
+
+    .overview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .overview-panel {
+      border: 1px solid var(--a-line);
+      border-radius: 10px;
+      background: var(--a-surface);
+      overflow: hidden;
+    }
+    .overview-panel h3 {
+      margin: 0;
+      padding: 12px 14px;
+      background: #f2f5f2;
+      font-size: 0.9rem;
+    }
+    .overview-panel a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      border-top: 1px solid var(--a-line);
+      color: #2b3a34;
+      font-weight: 700;
+    }
+    .overview-panel a:hover { background: #f7faf8; }
+    .overview-panel strong { color: var(--a-red-dark); }
+
+    @media (max-width: 1180px) {
+      .action-grid,
+      .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shortcut-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .dashboard-hero,
+      .action-grid,
+      .shortcut-list,
+      .overview-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </AdminLayout>

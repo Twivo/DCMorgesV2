@@ -1,0 +1,35 @@
+name: Changement de contenu
+description: Demander une modification de texte, document, archive ou palmarès
+title: "[Contenu] "
+labels: ["content"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Zone concernée
+      options:
+        - Accueil
+        - News
+        - Agenda
+        - SDA
+        - LMF
+        - Club / palmarès
+        - Archives
+        - Vidéos
+        - Contact
+        - Documents
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Modification demandée
+      description: Décris le contenu à ajouter, modifier ou supprimer.
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Fichiers ou liens
+      description: Indique les PDF, images ou liens concernés.

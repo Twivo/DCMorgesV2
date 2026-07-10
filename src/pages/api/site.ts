@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { writeJsonAtomic } from "../../lib/fs";
 
 export const prerender = false;
 
@@ -32,7 +33,7 @@ export const PUT: APIRoute = async ({ request }) => {
       navigation: Array.isArray(body.navigation) ? body.navigation : [],
       quickLinks: Array.isArray(body.quickLinks) ? body.quickLinks : []
     };
-    await writeFile(file, JSON.stringify(next, null, 2) + "\n", "utf8");
+    await writeJsonAtomic(file, next);
     return json(next);
   } catch (error) {
     if (error instanceof SyntaxError) return json({ error: "JSON invalide." }, 400);

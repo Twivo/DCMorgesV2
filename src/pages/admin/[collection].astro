@@ -20,6 +20,15 @@ const canDelete = def.allowDelete !== false;
 const dateField = def.fields.find((f) => f.type === "date") ?? def.fields.find((f) => f.key === "date");
 if (dateField) {
   items.sort((a, b) => String(b[dateField.key] ?? "").localeCompare(String(a[dateField.key] ?? "")));
+} else if (def.orderDirection && def.fields.some((f) => f.key === "order")) {
+  const emptyOrder = def.orderDirection === "desc" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY;
+  const direction = def.orderDirection === "desc" ? -1 : 1;
+  items.sort((a, b) => {
+    const orderA = Number(a.order ?? emptyOrder);
+    const orderB = Number(b.order ?? emptyOrder);
+    if (orderA !== orderB) return (orderA - orderB) * direction;
+    return String(a[def.titleKey] ?? "").localeCompare(String(b[def.titleKey] ?? ""), "fr");
+  });
 }
 
 // Resolve option lists for "reference" fields (pick from another collection).
@@ -50,14 +59,15 @@ const cell = (value: unknown): string => {
 ---
 
 <AdminLayout title={def.label} active={def.name}>
-  <div class="admin-head">
+  <div class="admin-head admin-head--collection">
     <div>
+      <a class="admin-back" href="/admin/content">Retour à la gestion du contenu</a>
       <h1>{def.label}</h1>
       <p>
         {items.length} élément(s).
         {canCreate || canDelete
-          ? "Ajoute, modifie ou supprime — tout est enregistré automatiquement."
-          : "Modifie les contenus visibles — tout est enregistré automatiquement."}
+          ? "Ajoutez, modifiez ou supprimez une ligne. Tout est enregistré automatiquement."
+          : "Modifiez les contenus visibles. Tout est enregistré automatiquement."}
       </p>
     </div>
     {canCreate && <button class="btn btn--primary" type="button" data-new>+ Ajouter</button>}
@@ -92,7 +102,7 @@ const cell = (value: unknown): string => {
                 <td>
                   <div class="row-actions">
                     <button class="btn btn--ghost btn--small" type="button" data-edit={String(item[def.idKey])}>Modifier</button>
-                    {canDelete && <button class="btn btn--danger btn--small" type="button" data-delete={String(item[def.idKey])}>Suppr.</button>}
+                    {canDelete && <button class="btn btn--danger btn--small" type="button" data-delete={String(item[def.idKey])}>Supprimer</button>}
                   </div>
                 </td>
               </tr>
@@ -107,7 +117,7 @@ const cell = (value: unknown): string => {
     <form method="dialog" data-form>
       <div class="editor__head">
         <h2 data-title>Nouvel élément</h2>
-        <button class="btn btn--ghost btn--small" type="button" data-close>✕</button>
+        <button class="btn btn--ghost btn--small" type="button" data-close>Fermer</button>
       </div>
       <p class="form-error" data-error hidden></p>
       <div class="editor__body" data-fields></div>
@@ -119,6 +129,15 @@ const cell = (value: unknown): string => {
   </dialog>
 
   <style is:global>
+    .admin-head--collection { align-items: flex-end; }
+    .admin-back {
+      display: inline-flex;
+      margin-bottom: 7px;
+      color: var(--a-green);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+    .admin-back:hover { text-decoration: underline; }
     .list-search { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
     .list-search input { flex: 1; max-width: 420px; padding: 9px 12px; border: 1px solid var(--a-line); border-radius: 9px; font: inherit; background: #fff; }
     .list-search input:focus { outline: 2px solid var(--a-green); outline-offset: 1px; }

@@ -1,57 +1,83 @@
 # Guide d'administration client
 
-L'admin est disponible sur `/admin`. Elle est prévue pour gérer le site sans modifier le code.
+L'administration permet de modifier le site sans ouvrir le code. Elle s'utilise en local sur `/admin`.
+
+## Connexion
+
+1. Lancer le site avec `pnpm run dev`.
+2. Ouvrir `http://127.0.0.1:4321/admin`.
+3. Se connecter avec les identifiants définis dans `.env.local` :
+
+```bash
+ADMIN_USER=admin
+ADMIN_PASSWORD=un-mot-de-passe-local
+```
+
+Si les identifiants ne sont pas définis, l'admin et l'API refusent de fonctionner.
 
 ## Par où commencer
 
-- **Gestion du contenu** (`/admin/content`) : le point d'entrée le plus simple.
-  Choisis une rubrique du site (Documents, News, Agenda, Vidéo, Club, SDA, LMF,
-  Archives) et tu accèdes directement à tout ce qui est modifiable pour elle.
+Utilise **Modifier le site** ou **Gestion du contenu** (`/admin/content`). C'est le point d'entrée le plus simple : les contenus sont rangés par rubrique visible du site.
 
-## Rubriques principales
+Les raccourcis les plus utiles :
+
+- **Accueil** : textes du bandeau, boutons, texte sous "Le Club" et cartes documents.
+- **SDA** : textes de page, équipes et cartes documents SDA.
+- **LMF** : textes de page, équipe et cartes documents LMF.
+- **Club** : textes de page, membres, équipes et lignes du palmarès.
+- **Archives** : textes de page, carrés archives, documents et groupes.
+- **News / Agenda / Vidéos / Contact** : contenus courants du site.
+
+## Contenus modifiables
 
 - **Pages du site** : titres SEO, bandeaux, boutons et textes de sections pour Accueil, News, SDA, LMF, Club, Agenda, Archives, Vidéos et Contact.
-- **Documents en avant (accueil)** : les 6 cartes de documents affichées sur la page d'accueil (texte, fichier, saison, catégorie).
-- **Réglages du site** : nom du club, adresse, e-mail, logo, image d'accueil, menu et accès rapides.
-- **Médiathèque** : envoi de fichiers seuls pour récupérer une URL réutilisable dans les formulaires.
+- **Texte sous "Le Club" sur l'accueil** : ouvrir **Accueil -> Textes de page**, puis modifier la section concernée.
+- **Documents en avant (accueil)** : les cartes de documents visibles sur la page d'accueil.
+- **Cartes documents SDA** : titre, texte, type, saison, fichier affiché, bouton ouvrir, bouton télécharger et ordre.
+- **Cartes documents LMF** : même principe que SDA, avec contenu propre à la page LMF.
+- **Palmarès Club** : une entrée = une ligne de palmarès. Les lignes sont groupées par saison sur la page Club.
+- **Carrés archives** : titre, texte, pastilles, documents affichés et liens.
+- **Groupes d'archives** : organisation des carrés sur la page Archives.
 - **News** : articles, images, textes, catégories et documents liés.
 - **Agenda** : événements, dates, lieux et liens.
-- **Documents** : PDF et fichiers officiels SDA, LMF, archives ou autres.
+- **Documents globaux** : PDF et fichiers réutilisables dans les autres rubriques.
 - **Membres** : fiches membres, rôles, équipes et photos.
 - **Équipes** : équipes SDA/LMF, saison, description et joueurs.
-- **Saisons** : saison courante utilisée automatiquement par les pages SDA, LMF, Club et Accueil.
-- **Vidéos** : vidéos locales ou liens externes, descriptions et vignettes.
-- **Archives** : catégories d'archives, documents liés et liens historiques.
-- **Groupes d'archives** : organisation des catégories sur la page Archives.
+- **Saisons** : saison courante utilisée automatiquement par plusieurs pages.
+- **Vidéos** : liens vidéo, descriptions et vignettes.
 - **Blocs contact** : locaux de jeu, capitaines, contacts SDA/LMF.
-- **Pages sources** : anciennes pages importées visibles sous `/sources/<slug>/`, avec textes, tableaux, images, documents et liens.
+- **Pages sources** : anciennes pages importées sous `/sources/<slug>/`.
+- **Médiathèque** : envoi d'un fichier seul pour récupérer une URL réutilisable.
+- **Réglages du site** : nom du club, adresse, e-mail, logo, image d'accueil, menu et accès rapides.
 
 ## Règles simples
 
-- Ne change pas les identifiants techniques (`id`, `slug`) sauf si tu veux aussi changer l'URL ou la structure.
+- Ne change pas les identifiants techniques (`id`, `slug`) sauf si tu veux aussi changer l'URL ou la référence.
 - Pour changer la saison affichée, va dans **Saisons** et coche une seule saison comme saison courante.
 - Pour ajouter un PDF ou une image, utilise le champ fichier du formulaire ou la **Médiathèque**.
-- Les champs acceptent les accents directement : écris `é`, `è`, `à`, `ç`, `ô`, etc. normalement.
-- Les textes de page peuvent utiliser des variables comme `{{currentSeason}}`, `{{newsCount}}`, `{{activeMembersCount}}` ou `{{formerMembersCount}}`.
-- Dans les longues listes (Membres, Documents, Pages sources…), un champ **Rechercher** apparaît en haut pour filtrer instantanément.
-- Seuls des fichiers **PDF, images et vidéos** peuvent être envoyés (les autres types sont refusés pour la sécurité).
+- Seuls les PDF, images et vidéos sont acceptés en upload.
+- Les textes de page peuvent utiliser `{{currentSeason}}`, `{{newsCount}}`, `{{activeMembersCount}}` ou `{{formerMembersCount}}`.
+- Dans le palmarès Club, le champ **Classement d'affichage** fonctionne à l'envers des autres listes : le chiffre le plus élevé remonte en haut.
+- Dans les cartes SDA/LMF et les carrés archives, un chiffre d'ordre plus petit apparaît plus tôt.
+- Dans les longues listes, le champ **Rechercher** filtre instantanément.
 
-## Avant livraison ou déploiement
+## Publier après modification
 
-Vérifier le contenu et compiler :
-
-```bash
-pnpm run check:content   # accents, fichiers et liens internes
-pnpm run qa              # teste toutes les fonctionnalités (serveur `pnpm run dev` lancé à côté)
-pnpm run build           # compile le site
-```
-
-Publier en ligne (voir `README.md` › « Publication en ligne ») :
+Les changements de l'admin modifient les fichiers du dépôt (`src/data/*.json` et parfois `public/uploads/`). Pour les publier :
 
 ```bash
-pnpm run build:public    # génère le dossier public-site/ à téléverser
-pnpm run preview:public  # aperçu local de ce qui sera publié
+pnpm run check:content
+pnpm run build:pages
 ```
 
-> ⚠️ L'admin n'a pas de mot de passe : ne mets jamais en ligne le serveur Node,
-> uniquement le dossier `public-site/`. L'édition se fait en local.
+Puis committer et pousser les fichiers modifiés sur GitHub.
+
+Pour vérifier exactement ce qui sera publié :
+
+```bash
+pnpm run preview:public
+```
+
+Ouvrir ensuite `http://127.0.0.1:4322`.
+
+GitHub Pages ne publie pas l'admin. Le site en ligne reçoit uniquement `public-site/`.

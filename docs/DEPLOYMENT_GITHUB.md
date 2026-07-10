@@ -1,126 +1,114 @@
-# Deploiement GitHub
+# Déploiement GitHub Pages
 
-Ce projet est un site Astro avec deux modes d'usage :
+Le dépôt est prêt pour GitHub Pages via `.github/workflows/pages.yml`.
 
-- pages publiques prerenderisees, servies depuis `dist/client`;
-- admin et API en runtime Node, servies par `dist/server/entry.mjs`.
+Le workflow publie uniquement `public-site/`, jamais `dist/server/`.
 
-## Verification avant push
+## Résumé
 
 ```bash
 pnpm install
-pnpm run check:content
-pnpm run build
+pnpm run build:pages
 ```
 
-`pnpm run check:content` verifie les caracteres Unicode casses (`U+FFFD`), les sequences d'encodage suspectes et les references vers les fichiers publics locaux.
+`build:pages` :
 
-## Contenu et uploads
+1. compile Astro;
+2. exporte `dist/client` vers `public-site/`;
+3. supprime toute trace `/admin` et `/api`;
+4. ajoute `.nojekyll`;
+5. lance `security:check`.
 
-Les donnees modifiables sont dans `src/data/*.json`. L'admin couvre notamment :
+## Configuration GitHub
 
-- pages visibles du site;
-- news, agenda, documents, membres, equipes, saisons, videos;
-- archives et groupes d'archives;
-- blocs contact;
-- pages sources historiques;
-- reglages du site et navigation.
+Dans le dépôt GitHub :
 
-Les fichiers envoyes par l'admin vont dans `public/uploads/`. Ce dossier est volontairement versionne : quand une image ou un PDF est ajoute, il faut committer le fichier upload avec les donnees JSON modifiees.
+1. Aller dans **Settings → Pages**.
+2. Mettre **Source** sur **GitHub Actions**.
+3. Pousser sur `main`.
 
-La page `/admin/media` permet aussi d'envoyer un fichier seul et de copier son URL.
+Le workflow se lance aussi manuellement via **Actions → Deploy GitHub Pages → Run workflow**.
 
-La page cachee `/lmf-stats-live/` est publique si son URL est connue. Elle lit Supabase cote navigateur et demande ces variables au build :
+## Variables GitHub
+
+Dans **Settings → Secrets and variables → Actions → Variables** :
+
+| Variable | Obligatoire | Exemple | Rôle |
+| --- | --- | --- | --- |
+| `SITE_URL` | Recommandé | `https://www.dcmorges.ch` | URL canonique et sitemap. |
+| `PAGES_CNAME` | Si domaine custom | `www.dcmorges.ch` | Génère `public-site/CNAME`. |
+| `PUBLIC_SUPABASE_URL` | Si stats live actives | `https://xxxxx.supabase.co` | Endpoint Supabase public. |
+| `PUBLIC_SUPABASE_ANON_KEY` | Si stats live actives | `ey...` | Clé anon publique Supabase. |
+| `PUBLIC_SUPABASE_SCHEMA` | Optionnel | `public` | Schéma REST Supabase. |
+
+Ne jamais mettre `SUPABASE_SERVICE_ROLE_KEY` dans GitHub Pages.
+
+## Ce qui est publié
+
+GitHub Pages reçoit :
+
+- HTML statique;
+- CSS/JS public;
+- images, PDF, vidéos;
+- sitemap;
+- robots.txt;
+- `.nojekyll`;
+- éventuellement `CNAME`.
+
+GitHub Pages ne reçoit pas :
+
+- `/admin`;
+- `/api`;
+- `dist/server`;
+- `.env.local`;
+- secrets admin;
+- clé Supabase service role.
+
+## Vérification locale
 
 ```bash
-PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-PUBLIC_SUPABASE_ANON_KEY=ey...
-PUBLIC_SUPABASE_SCHEMA=public
+pnpm run build:pages
+pnpm run preview:public
 ```
 
-Elle calcule ses classements depuis les tables `seasons`, `teams`, `players`, `team_players`, `encounters`, `matches`
-et `match_players`, puis affiche aussi un historique filtrable par rencontre avec detail des parties/manches et le classement des 180s. Ne jamais utiliser une cle
-`service_role` dans une variable `PUBLIC_*`.
+Ouvrir ensuite `http://127.0.0.1:4322`.
 
-Sur GitHub Actions, definir ces valeurs comme variables/secrets de build si la page live doit fonctionner dans la
-version publiee. La cle anon est integree au JavaScript public : c'est normal uniquement si RLS limite les donnees a ce
-qui peut etre lu publiquement.
-
-Le script `pnpm run seed:lmf-live` est reserve au local et demande `SUPABASE_SERVICE_ROLE_KEY` dans `.env.local`. Ne pas
-ajouter cette cle dans GitHub Pages ou dans une variable publique.
-
-Commande utile avant commit :
+Contrôles utiles :
 
 ```bash
-git status --short
+Test-Path public-site/admin
+Test-Path public-site/api
+Test-Path public-site/.nojekyll
 ```
 
-Verifier en particulier :
+Les deux premiers doivent être `False`, le dernier `True`.
 
-- `src/data/*.json`
-- `public/uploads/*`
-- eventuellement `public/legacy/*` si un fichier historique est ajoute manuellement
+## Admin
 
-## Deploiement statique seul
+L'admin ne fonctionne pas sur GitHub Pages. Pour modifier le contenu :
 
-Pour un hebergement type GitHub Pages, Netlify statique ou serveur web simple :
+1. lancer `pnpm run dev`;
+2. ouvrir `/admin` en local;
+3. modifier les contenus;
+4. vérifier `git status --short`;
+5. committer les JSON et uploads;
+6. pousser sur `main`.
 
-```bash
-pnpm run build
-```
+## Domaine custom
 
-Publier uniquement `dist/client`.
+Si `PAGES_CNAME` est défini, le workflow écrit le fichier `CNAME`.
 
-Attention : dans ce mode, les pages publiques fonctionnent, mais l'admin et les routes `/api/*` ne peuvent pas enregistrer de changements.
+Il faut aussi configurer le DNS chez le registrar/hébergeur selon la documentation GitHub Pages.
 
-## Deploiement avec admin
+## Supabase et stats live
 
-Pour garder l'admin fonctionnelle, il faut un runtime Node :
+La page `/lmf-stats-live/` est statique mais lit Supabase dans le navigateur.
 
-```bash
-pnpm run build
-node ./dist/server/entry.mjs
-```
+La clé `anon` sera visible publiquement. C'est normal uniquement si Supabase RLS limite les lectures aux données publiques.
 
-Le serveur Node sert les pages SSR et les API. Les changements faits via l'admin ecrivent dans les fichiers du projet (`src/data/*.json` et `public/uploads/`).
+Checklist :
 
-En production, proteger l'admin avec deux variables d'environnement :
-
-```bash
-ADMIN_USER=client
-ADMIN_PASSWORD=mot-de-passe-long
-```
-
-Quand ces variables sont definies, `/admin` et `/api/*` demandent une authentification HTTP Basic. En local, si elles sont absentes, l'admin reste ouverte pour faciliter le developpement.
-
-Important : si l'admin tourne sur un serveur de production, ces changements restent sur le disque du serveur. Ils ne sont pas automatiquement pousses sur GitHub. Pour garder GitHub comme source de verite, utiliser l'un de ces flux :
-
-- faire les modifications en local via `/admin`, puis commit/push;
-- ou ajouter plus tard une integration GitHub API qui cree un commit apres chaque sauvegarde admin.
-
-## Exemple GitHub Actions
-
-```yaml
-name: build
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 11.7.0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run check:content
-      - run: pnpm run build
-```
+- RLS activé sur les tables;
+- policies de lecture strictes;
+- aucune clé service role côté public;
+- pas d'écriture autorisée à la clé anon si non voulue.

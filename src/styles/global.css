@@ -906,6 +906,22 @@ table caption {
   color: var(--color-surface);
 }
 
+.site-footer__admin {
+  justify-self: start;
+  margin-top: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.site-footer__admin:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--color-surface);
+}
+
 @media (max-width: 1020px) {
   h1 {
     font-size: 2.65rem;

@@ -1,7 +1,7 @@
 [
   {
     "slug": "accueil-actuel",
-    "title": "Accueil (ancien site)",
+    "title": "Accueil",
     "sourceUrl": "https://www.dcmorges.ch/",
     "destination": "Club",
     "summary": "Darts Club Morges",
@@ -30,7 +30,7 @@
   },
   {
     "slug": "agenda-htm",
-    "title": "Agenda (ancien site)",
+    "title": "Agenda",
     "sourceUrl": "https://www.dcmorges.ch/agenda.htm",
     "destination": "Agenda",
     "summary": "Tournoi de Pâques - Lundi 6 avril (11h) - ---------------------------------------------------------",
@@ -8192,7 +8192,7 @@
   },
   {
     "slug": "contact-html",
-    "title": "Contact (ancien site)",
+    "title": "Contact",
     "sourceUrl": "https://www.dcmorges.ch/contact.html",
     "destination": "Contact",
     "summary": "DARTS CLUB MORGES - Adresse - Rue de la Gare 1b",
@@ -8369,7 +8369,7 @@
   },
   {
     "slug": "leftframe-htm",
-    "title": "Menu de navigation (ancien site)",
+    "title": "Menu de navigation",
     "sourceUrl": "https://www.dcmorges.ch/leftframe.htm",
     "destination": "Club",
     "summary": "Darts Club Morges",
@@ -12798,7 +12798,7 @@
   },
   {
     "slug": "music",
-    "title": "Section Musique (ancien site)",
+    "title": "Section Musique",
     "sourceUrl": "https://www.dcmorges.ch/music/",
     "destination": "Club",
     "summary": "Darts Club Morges",
@@ -12943,7 +12943,7 @@
   },
   {
     "slug": "news-html",
-    "title": "News (ancien site)",
+    "title": "News",
     "sourceUrl": "https://www.dcmorges.ch/news.html",
     "destination": "News",
     "summary": "Coupe Vaudoise en - Simples Open (27.04.2026) - Résultats et",
@@ -13732,7 +13732,7 @@
   },
   {
     "slug": "rightframe-htm",
-    "title": "Cadre principal (ancien site)",
+    "title": "Cadre principal",
     "sourceUrl": "https://www.dcmorges.ch/rightframe.htm",
     "destination": "Club",
     "summary": "Darts Club Morges",
@@ -13890,7 +13890,7 @@
   },
   {
     "slug": "topframe-htm",
-    "title": "Bandeau d'en-tête (ancien site)",
+    "title": "Bandeau d'en-tête",
     "sourceUrl": "https://www.dcmorges.ch/topframe.htm",
     "destination": "News",
     "summary": "DARTS - CLUB MORGES Rue de la Gare 1b, 1110 Morges, - dartsclubmorges(at)gmail.com",

@@ -1,9 +1,10 @@
 // Server-side data store: reads and writes the JSON files under src/data/ that
 // back each collection. Used only by the admin API routes (Node runtime).
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import type { CollectionDef, Field } from "./collections";
 import { slugify } from "./collections";
+import { writeJsonAtomic } from "./fs";
 
 const dataDir = resolve(process.cwd(), "src", "data");
 const fileFor = (def: CollectionDef) => resolve(dataDir, `${def.file}.json`);
@@ -17,7 +18,7 @@ export async function readAll(def: CollectionDef): Promise<Item[]> {
 }
 
 async function writeAll(def: CollectionDef, items: Item[]): Promise<void> {
-  await writeFile(fileFor(def), JSON.stringify(items, null, 2) + "\n", "utf8");
+  await writeJsonAtomic(fileFor(def), items);
 }
 
 const toLines = (value: unknown): string[] => {
