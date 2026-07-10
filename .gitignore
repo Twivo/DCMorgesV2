@@ -3,6 +3,8 @@ dist/
 public-site/
 public/legacy/videos/*.mp4
 .astro/
+test-results/
+playwright-report/
 .env
 .env.*
 !.env.example

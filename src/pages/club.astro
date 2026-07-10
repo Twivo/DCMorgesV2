@@ -54,8 +54,8 @@ const palmaresGroups = palmaresLines.reduce<Array<{ season: string; lines: typeo
                   <tbody>
                     {group.lines.map((line) => (
                       <tr>
-                        <td>{line.competition}</td>
-                        <td>{line.result}</td>
+                        <td data-label="Compétition">{line.competition}</td>
+                        <td data-label="Résultat">{line.result}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -111,6 +111,66 @@ const palmaresGroups = palmaresLines.reduce<Array<{ season: string; lines: typeo
 
     .palmares-table td {
       color: var(--color-ink);
+    }
+
+    @media (max-width: 680px) {
+      .palmares-year {
+        gap: 8px;
+      }
+
+      .palmares-table-wrap {
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .palmares-table,
+      .palmares-table tbody,
+      .palmares-table tr,
+      .palmares-table td {
+        display: block;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .palmares-table thead {
+        display: none;
+      }
+
+      .palmares-table {
+        border-collapse: separate;
+        border-spacing: 0 8px;
+      }
+
+      .palmares-table tr {
+        padding: 13px 14px;
+        border: 1px solid var(--color-line);
+        border-radius: 8px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .palmares-table td {
+        padding: 0;
+        border: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .palmares-table td + td {
+        margin-top: 7px;
+      }
+
+      .palmares-table td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 2px;
+        color: var(--color-muted);
+        font-size: 0.68rem;
+        font-weight: 850;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
     }
   </style>
 </BaseLayout>

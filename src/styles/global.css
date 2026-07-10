@@ -1079,4 +1079,24 @@ table caption {
   .archive-category-card {
     padding: 18px;
   }
+
+  .table-wrap table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .table-wrap th,
+  .table-wrap td {
+    padding: 9px 8px;
+    font-size: 0.76rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .table-wrap caption {
+    padding: 10px 8px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
 }

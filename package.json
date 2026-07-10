@@ -12,12 +12,14 @@
     "preview:public": "node scripts/serve-public.mjs",
     "check:content": "node scripts/check-content.mjs",
     "security:check": "node scripts/security-check.mjs",
+    "test:responsive": "playwright test tests/responsive.spec.mjs --reporter=list --workers=3",
     "qa": "node scripts/qa.mjs",
     "seed:lmf-live": "node scripts/seed-lmf-live-data.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "preview": "astro preview --host 127.0.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "astro": "^7.0.6",
     "jimp": "^1.6.1",
     "sharp": "^0.35.3"
