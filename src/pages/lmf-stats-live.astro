@@ -161,7 +161,7 @@ const rankingSections: RankingSection[] = [
     </div>
   </section>
 
-  {rankingSections.filter((section) => section.id !== "one-eighties").map((section, sectionIndex) => (
+  {rankingSections.map((section, sectionIndex) => (
     <section class:list={["section", sectionIndex % 2 === 0 ? "section--muted" : ""]} id={section.id}>
       <div class="container">
         <SectionHeader eyebrow={section.eyebrow} title={section.title} description={section.description} />
@@ -247,25 +247,6 @@ const rankingSections: RankingSection[] = [
       </div>
     </div>
   </section>
-
-  {rankingSections.filter((section) => section.id === "one-eighties").map((section) => (
-    <section class="section section--muted" id={section.id}>
-      <div class="container">
-        <SectionHeader eyebrow={section.eyebrow} title={section.title} description={section.description} />
-        <div class="live-table-wrap">
-          <p class="live-table-empty" data-empty={section.id}>Chargement du classement...</p>
-          <table class="live-table" data-table={section.id} hidden>
-            <thead>
-              <tr>
-                {section.columns.map((column) => <th>{column.label}</th>)}
-              </tr>
-            </thead>
-            <tbody data-body={section.id}></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  ))}
 
   <script define:vars={{ supabaseConfig, rankingSections, supabaseTables }}>
     const hasValue = (value) => value !== undefined && value !== null && value !== "";
