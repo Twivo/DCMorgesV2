@@ -2,14 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import { clubPalmaresLines } from "../data/clubPalmares";
+import { clubPalmaresLinesSorted } from "../data/clubPalmares";
 
-const palmaresLines = [...clubPalmaresLines].sort(
-  (a, b) =>
-    (b.order ?? Number.NEGATIVE_INFINITY) - (a.order ?? Number.NEGATIVE_INFINITY) ||
-    b.season.localeCompare(a.season, "fr") ||
-    a.competition.localeCompare(b.competition, "fr")
-);
+const palmaresLines = clubPalmaresLinesSorted;
 
 const palmaresGroups = palmaresLines.reduce<Array<{ season: string; lines: typeof palmaresLines }>>((groups, line) => {
   const current = groups.at(-1);
